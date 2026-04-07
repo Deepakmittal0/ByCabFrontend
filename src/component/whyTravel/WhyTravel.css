@@ -1,0 +1,42 @@
+@media(max-width:768px){
+    .feature-block{
+        text-align: start;
+    }
+    .main-heading{
+      font-size: 27px !important;
+    }
+}
+
+.main-heading {
+  font-size: 40px;
+  padding-left: 20px;
+  margin-bottom: 20px !important;
+}
+
+
+.book-btn{
+    margin-bottom: 20px  !important;
+    border-radius: 10px;
+    padding: 12px 30px !important;
+    
+}
+.container{
+  width: 100% !important;
+}
+.why-section {
+  padding: 70px 0 0 0;
+  background: #f3f3f3;
+  position: relative;   /* IMPORTANT */
+  margin-bottom: 0px;
+}
+
+/* ===== YELLOW RIGHT LINE ===== */
+.yellow-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;      /* better than height:100% */
+  right: 0;
+  width: 20px;
+  background: #f4b400;
+  pointer-events: none;
+}
