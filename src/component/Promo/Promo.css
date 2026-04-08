@@ -31,15 +31,25 @@
 }
 .lsec{padding: 24px !important;
     margin-bottom: 28px;
-    border-radius: 8px 0px 0px 8px;}
+    border-radius: 8px 0px 0px 8px !important;
+margin-left: -12px !important; }
 
 
+.btn1{
+    border: 2px solid white !important;
+    padding: 4px 0px 4px 0px !important;
+}
 
-
-@media (max-width: 991px) {
+@media (max-width: 768px) {
    .psec{
         height: 230px !important;
-  }}
+        /* margin-top: -18px; */
+  }
+.lsec{
+    width: 110%;
+     border-radius: 8px 8px 0px 0px !important;
+}
+}
 
     .psec{
         height: 119px ;

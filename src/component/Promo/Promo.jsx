@@ -488,23 +488,30 @@ function Promo() {
   <div className="row align-items-center shadow rounded overflow-hidden psec">
 
     {/* Left Section */}
-    <div className="col-md-4 bg-warning p-4 d-flex justify-content-between align-items-center flex-wrap lsec">
-      <div>
-        <div className="d-flex justify-content-between align-items-center">
-  <h5 className="mb-0">Frequent Rider Plan</h5>
+    <div className="col-md-4">
+  <div className="bg-warning rounded-4 overflow-hidden lsec">
 
-  <button className="btn btn-light rounded-pill fw-semibold px-4 !ml-[40px] p-1">
-    Buy Now
-  </button>
-</div>
-        <h4 className="fw-bold mt-3">Flat ₹200 off on every ride</h4>
-      </div>
+    {/* Content */}
+    <div className="p-3 text-center" style={{marginTop:"-20px"}}>
+      <small className="d-block text-dark fw-medium">
+        Frequent Rider Plan
+      </small>
 
-      
+      <h6 className="fw-bold mb-0">
+        Flat ₹200 off on every ride
+      </h6>
     </div>
 
+    {/* Button */}
+    <button className="bt btn1 btn-warning w-100 fw-semibold rounded-0 border-top">
+      Buy Now
+    </button>
+
+  </div>
+</div>
+
     {/* Right Section */}
-    <div className="col-md-8 bg-white p-4" style={{ marginTop: "-35px" }}>
+    <div className="col-md-8 bg-white " style={{ marginTop: "-35px" }}>
 <img src="https://cabbazar.com/assets/img/background/banner_web_2.png" alt="" />
     </div>
 
