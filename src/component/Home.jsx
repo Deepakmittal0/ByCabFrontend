@@ -32,28 +32,13 @@ function HeroSection() {
    
    <OutstationSection/>
    <Popularcity/>
-   {/* <TaxiServices/> */}
-   {/* <TaxiServices2/> */}
-   {/* <PopularRoutes/> */}
-   {/* <BusinessPage/> */}
+   <Map/>
+  
    
-   {/* <PartnerPage/> */}
-   {/* <MediaSection/> */}
-  
-  <Map/>
-  
-   <ContactSection/>
    <Testimonials/>
-   {/* <Journey/> */}
-  
-   
-    {/* <Faq/> */}
+   <ContactSection/>
    <Footer/>
-   
-
-    
   
-
     </>
   )
 }

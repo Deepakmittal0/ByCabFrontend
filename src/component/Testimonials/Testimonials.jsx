@@ -9,7 +9,7 @@ import "./Testimonials.css";
 
 const testimonials = [
   {
-    name: "Melbin Jose",
+    name: "Mukesh jain",
     city: "Gurgaon",
     img: rev1,
     review: "Best deals and smooth rides. Booking is quick and hassle-free.",

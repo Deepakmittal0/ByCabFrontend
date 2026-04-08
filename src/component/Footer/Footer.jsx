@@ -22,7 +22,7 @@ const Footer = () => {
             ALMORA | ALWAR | AMBALA | AMBERNATH | AMRAVATI | AMRITSAR |
             ANAND | ANANTAPUR | ANJUNA
           </p>
-          <div className="explore">+ Explore more cities</div>
+          {/* <div className="explore">+ Explore more cities</div> */}
         </div>
 
         <hr />
@@ -70,7 +70,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="explore-route">+ Explore more routes</div>
+        {/* <div className="explore-route">+ Explore more routes</div> */}
 
         <hr />
 
@@ -97,8 +97,8 @@ const Footer = () => {
 
         {/* Footer Links */}
         <div className="footer-links">
-          Terms of Use | Privacy Policy | Refund Policy |
-          Service Level Agreement | Career | Mobile App |
+          Terms of Use | Privacy Policy  |
+         Career | 
           Media Coverage | Affiliate | Blog | Sitemap
           <br />
           Contact Us : +91 9045454224
