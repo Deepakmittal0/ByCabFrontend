@@ -12,11 +12,9 @@ const BookingProcess = () => {
   return (
     <section className="booking-section ">
       <div className="container">
-        <div class="">
-          <h2 class="main-heading">How to <span style={{color:"#fbbf24"}}> Book Car</span> Online </h2>
-          <p>Craving freedom on your Delhi adventure? 
- Skip the cabs and book a self-drive car in Delhi with MyChoize! Explore the capital city by avoiding rigid schedules and creating
-  unforgettable memories - 
+        <div className="">
+          <h2 className="main-heading">How to <span style={{color:"#fbbf24"}}> Book Car</span> Online </h2>
+          <p>Travel hassle-free with ByCab! Book reliable taxis across India in just a few clicks. Enjoy comfortable rides, professional drivers, and on-time service—whether it’s airport transfers, outstation trips, or city rides.
 </p>
 </div>
         

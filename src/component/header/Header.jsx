@@ -39,7 +39,7 @@ const AIRPORT_DROPDOWN_LIMIT = 120;
 const HeroWithPromo = () => {
   const navigate = useNavigate();
   const [tripType, setTripType] = useState("outstation");
-  const [tripMode, setTripMode] = useState("round");
+  const [tripMode, setTripMode] = useState("oneway");
   const [mobile, setMobile] = useState("");
   const [cities, setCities] = useState(["", ""]);
   const [placeIds, setPlaceIds] = useState(["", ""]);
@@ -342,35 +342,37 @@ const HeroWithPromo = () => {
       </ToastContainer>
 
       {/* HERO SECTION */}
-      <div className="w-full min-h-screen bg-[url('https://www.srdvtechnologies.com/assets/images/taxi-booking-services.jpg')] bg-no-repeat bg-center bg-cover relative flex items-center max-md:bg-none max-md:min-h-auto">
+      <div id="bookingForm" className="w-full min-h-screen bg-[url('https://24cabs.com/frotent_assets/img/img3.webp')] bg-no-repeat bg-center bg-cover relative flex items-center max-md:bg-none max-md:min-h-auto">
           <Row className="relative w-full z-[2] min-h-screen max-[450px]:!m-auto items-center max-md:min-h-[74vh] max-md:mt-10">
           <Col lg={5} md={6} xs={12} className="flex max-[450px]:!px-0  justify-start px-5 !-mt-20 max-md:!-mt-0">
-            <div className="bg-[#f3f3f3] rounded-[20px] p-[15px] w-full max-w-[380px] h-auto flex flex-col  max-md:!bg-transparent max-md:!w-full" style={{ marginLeft: "9px", gap: "10px",marginTop:"-20px" }}>
+            <div className="bg-[#f3f3f3] rounded-[20px] p-[15px] w-full max-w-[380px] h-auto flex flex-col  max-md:!bg-transparent max-md:!w-full form-head" >
                 <div className="bg-[#f5b400]  m-head text-center rounded-[15px]  font-semibold">All India Cab Service</div>
 
-                <div className="flex  gap-2.5 mb-[1px]">
-                  <Button
-                    className={
-                      tripType === "outstation"
-                        ? "!bg-[#f5b400] !rounded-[25px] !border-none font-semibold flex-1"
-                        : "!bg-[#ddd] !rounded-[25px] !border-none flex-1 text-black " 
-                    } 
-                    onClick={() => setTripType("outstation")} style={{padding:"9px"}}
-                  >
-                    Outstation
-                  </Button>
+<div className="flex flex-col gap-2.5 mb-[1px]">
+  <Button
+    className={
+      tripType === "outstation"
+        ? "!bg-[#f5b400] !rounded-[25px] !border-none font-semibold"
+        : "!bg-[#ddd] !rounded-[25px] !border-none text-black"
+    }
+    onClick={() => setTripType("outstation")}
+    style={{ padding: "9px" }}
+  >
+    Outstation
+  </Button>
 
-                  <Button
-                    className={
-                      tripType === "local" 
-                        ? "!bg-[#f5b400] !rounded-[25px] !border-none font-semibold flex-1" 
-                        : "!bg-[#ddd] !rounded-[25px] !border-none flex-1 text-black"
-                    }
-                    onClick={() => setTripType("local")} style={{padding:"9px"}}
-                  >
-                    Local / Airport
-                  </Button>
-                </div>
+  <Button
+    className={
+      tripType === "local"
+        ? "!bg-[#f5b400] !rounded-[25px] !border-none font-semibold"
+        : "!bg-[#ddd] !rounded-[25px] !border-none text-black"
+    }
+    onClick={() => setTripType("local")}
+    style={{ padding: "9px" }}
+  >
+    Local / Airport
+  </Button>
+</div>
 
                 {tripType === "local" && (
                   <div
@@ -711,34 +713,7 @@ const HeroWithPromo = () => {
           <div className="flex-1 text-center">
   <h6 className="font-semibold mb-[25px] cash">Get ₹200 cashback on mobile app download</h6>
 
-  <div className="d-none flex gap-2.5 mt-2.5 justify-center">
-    {/* Play Store - Always Visible this is a playstore link */}
-    <a 
-      href="https://play.google.com/store/apps" 
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img
-        src={taxi}
-        alt="Google Play Store"
-        className="h-[45px] cursor-pointer"
-      />
-    </a>
-
-    {/* App Store - Hide on Mobile */}
-    <a 
-      href="https://www.apple.com/app-store/" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="max-md:hidden"
-    >
-      <img
-        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-        alt="App Store"
-        className="h-[45px] cursor-pointer"
-      />
-    </a>
-  </div>
+ 
 </div>
 
           <div className="flex-1 text-center border-l border-[#d4d4d4]">
@@ -755,7 +730,7 @@ const HeroWithPromo = () => {
             <p className="m-0 text-[#555] text-[15px]">
               Cheapest costs | Competitive prices
               <br />
-              Pay as you go
+              Pay as you gohidden max-md:block h-[350px] bg-[url('https://24cabs.com/frotent_assets/img/img3.webp')] bg-no-repeat bg-center bg-cover
             </p>
           </div>
         </div>
@@ -765,11 +740,7 @@ const HeroWithPromo = () => {
             <div className="bg-[#f1f1f1] rounded-[50px] mt-10 p-[25px] text-center h-[110px] !flex flex-col justify-center shadow-[0_10px_25px_rgba(0,0,0,0.15)]">
               <div className="flex-1 text-center">
                 <h6 className="font-semibold mb-[15px] max-md:text-[17px] cash">Get ₹200 cashback on mobile app download</h6>
-                 {/* <img
-        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-        alt="Google Play Store"
-        className="h-[45px] cursor-pointer"
-      /> */}
+
               </div>
             </div>
             <div className="bg-[#f1f1f1] rounded-[50px] mt-10 p-[25px] text-center h-[110px] !flex flex-col justify-center shadow-[0_10px_25px_rgba(0,0,0,0.15)] d-md-none">
@@ -796,7 +767,7 @@ const HeroWithPromo = () => {
         </div>
       </div>
 
-      <div className="hidden max-md:block h-[350px] bg-[url('https://www.srdvtechnologies.com/assets/images/taxi-booking-services.jpg')] bg-no-repeat bg-center bg-cover"></div>
+      <div className="hidden max-md:block h-[350px] bg-[url('https://24cabs.com/frotent_assets/img/img3.webp')] bg-no-repeat bg-center bg-cover"></div>
     </>
   );
 };

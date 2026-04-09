@@ -24,7 +24,7 @@ const testimonials = [
   },
   {
     name: "Karanvir Singh",
-    city: "Jalandhar",
+    city: "Banglore",
     img: rev3,
     review: "Clean cab, polite driver and smooth journey.",
     rating: 5,

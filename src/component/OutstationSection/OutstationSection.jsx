@@ -49,7 +49,11 @@ const OutstationSection = () => {
     </p>
   </div>
 
-  <button className="book-btn">
+  <button className="book-btn"  onClick={() => {
+    document.getElementById("bookingForm").scrollIntoView({
+      behavior: "smooth"
+    });
+  }} >
     Book Your Cab Now
   </button>
 </div>

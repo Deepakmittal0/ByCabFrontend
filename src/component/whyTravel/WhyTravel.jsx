@@ -50,7 +50,11 @@ const WhyTravel = () => {
   <p>Outstation, intercity, local rides and airport transfers</p>
 </div>
 
-              <button className="book-btn">BOOK CAB</button>
+              <button className="book-btn"  onClick={() => {
+    document.getElementById("bookingForm").scrollIntoView({
+      behavior: "smooth"
+    });
+  }}>BOOK CAB</button>
             </div>
           </div>
 
