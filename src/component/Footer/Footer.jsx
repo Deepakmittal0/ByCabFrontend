@@ -18,9 +18,10 @@ const Footer = () => {
         <div className="popular-cities">
           <span className="title">POPULAR CITIES</span>
           <p>
-            AGRA | AHMEDABAD | AHMEDNAGAR | AJMER | ALIGARH | ALLAHABAD |
-            ALMORA | ALWAR | AMBALA | AMBERNATH | AMRAVATI | AMRITSAR |
-            ANAND | ANANTAPUR | ANJUNA
+           AGRA | JAIPUR | DELHI | VARANASI | UDAIPUR | JODHPUR | RISHIKESH | HARIDWAR | 
+AMRITSAR | SHIMLA | MANALI | MUSSOORIE | NAINITAL | DARJEELING | GANGTOK | 
+GOA | MUMBAI | PUNE | HYDERABAD | BANGALORE | CHENNAI | MYSORE | OOTY | 
+KOLKATA | BHOPAL | INDORE | KHAJURAHO | SOMNATH | DWARKA | KUTCH
           </p>
           {/* <div className="explore">+ Explore more cities</div> */}
         </div>

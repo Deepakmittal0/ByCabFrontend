@@ -54,3 +54,16 @@ margin-left: -12px !important; }
     .psec{
         height: 119px ;
     }
+
+    .lowcab{
+        left: 53px;
+    top: -31px !important
+    }
+
+    .bold{
+        font-weight: 500;
+        /* color: black; */
+    }
+    span{
+        font-weight: 500;
+    }

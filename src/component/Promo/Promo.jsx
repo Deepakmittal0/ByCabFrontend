@@ -5,6 +5,7 @@ import lowcab from "/image/cablow.jpg";
 import { useEffect } from "react";
 import "./Promo.css";
 import axios from "axios";
+import { Modal, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import {
   AIRPORT_VEHICLE_IMAGES,
@@ -53,6 +54,7 @@ function getRazorpayKeyId() {
 // ✅ FAQ Component (Separate Proper Component)
 function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
+  
 
   const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -68,7 +70,7 @@ function FAQ() {
           className="mb-2.5 rounded-[10px] bg-[#f9f9f9] hover:bg-[#f1f1f1] shadow-[0_0_5px_rgba(0,0,0,0.1)] overflow-hidden cursor-pointer select-none transition-colors duration-300"
           onClick={() => toggle(index)}
         >
-          <div className="py-[15px] px-5 font-[1000] text-base flex justify-between items-center">
+          <div className="py-[15px] px-5 font-[700] text-base flex justify-between items-center">
             {item.question}
             <span
               className={`text-[#222] text-2xl transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
@@ -127,6 +129,7 @@ function Promo() {
   /** 'best' | 'inclusive' — round trip only */
   const [priceView, setPriceView] = useState("best");
   const [showModal, setShowModal] = useState(false);
+   const [show, setShow] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
   const [bookingForm, setBookingForm] = useState({
     name: "",
@@ -405,10 +408,12 @@ function Promo() {
       </p>
     </div>
   );
-
+const tripLabel =
+  data?.tripMode === "round" ? "Round trip" : "One-way route";
   return (
     <>
       <Navbar />
+      
       {loading ? (
         <div
           className="min-h-[60vh] flex items-center justify-center px-4"
@@ -423,7 +428,7 @@ function Promo() {
          <div className="bg-white p-3 rounded-[12px] shadow-sm">
 
   {/* Trip Type */}
-  <div className="text-sm text-gray-600 mb-2">
+  <div className="text-sm text-gray-600 mb-2" style={{fontSize:"20px",fontWeight:"500"}}>
     {data.tripType === "local" && data.localSubType === "rental"
       ? "Local rental"
       : data.tripType === "local" && data.localSubType === "airport"
@@ -442,7 +447,7 @@ function Promo() {
 
     <div className="flex items-center gap-2 flex-wrap">
 
-      <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium">
+      <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium" >
         {data.airportName}
       </div>
 
@@ -462,7 +467,7 @@ function Promo() {
         {data.cities?.[0]}
       </div>
 
-      <span className="text-xl font-bold">➜</span>
+      <span className="text-xl font-bold"> ⇄</span>
 
       <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium">
         {data.cities?.[1]}
@@ -470,17 +475,24 @@ function Promo() {
 
     </div>
 
-  )}
+    
 
-  {/* Distance */}
-  {distanceKm != null && (
-    <div className="text-sm text-gray-500 mt-2">
-      One-way route ~{distanceKm} km
-      {data.tripMode === "round" && billKm != null && (
-        <span> · Billed {billKm} km</span>
-      )}
-    </div>
-  )}
+  )
+  
+  
+  }
+
+ 
+
+{distanceKm != null && (
+  <div className="text-sm text-gray-500 mt-2" style={{fontSize:"16px",fontWeight:"500"}}>
+    {tripLabel} ~ {distanceKm} km
+
+    {data?.tripMode === "round" && billKm != null && (
+      <span> · Total Disatance - {billKm} km</span>
+    )}
+  </div>
+)}
 
 </div>
 
@@ -589,7 +601,7 @@ function Promo() {
                       <img
                         src={lowcab}
                         alt=""
-                        className="absolute top-0 left-0 w-[88px] md:w-[100px] h-auto z-[1] drop-shadow-md"
+                        className="absolute top-0 left-0 lowcab w-[80px] md:w-[90px] h-auto z-[1] drop-shadow-md"
                       />
                     </div>
 
@@ -598,10 +610,10 @@ function Promo() {
                       <h2 className="text-[1.85rem] md:text-[2rem] font-extrabold text-green-600 leading-tight mt-1 tracking-tight">
                         <span className="prs">₹ {car.price}</span>
                       </h2>
-                      <p className="text-[0.8rem] md:text-sm text-[#0077cc] font-bold uppercase tracking-wide mt-3 leading-snug px-1">
+                      <p className="text-[0.8rem] md:text-sm text-[#0077cc] font-bold uppercase tracking-wide mt-3 leading-snug px-1 bold">
                         {car.type}
                       </p>
-                      <p className="text-[0.95rem] text-[#555] mt-2 leading-snug">{car.name}</p>
+                      <p className="text-[0.95rem] text-[#555] mt-2 leading-snug bold">{car.name}</p>
                     </div>
 
                     <div className="mt-auto w-full flex flex-col gap-4">
@@ -609,7 +621,7 @@ function Promo() {
                         {isAirportTransfer ? (
                           <>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
-                              <span className="shrink-0 font-semibold text-[#1a1a1a]">Included Km:</span>
+                              <span className="shrink-0 font-semibold text-[#1a1a1a] bold">Included Km:</span>
                               <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">
                                 {car._airportIncludedKm != null
                                   ? `${car._airportIncludedKm} km`
@@ -624,29 +636,70 @@ function Promo() {
                             </div>
                             <div className="my-2.5 border-t border-[#e5e5e5]" />
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
-                              <span className="shrink-0 font-medium text-[#333]">Toll, State Tax:</span>
+                              <span className="shrink-0 font-medium text-[#333] bold">Toll, State Tax:</span>
                               <span className="text-right font-semibold text-green-600 capitalize">
                                 {car._airportToll ?? "included"}
                               </span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
-                              <span className="shrink-0 font-medium text-[#333]">Fuel Charges:</span>
+                              <span className="shrink-0 font-medium text-[#333] bold">Fuel Charges:</span>
                               <span className="text-right font-semibold text-green-600 capitalize">
                                 {car._airportFuel ?? "included"}
                               </span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
-                              <span className="shrink-0 font-medium text-[#333]">Driver Charges:</span>
+                              <span className="shrink-0 font-medium text-[#333] bold">Driver Charges:</span>
                               <span className="text-right font-semibold text-green-600 capitalize">
                                 {car._airportDriver ?? "included"}
                               </span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
-                              <span className="shrink-0 font-medium text-[#333]">Night Charges:</span>
+                              <span className="shrink-0 font-medium text-[#333] bold">Night Charges:</span>
                               <span className="text-right font-semibold text-green-600 capitalize">
                                 {car._airportNight ?? "included"}
                               </span>
                             </div>
+<div
+  className="text-center mt-5"
+  style={{ cursor: "pointer", color: "#f59e0b", fontWeight: "600" }}
+  onClick={() => setShow(true)}
+>
+  other term
+</div>
+
+<Modal show={show} onHide={() => setShow(false)} centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Other Charges and Taxes</Modal.Title>
+  </Modal.Header>
+
+  <Modal.Body>
+    <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+      <li>- Vehicle and fuel charges included</li>
+      <li>- Driver Night Charges included</li>
+      <li>- 5% GST Extra</li>
+      <li>- Included Kilometers will start from pickup location</li>
+      <li>- Driver allowance includes stay, food and night charges</li>
+      <li>- Toll and state tax extra</li>
+      <li>- Parking charges extra if applicable</li>
+      <li>- AC will remain switch off in hill areas</li>
+
+     
+
+
+     
+    </ul>
+  </Modal.Body>
+
+  <Modal.Footer className="justify-content-center">
+    <Button variant="warning" onClick={() => setShow(false)}>
+      Okay
+    </Button>
+  </Modal.Footer>
+</Modal>
+           
+
+
+
                           </>
                         ) : isLocalRental ? (
                           <>
@@ -681,6 +734,57 @@ function Promo() {
                               <span className="shrink-0 font-medium text-[#333]">Night Charges:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
                             </div>
+
+
+<div
+  className="text-center mt-5"
+  style={{ cursor: "pointer", color: "#f59e0b", fontWeight: "600" }}
+  onClick={() => setShow(true)}
+>
+  other term
+</div>
+
+<Modal show={show} onHide={() => setShow(false)} centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Other Charges and Taxes</Modal.Title>
+  </Modal.Header>
+
+  <Modal.Body>
+    <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+      <li>- Vehicle and fuel charges included</li>
+      <li>- Driver Night Charges included</li>
+      <li>- 5% GST Extra</li>
+      <li>- Included Kilometers will start from pickup location</li>
+      <li>- Driver allowance includes stay, food and night charges</li>
+      <li>- Toll and state tax extra</li>
+      <li>- Parking charges extra if applicable</li>
+     
+
+      {/* ✅ ROUND TRIP TERMS */}
+      { data.localSubType === "rental" && (
+        <>
+          <li>- For Round trip bookings, all sightseeing included except pickup city.</li>
+           <li>- AC will remain switch off in hill areas</li>
+        </>
+      )}
+
+      {/* ✅ ONE WAY TERMS */}
+      { data.localSubType !== "rental" && (
+        <>
+          <li>- AC will remain switch off in hill areas</li>
+
+        </>
+      )}
+    </ul>
+  </Modal.Body>
+
+  <Modal.Footer className="justify-content-center">
+    <Button variant="warning" onClick={() => setShow(false)}>
+      Okay
+    </Button>
+  </Modal.Footer>
+</Modal>
+
                           </>
                         ) : (
                           <>
@@ -694,7 +798,15 @@ function Promo() {
                               <span className="shrink-0 font-semibold text-[#1a1a1a]">Extra fare/Km:</span>
                               <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">{car.extra}</span>
                             </div>
-                            <div className="my-2.5 border-t border-[#e5e5e5]" />
+ 
+                            <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
+                              <span className="shrink-0 font-medium text-[#333]">Toll, State Tax:</span>
+                              <span className="text-right font-semibold text-green-600 capitalize">
+                                {car._airportToll ?? "included"}
+                              </span>
+                            </div>
+
+                            {/* <div className="my-2.5 border-t border-[#e5e5e5]" /> */}
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Fuel:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
@@ -707,6 +819,60 @@ function Promo() {
                               <span className="shrink-0 font-medium text-[#333]">Night:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
                             </div>
+
+<div
+  className="text-center mt-5"
+  style={{ cursor: "pointer", color: "#f59e0b", fontWeight: "600" }}
+  onClick={() => setShow(true)}
+>
+  other term
+</div>
+
+<Modal show={show} onHide={() => setShow(false)} centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Other Charges and Taxes</Modal.Title>
+  </Modal.Header>
+
+  <Modal.Body>
+    <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+      <li>- Vehicle and fuel charges included</li>
+      <li>- Driver Night Charges included</li>
+      <li>- 5% GST Extra</li>
+      <li>- Included Kilometers will start from pickup location</li>
+      <li>- Driver allowance includes stay, food and night charges</li>
+      <li>- Toll and state tax extra</li>
+      <li>- Parking charges extra if applicable</li>
+      <li>- AC will remain switch off in hill areas</li>
+
+      {/* ✅ ROUND TRIP TERMS */}
+      {data.tripMode === "round" && (
+        <>
+          <li>- For Round trip bookings, all sightseeing included except pickup city.</li>
+          <li>-  For round trip booking, Kilometers will count from pickup location to pickup location
+
+</li>
+          <li>- Round trip includes return journey (pickup to pickup)</li>
+        </>
+      )}
+
+      {/* ✅ ONE WAY TERMS */}
+      {data.tripMode !== "round" && (
+        <>
+          <li>- One way trip includes only pickup & drop</li>
+          <li>- Sightseeing not included in one way trip</li>
+          <li>- Extra pickup ₹250</li>
+          <li>-One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li>
+        </>
+      )}
+    </ul>
+  </Modal.Body>
+
+  <Modal.Footer className="justify-content-center">
+    <Button variant="warning" onClick={() => setShow(false)}>
+      Okay
+    </Button>
+  </Modal.Footer>
+</Modal>
                           </>
                         )}
                       </div>
