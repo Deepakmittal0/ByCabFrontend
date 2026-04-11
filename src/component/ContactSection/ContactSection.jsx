@@ -12,8 +12,9 @@ import { useForm, ValidationError } from '@formspree/react';
 const ContactSection = () => {
   const [state, handleSubmit] = useForm("mvzbwezz");
   if (state.succeeded) {
-      return alert("Form Submited Successfully");
-  }
+  alert("Form Submitted Successfully");
+  return <h2>Thank you!</h2>;
+}
   return (
     <section className="contact-section">
 
