@@ -18,12 +18,16 @@ const INCLUDED_CHARGES = {
 
 /** CabBazar vehicle art — keys match `price` / `extraFarePerKm` labels */
 export const AIRPORT_VEHICLE_IMAGES = {
-  "Swift, WagonR or Similar":
-    "https://cabbazar.com/assets/img/vehicles/hatchback.png",
-  "Dzire, Etios or Similar":
-    "https://cabbazar.com/assets/img/vehicles/sedan.png",
-  "Ertiga, Carens or Similar":
-    "https://cabbazar.com/assets/img/vehicles/suv.png",
+  "Swift, WagonR or Similar": "./image/shift.jpeg",
+  "Dzire, Etios or Similar": "/image/sedan.jpeg",
+  "Ertiga, Carens or Similar": "/image/ertiga.jpeg",
+};
+
+export const AIRPORT1_VEHICLE_IMAGES = {
+  "Swift, WagonR or Similar": "./image/shift.jpeg",
+  "Dzire, Etios or Similar": "/image/sedan.jpeg",
+  "Ertiga, Carens or Similar": "/image/ertiga.jpeg",
+  "Innova,  or Similar": "/image/ertiga.jpeg",
 };
 
 /** Card order: hatchback → sedan → SUV */
@@ -31,6 +35,7 @@ export const AIRPORT_VEHICLE_LABELS = [
   "Swift, WagonR or Similar",
   "Dzire, Etios or Similar",
   "Ertiga, Carens or Similar",
+  // "Innova, Carens or Similar",
 ];
 
 /**

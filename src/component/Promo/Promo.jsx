@@ -8,7 +8,7 @@ import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import {
-  AIRPORT_VEHICLE_IMAGES,
+  AIRPORT1_VEHICLE_IMAGES,
   AIRPORT_VEHICLE_LABELS,
 } from "../../airport/airport_city.js";
 
@@ -100,7 +100,7 @@ function buildAirportTransferCabCards(airportCityFare) {
     const oldPrice = Math.round(Number.isFinite(price) ? price * 1.09 : 0);
     const extraPer = airportCityFare.extraFarePerKm?.[label] ?? 16;
     return {
-      img: AIRPORT_VEHICLE_IMAGES[label],
+      img:  AIRPORT1_VEHICLE_IMAGES[label],
       img1: AIRPORT_VEHICLE_IMAGES[label],
       oldPrice,
       price: Number.isFinite(price) ? price : 0,
@@ -410,6 +410,10 @@ function Promo() {
   );
 const tripLabel =
   data?.tripMode === "round" ? "Round trip" : "One-way route";
+
+  const totalAmount = selectedCar?.price || 0;
+const advanceAmount = Math.round(totalAmount * 0.25);
+
   return (
     <>
       <Navbar />
@@ -605,7 +609,7 @@ const tripLabel =
                       />
                     </div>
 
-                    <div className="text-center mt-5 mb-4 shrink-0">
+                    <div className="text-center mt-3 mb-3 shrink-0">
                       <div className="text-red-500 text-sm line-through decoration-2 opacity-90">₹ {car.oldPrice}</div>
                       <h2 className="text-[1.85rem] md:text-[2rem] font-extrabold text-green-600 leading-tight mt-1 tracking-tight">
                         <span className="prs">₹ {car.price}</span>
@@ -634,7 +638,7 @@ const tripLabel =
                                 {car.extra}
                               </span>
                             </div>
-                            <div className="my-2.5 border-t border-[#e5e5e5]" />
+                            {/* <div className="my-2.5 border-t border-[#e5e5e5]" /> */}
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333] bold">Toll, State Tax:</span>
                               <span className="text-right font-semibold text-green-600 capitalize">
@@ -660,7 +664,7 @@ const tripLabel =
                               </span>
                             </div>
 <div
-  className="text-center mt-5"
+  className="text-center mt-3"
   style={{ cursor: "pointer", color: "#f59e0b", fontWeight: "600" }}
   onClick={() => setShow(true)}
 >
@@ -726,6 +730,7 @@ const tripLabel =
                               <span className="shrink-0 font-medium text-[#333]">Fuel Charges:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
                             </div>
+                            
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Driver Charges:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
@@ -743,7 +748,6 @@ const tripLabel =
 >
   other term
 </div>
-
 <Modal show={show} onHide={() => setShow(false)} centered>
   <Modal.Header closeButton>
     <Modal.Title>Other Charges and Taxes</Modal.Title>
@@ -785,6 +789,7 @@ const tripLabel =
   </Modal.Footer>
 </Modal>
 
+
                           </>
                         ) : (
                           <>
@@ -799,12 +804,12 @@ const tripLabel =
                               <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">{car.extra}</span>
                             </div>
  
-                            <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
+                            {/* <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Toll, State Tax:</span>
                               <span className="text-right font-semibold text-green-600 capitalize">
                                 {car._airportToll ?? "included"}
                               </span>
-                            </div>
+                            </div> */}
 
                             {/* <div className="my-2.5 border-t border-[#e5e5e5]" /> */}
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
@@ -893,6 +898,7 @@ const tripLabel =
           </div>
         </div>
       )}
+      
 
       {/* ✅ Booking Modal */}
       {showModal && (
@@ -983,12 +989,19 @@ const tripLabel =
                   className="w-full p-[14px_18px] border-2 border-[#eee] rounded-xl text-[1rem] bg-[#fafafa] transition-all duration-200 focus:border-[#ffcc00] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#ffcc00]/15"
                 />
               </div>
-              <button
+              {/* <button
                 type="submit"
                 className="w-full p-[18px] bg-[#ffcc00] hover:bg-[#ffaa00] border-none rounded-[14px] text-[1.1rem] font-extrabold text-black cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] mt-[15px] hover:-translate-y-[3px] hover:shadow-[0_10px_20px_rgba(255,170,0,0.4)] active:-translate-y-px"
               >
                 Confirm Booking
-              </button>
+              </button> */}
+
+              <button 
+  type="submit"
+  className="w-full p-[18px] bg-[#ffcc00] hover:bg-[#ffaa00] border-none rounded-[14px] text-[1.1rem] font-extrabold text-black cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] mt-[15px] hover:-translate-y-[3px] hover:shadow-[0_10px_20px_rgba(255,170,0,0.4)] active:-translate-y-px"
+>
+  Pay ₹{advanceAmount} Advance & Book
+</button>
             </form>
           </div>
         </div>
