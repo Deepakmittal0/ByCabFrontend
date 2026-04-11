@@ -8,7 +8,7 @@ import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import {
-  AIRPORT1_VEHICLE_IMAGES,
+  AIRPORT_VEHICLE_IMAGES,
   AIRPORT_VEHICLE_LABELS,
 } from "../../airport/airport_city.js";
 
@@ -100,7 +100,7 @@ function buildAirportTransferCabCards(airportCityFare) {
     const oldPrice = Math.round(Number.isFinite(price) ? price * 1.09 : 0);
     const extraPer = airportCityFare.extraFarePerKm?.[label] ?? 16;
     return {
-      img:  AIRPORT1_VEHICLE_IMAGES[label],
+      img:  AIRPORT_VEHICLE_IMAGES[label],
       img1: AIRPORT_VEHICLE_IMAGES[label],
       oldPrice,
       price: Number.isFinite(price) ? price : 0,
