@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaCheckCircle, FaHome } from "react-icons/fa";
 import Navbar from "../Navbar/Navbar";
@@ -6,6 +6,10 @@ import Footer from "../Footer/Footer";
 import "./ContactThankYou.css";
 
 const ContactThankYou = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Navbar />
