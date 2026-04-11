@@ -804,15 +804,14 @@ const advanceAmount = Math.round(totalAmount * 0.25);
                               <span className="shrink-0 font-semibold text-[#1a1a1a]">Extra fare/Km:</span>
                               <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">{car.extra}</span>
                             </div>
- 
-                            {/* <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
-                              <span className="shrink-0 font-medium text-[#333]">Toll, State Tax:</span>
-                              <span className="text-right font-semibold text-green-600 capitalize">
-                                {car._airportToll ?? "included"}
-                              </span>
-                            </div> */}
 
-                            {/* <div className="my-2.5 border-t border-[#e5e5e5]" /> */}
+                            {data.tripMode === "round" && priceView === "inclusive" && (
+                              <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
+                                <span className="shrink-0 font-medium text-[#333]">Toll, State Tax:</span>
+                                <span className="text-right font-semibold text-green-600">Included</span>
+                              </div>
+                            )}
+
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Fuel:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
