@@ -807,7 +807,7 @@ const advanceAmount = Math.round(totalAmount * 0.25);
 
                             {data.tripMode === "round" && priceView === "inclusive" && (
                               <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
-                                <span className="shrink-0 font-medium text-[#333]">Toll, State Tax:</span>
+                                <span className="shrink-0 font-medium text-[#333]">Toll, State Tax :</span>
                                 <span className="text-right font-semibold text-green-600">Included</span>
                               </div>
                             )}
