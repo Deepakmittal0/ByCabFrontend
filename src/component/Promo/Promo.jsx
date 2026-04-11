@@ -100,7 +100,7 @@ function buildAirportTransferCabCards(airportCityFare) {
     const oldPrice = Math.round(Number.isFinite(price) ? price * 1.09 : 0);
     const extraPer = airportCityFare.extraFarePerKm?.[label] ?? 16;
     return {
-      img:  AIRPORT_VEHICLE_IMAGES[label],
+      img: AIRPORT_VEHICLE_IMAGES[label],
       img1: AIRPORT_VEHICLE_IMAGES[label],
       oldPrice,
       price: Number.isFinite(price) ? price : 0,
