@@ -126,7 +126,7 @@ function Promo() {
   const [billKm, setBillKm] = useState(null);
   const [cabFetchError, setCabFetchError] = useState(null);
   const [cabsLoading, setCabsLoading] = useState(false);
-  /** 'best' | 'inclusive' — outstation one-way & round trip */
+  /** 'best' | 'inclusive' — round trip only */
   const [priceView, setPriceView] = useState("best");
   const [showModal, setShowModal] = useState(false);
    const [show, setShow] = useState(false);
@@ -196,7 +196,7 @@ function Promo() {
           setDistanceKm(null);
           setBillKm(null);
         } else {
-          const pv = priceView;
+          const pv = data.tripMode === "round" ? priceView : "best";
           const { data: res } = await axios.post(
             `${import.meta.env.VITE_API}/api/v1/getcabdetails`,
             {
@@ -535,7 +535,9 @@ const advanceAmount = Math.round(totalAmount * 0.25);
   </div>
 </div>
 
-          {data.tripType === "outstation" && (
+          {data.tripMode === "round" &&
+            !(data.tripType === "local" && data.localSubType === "rental") &&
+            !(data.tripType === "local" && data.localSubType === "airport") && (
             <>
               <div className="flex mb-5 flex-wrap max-md:flex-col max-md:w-[320px] max-md:mx-auto rounded-[10px] overflow-hidden border border-[#e5e5e5]">
                 <button
@@ -803,7 +805,8 @@ const advanceAmount = Math.round(totalAmount * 0.25);
                               <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">{car.extra}</span>
                             </div>
 
-                            {priceView === "inclusive" && (
+                            {((data.tripMode === "round" && priceView === "inclusive") ||
+                              data.tripMode === "oneway") && (
                               <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                                 <span className="shrink-0 font-medium text-[#333]">Toll, State Tax :</span>
                                 <span className="text-right font-semibold text-green-600">Included</span>
