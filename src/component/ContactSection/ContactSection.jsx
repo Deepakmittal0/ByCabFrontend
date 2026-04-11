@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ContactSection.css";
 import {
   FaFacebookF,
@@ -8,13 +9,18 @@ import {
   FaPinterestP,
   FaYoutube,
 } from "react-icons/fa";
-import { useForm, ValidationError } from '@formspree/react';
+import { useForm } from "@formspree/react";
+
 const ContactSection = () => {
   const [state, handleSubmit] = useForm("mvzbwezz");
-  if (state.succeeded) {
-  alert("Form Submitted Successfully");
-  return <h2>Thank you!</h2>;
-}
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (state.succeeded) {
+      navigate("/contact/thank-you", { replace: true });
+    }
+  }, [state.succeeded, navigate]);
+
   return (
     <section className="contact-section">
 
@@ -68,7 +74,9 @@ const ContactSection = () => {
               placeholder="Tell us your thoughts and feelings..."
             ></textarea>
 
-            <button type="submit">SUBMIT</button>
+            <button type="submit" disabled={state.submitting}>
+              {state.submitting ? "SENDING…" : "SUBMIT"}
+            </button>
           </form>
         </div>
 

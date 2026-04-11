@@ -116,6 +116,15 @@
 .contact-right button:hover {
   background: #e0a800;
 }
+
+.contact-right button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.contact-right button:disabled:hover {
+  background: #f4b400;
+}
 .con{
   margin-bottom: 10px !important;
 }
