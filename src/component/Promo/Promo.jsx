@@ -329,7 +329,8 @@ function Promo() {
         paymentInFlight.current = false;
         return;
       }
-      const orderData = await createRazorpayOrder(selectedCar.price);
+      // const orderData = await createRazorpayOrder(selectedCar.price);
+      const orderData = await createRazorpayOrder(advanceAmount);
       if (!orderData) {
         paymentInFlight.current = false;
         return;
