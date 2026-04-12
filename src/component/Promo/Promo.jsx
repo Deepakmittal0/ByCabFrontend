@@ -957,7 +957,7 @@ const getMinTime = () => {
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
                               <span className="shrink-0 font-semibold text-[#1a1a1a]">Included Km:</span>
                               <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">
-                                {distanceKm != null ? `${distanceKm} km` : "—"}
+                                {distanceKm != null ? `${billKm} km` : "—"}
                               </span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
