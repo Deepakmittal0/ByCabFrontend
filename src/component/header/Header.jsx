@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
 import { citydata } from "../../citydata/data.js";
+import { FaCheck } from "react-icons/fa";
 import airportListData from "../../airport/airport_list.js";
 import {
   resolveAirportDestinationOptions,
@@ -344,9 +345,21 @@ const HeroWithPromo = () => {
       {/* HERO SECTION */}
       <div id="bookingForm" className="w-full min-h-screen bg-[url('https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/f49b1d42-200e-4457-a7b9-825341724fe3.jpeg')] bg-no-repeat bg-center bg-cover relative flex items-center max-md:bg-none max-md:min-h-auto" >
           <Row className="relative w-full z-[2] min-h-screen max-[450px]:!m-auto items-center max-md:min-h-[74vh] max-md:mt-10">
-          <Col lg={5} md={6} xs={12} className="flex max-[450px]:!px-0  justify-start px-5 !-mt-20 max-md:!-mt-0">
-            <div className="bg-[#f3f3f3] rounded-[20px] p-[15px] w-full max-w-[380px] h-auto flex flex-col  max-md:!bg-transparent max-md:!w-full form-head" >
-                <div className="bg-[#f5b400]  m-head text-center rounded-[15px]  font-semibold">All India Cab Service</div>
+          <Col lg={5} md={6} xs={12} className="forms flex max-[450px]:!px-0  justify-start px-5 !-mt-20 max-md:!-mt-0">
+            <div className="form bg-[#f3f3f3] rounded-[20px] p-[15px] w-full max-w-[380px] h-auto flex flex-col  max-md:!bg-transparent max-md:!w-full form-head" >
+                {/* <div className="bg-[#f5b400]  m-head text-center rounded-[15px]  font-semibold">All India Cab Service</div> */}
+
+<div className="text-center point-head ">
+  <h2 className="text-[22px] font-bold text-black leading-tight">
+    Book Cabs Across India
+  </h2>
+  <p className="text-[13px] text-gray-600  point d-flex">
+    <p>Safe</p>
+    <p>• Affordable </p>
+    <p>• No Hidden Charges</p>
+  </p>
+</div>
+
 
 <div className="flex flex-col gap-2.5 mb-[1px]">
   <Button
@@ -508,14 +521,14 @@ const HeroWithPromo = () => {
                       </Form.Group>
                     ))}
 
-                  {tripType === "outstation" && (
+                  {/* {tripType === "outstation" && (
                     <div
                       className="bg-[#e9d9b6] p-2.5 rounded-xl mb-[8px] mt-[3px] text-center cursor-pointer"
                       onClick={addCity}
                     >
                       + Add More City
                     </div>
-                  )}
+                  )} */}
 
                   {tripType === "local" && localSubType === "rental" && (
                     <>
@@ -693,6 +706,31 @@ const HeroWithPromo = () => {
                     </div>
                   </Form.Group>
 
+<div className="flex justify-between items-center mt-3 mb-3 text-[12px] text-gray-700">
+  
+  <div className="flex items-center gap-1">
+   <span className="bg-green-600 rounded-full w-4 h-4 flex items-center justify-center">
+  <FaCheck className="text-white text-[9px]" />
+</span>
+    <span>Instant Price</span>
+  </div>
+
+  <div className="flex items-center gap-1">
+   <span className="bg-green-600 rounded-full w-4 h-4 flex items-center justify-center">
+  <FaCheck className="text-white text-[9px]" />
+</span>
+    <span>Verified Drivers</span>
+  </div>
+
+  <div className="flex items-center gap-1">
+    <span className="bg-green-600 rounded-full w-4 h-4 flex items-center justify-center">
+  <FaCheck className="text-white text-[9px]" />
+</span>
+    <span>Reliable Service</span>
+  </div>
+
+</div>
+
                   <Button
                     type="button"
                     onClick={handleCabData}
@@ -716,7 +754,7 @@ const HeroWithPromo = () => {
 
       {/* PROMO SECTION */}
       
-      <div className="hidden max-md:block h-[350px] bg-[url('https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/f49b1d42-200e-4457-a7b9-825341724fe3.jpeg')] bg-no-repeat bg-center bg-cover" ></div>
+      <div className="hidden max-md:none h-[350px] bg-[url('https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/f49b1d42-200e-4457-a7b9-825341724fe3.jpeg')] bg-no-repeat bg-center bg-cover" ></div>
     </>
   );
 };

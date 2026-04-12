@@ -73,7 +73,7 @@
 
 .social-icons a:hover {
   background: #f4b400;
-  color: #000;
+  color: #000 !important;
 }
 
 /* RIGHT SIDE */
