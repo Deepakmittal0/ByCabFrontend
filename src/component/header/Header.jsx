@@ -342,7 +342,7 @@ const HeroWithPromo = () => {
       </ToastContainer>
 
       {/* HERO SECTION */}
-      <div id="bookingForm" className="w-full min-h-screen bg-[url('https://bycabindia.com/uploads/sliders/1772048143_bycabindia-6.jpg')] bg-no-repeat bg-center bg-cover relative flex items-center max-md:bg-none max-md:min-h-auto" >
+      <div id="bookingForm" className="w-full min-h-screen bg-[url('https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/f49b1d42-200e-4457-a7b9-825341724fe3.jpeg')] bg-no-repeat bg-center bg-cover relative flex items-center max-md:bg-none max-md:min-h-auto" >
           <Row className="relative w-full z-[2] min-h-screen max-[450px]:!m-auto items-center max-md:min-h-[74vh] max-md:mt-10">
           <Col lg={5} md={6} xs={12} className="flex max-[450px]:!px-0  justify-start px-5 !-mt-20 max-md:!-mt-0">
             <div className="bg-[#f3f3f3] rounded-[20px] p-[15px] w-full max-w-[380px] h-auto flex flex-col  max-md:!bg-transparent max-md:!w-full form-head" >
@@ -716,7 +716,7 @@ const HeroWithPromo = () => {
 
       {/* PROMO SECTION */}
       
-      <div className="hidden max-md:block h-[350px] bg-[url('https://bycabindia.com/uploads/sliders/1772048143_bycabindia-6.jpg')] bg-no-repeat bg-center bg-cover" style={{background:"rgba(0,0,0,0.35)"}}></div>
+      <div className="hidden max-md:block h-[350px] bg-[url('https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/f49b1d42-200e-4457-a7b9-825341724fe3.jpeg')] bg-no-repeat bg-center bg-cover" ></div>
     </>
   );
 };

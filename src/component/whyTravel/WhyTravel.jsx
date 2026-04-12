@@ -1,6 +1,6 @@
 import React from "react";
 import "./WhyTravel.css";
-import why from "/image/why.jpg";
+// import why from "/image/why.jpg";
 
 // import cabImage from "../assets/cab.jpg"; // apni image path yaha daal dena
 
@@ -16,7 +16,7 @@ const WhyTravel = () => {
           {/* Left Image */}
           <div className="col-lg-6 mb-4 mb-lg-0">
             <div className="image-wrapper">
-              <img src={why} alt="Cab Travel" className="img-fluid rounded-img" />
+              <img src="https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/eeda1e2d-f82f-4d90-b573-b2cb2d2d7f5b.jpeg" alt="Cab Travel" className="img-fluid rounded-img" />
             </div>
           </div>
 
