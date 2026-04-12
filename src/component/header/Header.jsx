@@ -342,7 +342,7 @@ const HeroWithPromo = () => {
       </ToastContainer>
 
       {/* HERO SECTION */}
-      <div id="bookingForm" className="w-full min-h-screen bg-[url('https://24cabs.com/frotent_assets/img/img3.webp')] bg-no-repeat bg-center bg-cover relative flex items-center max-md:bg-none max-md:min-h-auto">
+      <div id="bookingForm" className="w-full min-h-screen bg-[url('https://bycabindia.com/uploads/sliders/1772048143_bycabindia-6.jpg')] bg-no-repeat bg-center bg-cover relative flex items-center max-md:bg-none max-md:min-h-auto" >
           <Row className="relative w-full z-[2] min-h-screen max-[450px]:!m-auto items-center max-md:min-h-[74vh] max-md:mt-10">
           <Col lg={5} md={6} xs={12} className="flex max-[450px]:!px-0  justify-start px-5 !-mt-20 max-md:!-mt-0">
             <div className="bg-[#f3f3f3] rounded-[20px] p-[15px] w-full max-w-[380px] h-auto flex flex-col  max-md:!bg-transparent max-md:!w-full form-head" >
@@ -424,7 +424,7 @@ const HeroWithPromo = () => {
                       <span
                         className={
                           tripMode === "round"
-                            ? "h-[15px] w-[15px] bg-[#f5b400] rounded-full inline-block mr-1.5"
+                            ? "h-[15px] w-[15px] bg-[#f5b400] rounded-full inline-block mr-1.5 ring-2 ring-black ring-inset"
                             : "h-[15px] w-[15px] border-2 border-black rounded-full inline-block mr-1.5"
                         }
                       ></span>
@@ -435,7 +435,7 @@ const HeroWithPromo = () => {
                       <span
                         className={
                           tripMode === "oneway"
-                            ? "h-[15px] w-[15px] bg-[#f5b400] rounded-full inline-block mr-1.5"
+                            ? "h-[15px] w-[15px] bg-[#f5b400] rounded-full inline-block mr-1.5 ring-2 ring-black ring-inset"
                             : "h-[15px] w-[15px] border-2 border-black rounded-full inline-block mr-1.5"
                         }
                       ></span>
@@ -704,70 +704,19 @@ const HeroWithPromo = () => {
               </div>
             </Col>
           </Row>
+
+          
       </div>
-      
+       {/* <div>
+            <p>Instant Price</p>
+            <p>Verified Drivers</p>
+            <p>No Hidden Charges</p>
+            <p></p>
+          </div> */}
 
       {/* PROMO SECTION */}
-      <div className="w-full d-none flex justify-center -mt-[60px] lg:-mt-[70px] relative z-[5]">
-        <div className="bg-[#efefef] w-[89%] max-w-[1200px] rounded-[80px] py-3 px-[50px] flex items-center mb-5 justify-between max-md:hidden">
-          <div className="flex-1 text-center">
-  <h6 className="font-semibold mb-[25px] cash">Get ₹200 cashback on mobile app download</h6>
-
- 
-</div>
-
-          <div className="flex-1 text-center border-l border-[#d4d4d4]">
-            <h4 className="font-bold mb-2">No return fare</h4>
-            <p className="m-0 text-[#555] text-[15px]">
-              One-Way cab fare | No hidden charges
-              <br />
-              Minimal advance
-            </p>
-          </div>
-
-          <div className="flex-1 text-center border-l border-[#d4d4d4]">
-            <h4 className="font-bold mb-2">No over-pricing</h4>
-            <p className="m-0 text-[#555] text-[15px]">
-              Cheapest costs | Competitive prices
-              <br />
-              Pay as you gohidden max-md:block h-[350px] bg-[url('https://24cabs.com/frotent_assets/img/img3.webp')] bg-no-repeat bg-center bg-cover
-            </p>
-          </div>
-        </div>
-
-        <div className="hidden d-none max-md:block w-[95%] max-md:-mb-[105px] [&_.slick-slide]:!mb-[50px] [&_.slick-dots]:!hidden [&_.slick-slide_img]:!ml-[55px] [&_.slick-slide_img]:h-[40px]">
-          <Slider {...sliderSettings}>
-            <div className="bg-[#f1f1f1] rounded-[50px] mt-10 p-[25px] text-center h-[110px] !flex flex-col justify-center shadow-[0_10px_25px_rgba(0,0,0,0.15)]">
-              <div className="flex-1 text-center">
-                <h6 className="font-semibold mb-[15px] max-md:text-[17px] cash">Get ₹200 cashback on mobile app download</h6>
-
-              </div>
-            </div>
-            <div className="bg-[#f1f1f1] rounded-[50px] mt-10 p-[25px] text-center h-[110px] !flex flex-col justify-center shadow-[0_10px_25px_rgba(0,0,0,0.15)] d-md-none">
-              <div className="flex-1 text-center">
-                <h4 className="font-bold mb-2">No return fare</h4>
-                 <p className="m-0 text-[#555] text-[15px]">
-              One-Way cab | No hidden charges
-              <br />
-              Minimal advance
-            </p>
-              </div>
-            </div>
-            <div className="bg-[#f1f1f1] rounded-[50px] mt-10 p-[25px] text-center h-[110px] !flex flex-col justify-center shadow-[0_10px_25px_rgba(0,0,0,0.15)]">
-              <div className="flex-1 text-center">
-                <h4 className="font-bold mb-2">No over-pricing</h4>
-                 <p className="m-0 text-[#555] text-[15px]">
-              Cheapest costs | Competitive prices
-              <br />
-              Pay as you go
-            </p>
-              </div>
-            </div>
-          </Slider>
-        </div>
-      </div>
-
-      <div className="hidden max-md:block h-[350px] bg-[url('https://24cabs.com/frotent_assets/img/img3.webp')] bg-no-repeat bg-center bg-cover"></div>
+      
+      <div className="hidden max-md:block h-[350px] bg-[url('https://bycabindia.com/uploads/sliders/1772048143_bycabindia-6.jpg')] bg-no-repeat bg-center bg-cover" style={{background:"rgba(0,0,0,0.35)"}}></div>
     </>
   );
 };

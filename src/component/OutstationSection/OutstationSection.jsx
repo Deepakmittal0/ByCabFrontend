@@ -13,8 +13,8 @@ const OutstationSection = () => {
       <div className="container">
         <div className="row align-items-center">
 <h1 className="main-title">
-              ByCab — Best outstation{" "}
-              <span style={{ color: "#fbbf24" }}>taxi service</span> in India
+              ByCab — Best Outstation{" "}
+              <span style={{ color: "#fbbf24" }}>Taxi Service</span> In India
             </h1>
           {/* LEFT CONTENT */}
           <div className="col-lg-6 mb-4 left-sec mb-lg-0">

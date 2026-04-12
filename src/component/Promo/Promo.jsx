@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import lowcab from "/image/cablow.jpg";
+import lowcab from "/image/logo.png";
 import { useEffect } from "react";
 import "./Promo.css";
 import axios from "axios";
@@ -412,8 +412,73 @@ function Promo() {
 const tripLabel =
   data?.tripMode === "round" ? "Round trip" : "One-way route";
 
+  const triparrow=data?.tripMode==="round"?"⇄":"➜";
   const totalAmount = selectedCar?.price || 0;
 const advanceAmount = Math.round(totalAmount * 0.25);
+
+const dateRef = useRef(null);
+const timeRef = useRef(null);
+
+// useEffect(() => {
+//   if (!bookingForm.date) return;
+
+//   const today = new Date().toISOString().split("T")[0];
+
+//   if (bookingForm.date === today) {
+//     const now = new Date();
+//     now.setHours(now.getHours() + 2);
+
+//     const hours = String(now.getHours()).padStart(2, "0");
+//     const minutes = String(now.getMinutes()).padStart(2, "0");
+
+//     setBookingForm((prev) => ({
+//       ...prev,
+//       time: `${hours}:${minutes}`, // ✅ auto set time
+//     }));
+//   }
+// }, [bookingForm.date]);
+
+useEffect(() => {
+  if (!bookingForm.date) {
+    const today = new Date();
+    const todayStr = today.toISOString().split("T")[0];
+
+    const future = new Date();
+    future.setHours(future.getHours() + 2);
+
+    const hours = String(future.getHours()).padStart(2, "0");
+    const minutes = String(future.getMinutes()).padStart(2, "0");
+
+    setBookingForm((prev) => ({
+      ...prev,
+      date: todayStr,
+      time: `${hours}:${minutes}`,
+    }));
+  }
+}, []);
+
+
+
+const getMinTime = () => {
+  const today = new Date().toISOString().split("T")[0];
+
+  if (bookingForm.date === today) {
+    const now = new Date();
+    now.setHours(now.getHours() + 2);
+
+    // ✅ Round minutes (optional but better UX)
+    now.setMinutes(Math.ceil(now.getMinutes() / 5) * 5);
+
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+
+    return `${hours}:${minutes}`;
+  }
+
+  return "00:00";
+};
+
+
 
   return (
     <>
@@ -433,7 +498,8 @@ const advanceAmount = Math.round(totalAmount * 0.25);
          <div className="bg-white p-3 rounded-[12px] shadow-sm">
 
   {/* Trip Type */}
-  <div className="text-sm text-gray-600 mb-2" style={{fontSize:"20px",fontWeight:"500"}}>
+  <div className="text-sm text-gray-600 mb-2" style={{fontSize:"18px",fontWeight:"500"}}>
+    
     {data.tripType === "local" && data.localSubType === "rental"
       ? "Local rental"
       : data.tripType === "local" && data.localSubType === "airport"
@@ -472,31 +538,125 @@ const advanceAmount = Math.round(totalAmount * 0.25);
         {data.cities?.[0]}
       </div>
 
-      <span className="text-xl font-bold"> ⇄</span>
+      <span className="text-xl font-bold">{triparrow}</span>
 
       <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium">
         {data.cities?.[1]}
       </div>
 
     </div>
-
-    
-
-  )
-  
-  
-  }
-
- 
+)}
 
 {distanceKm != null && (
-  <div className="text-sm text-gray-500 mt-2" style={{fontSize:"16px",fontWeight:"500"}}>
+<div className="flex items-center flex-wrap gap-3 mt-2">
+
+  {/* LEFT (same as before) */}
+  <div
+    className="text-gray-500"
+    style={{ fontSize: "16px", fontWeight: "500" }}
+  >
     {tripLabel} ~ {distanceKm} km
 
     {data?.tripMode === "round" && billKm != null && (
-      <span> · Total Disatance - {billKm} km</span>
+      <span> · Total Distance - {billKm} km</span>
     )}
   </div>
+
+  {/* RIGHT (Updated UI like image) */}
+ <div className="flex items-center justify-between flex-wrap gap-3 mt-2">
+
+  {/* LEFT (same as before) */}
+
+
+  {/* RIGHT (Styled like image) */}
+
+
+
+
+<div className="flex items-center gap-2  dates">
+  {/* CLICKABLE UI */}
+  <div
+    className="flex items-end gap-2 text-blue-600 cursor-pointer"
+    onClick={() => dateRef.current?.showPicker()} // ✅ open date 
+  style={{
+  fontSize:"10px"
+  }} >
+
+    {/* BIG DATE */}
+    <span className="text-4xl font-extrabold leading-none fake-date">
+      {new Date(bookingForm.date).getDate()}
+    </span>
+
+    {/* MONTH + TIME */}
+    <div className="flex flex-col leading-tight fake-month">
+      <span className="text-sm font-semibold">
+        {new Date(bookingForm.date).toLocaleString("en-IN", {
+          month: "short",
+          year: "numeric",
+        })}
+      </span>
+
+      <span
+        className="text-lg font-bold"
+        onClick={(e) => {
+          e.stopPropagation(); 
+          timeRef.current?.showPicker(); // ✅ open time
+        }}
+      >
+        {new Date(`1970-01-01T${bookingForm.time}`).toLocaleString(
+          "en-IN",
+          {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+          }
+        )}
+      </span>
+    </div>
+  </div>
+
+  {/* REAL INPUTS (hidden but working) */}
+  <input
+    ref={dateRef}
+    type="date"
+    name="date"
+    value={bookingForm.date}
+    onChange={handleInputChange}
+    min={new Date().toISOString().split("T")[0]}
+    className="absolute opacity-0 pointer-events-none"
+  />
+
+  <input
+    ref={timeRef}
+    type="time"
+    name="time"
+    value={bookingForm.time}
+    onChange={handleInputChange}
+    min={getMinTime()}
+    className="absolute opacity-0 pointer-events-none"
+  />
+
+  {/* EDIT ICON */}
+  <span
+    className="text-red-500 text-xl cursor-pointer"
+    onClick={() => dateRef.current?.showPicker()}
+  >
+    ✏️
+  </span>
+</div>
+</div>
+
+<div >
+
+  <a href="/" className="date-had">
+  Return Book round trip for maximum savings
+</a>
+</div>
+
+
+</div>
+ 
+ 
 )}
 
 </div>
@@ -601,7 +761,7 @@ const advanceAmount = Math.round(totalAmount * 0.25);
                       <img
                         src={car.img}
                         alt=""
-                        className="w-full max-w-[min(100%,320px)] h-auto object-contain max-h-[150px] md:max-h-[170px]"
+                        className="w-full max-w-[min(100%,320px)] h-auto object-contain max-h-[150px] md:max-h-[130px] md:max-mt-[15px]"
                       />
                       <img
                         src={lowcab}
@@ -610,7 +770,7 @@ const advanceAmount = Math.round(totalAmount * 0.25);
                       />
                     </div>
 
-                    <div className="text-center mt-3 mb-3 shrink-0">
+                    <div className="text-center mb-3 shrink-0">
                       <div className="text-red-500 text-sm line-through decoration-2 opacity-90">₹ {car.oldPrice}</div>
                       <h2 className="text-[1.85rem] md:text-[2rem] font-extrabold text-green-600 leading-tight mt-1 tracking-tight">
                         <span className="prs">₹ {car.price}</span>
