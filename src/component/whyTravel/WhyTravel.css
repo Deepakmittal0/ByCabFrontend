@@ -8,6 +8,23 @@
     }
 }
 
+/* @media(min-width:768px){
+  .content-wrapper{
+    margin-left: 40px !important;
+  }
+} */
+
+
+  @media(min-width:768px){
+ .content-wrapper{
+    margin-left: 40px !important;
+    margin-top: 20px;
+  }
+  .image-wrapper{
+    margin: 15px;
+  }
+}
+
 .main-heading {
   font-size: 40px;
   /* padding-left: 20px; */
