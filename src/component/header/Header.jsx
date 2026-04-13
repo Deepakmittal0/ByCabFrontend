@@ -369,7 +369,7 @@ const HeroWithPromo = () => {
         : "!bg-[#ddd] !rounded-[25px] !border-none text-black"
     }
     onClick={() => setTripType("outstation")}
-    style={{ padding: "9px" }}
+    style={{ padding: "9px",fontSize:"20px", }}
   >
     Outstation
   </Button>
@@ -381,7 +381,7 @@ const HeroWithPromo = () => {
         : "!bg-[#ddd] !rounded-[25px] !border-none text-black"
     }
     onClick={() => setTripType("local")}
-    style={{ padding: "9px" }}
+    style={{ padding: "9px" ,fontSize:"20px",}}
   >
     Local / Airport
   </Button>
@@ -433,7 +433,7 @@ const HeroWithPromo = () => {
 
                 {tripType === "outstation" && (
                   <div className="flex justify-between bg-[#e9e9e9]  px-[15px] rounded-[15px] mb-[1px] cursor-pointer" style={{padding:"9px"}}>
-                    <span onClick={() => setTripMode("round")} className="flex items-center">
+                    <span onClick={() => setTripMode("round")} className="flex items-center" style={{marginLeft:"10px"}}>
                       <span
                         className={
                           tripMode === "round"
@@ -444,12 +444,12 @@ const HeroWithPromo = () => {
                       Round Trip
                     </span>
 
-                    <span onClick={() => setTripMode("oneway")} className="flex items-center">
+                    <span onClick={() => setTripMode("oneway")} className="flex items-center" style={{marginRight:"15px"}}>
                       <span
                         className={
                           tripMode === "oneway"
                             ? "h-[15px] w-[15px] bg-[#f5b400] rounded-full inline-block mr-1.5 ring-2 ring-black ring-inset"
-                            : "h-[15px] w-[15px] border-2 border-black rounded-full inline-block mr-1.5"
+                            : "h-[15px] w-[15px] border-2 border-black rounded-full inline-block mr-1.5" 
                         }
                       ></span>
                       One Way Trip
@@ -465,8 +465,8 @@ const HeroWithPromo = () => {
                           type="text"
                           placeholder={
                             index === 0
-                              ? "Enter pickup city"
-                              : "Enter destination city"
+                              ? "Enter Pickup City"
+                              : "Enter Drop Location"
                           }
                           value={city}
                           onChange={(e) =>
@@ -726,7 +726,7 @@ const HeroWithPromo = () => {
     <span className="bg-green-600 rounded-full w-4 h-4 flex items-center justify-center">
   <FaCheck className="text-white text-[9px]" />
 </span>
-    <span>Reliable Service</span>
+    <span>24x7 Support</span>
   </div>
 
 </div>

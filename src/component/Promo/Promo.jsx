@@ -649,7 +649,7 @@ const getMinTime = () => {
 <div >
 
   <a href="/" className="date-had">
-  Return Book round trip for maximum savings
+  Return Book {tripLabel} for maximum savings
 </a>
 </div>
 
