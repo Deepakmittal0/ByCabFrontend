@@ -10,7 +10,7 @@
 .main-title {
   font-size: 42px !important;
   font-weight: 400;
-  margin-bottom: 35px;
+  margin-bottom: 25px;
   /* padding-left: 50px !important */
   line-height: 1.3;
 }
@@ -24,7 +24,7 @@
 }
 
 .feature h5 {
-  font-weight: 600;
+  font-weight: 550;
   margin-bottom: 6px;
 }
 
@@ -58,10 +58,11 @@
 
 .video-frame {
   position: absolute;
-  top: 0;
+  top: -60px;
+  object-fit: cover;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 140%;
   border-radius: 20px;
 }
 
@@ -122,6 +123,15 @@
   .yellow-line-left {
     display: none;
   }
+  .video-frame {
+  position: absolute;
+  top: 0px !important;
+  object-fit: cover;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
    .left-sec {
     order: 2;
   }

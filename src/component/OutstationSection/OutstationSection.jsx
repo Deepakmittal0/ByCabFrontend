@@ -20,19 +20,19 @@ const OutstationSection = () => {
           <div className="col-lg-6 mb-4 left-sec mb-lg-0">
 <div className="content-box">
 
-  {/* <div className="feature">
+  <div className="feature">
     <h5>💰 Smart One-Way Pricing</h5>
     <p>
-      Pay only for one side • No hidden charges • Budget-friendly fares • Minimal advance
+      Pay only for one side  • Budget-friendly fares • Minimal advance
     </p>
-  </div> */}
+  </div>
 
-  {/* <div className="feature">
+  <div className="feature">
     <h5>🚗 Wide Cab Availability</h5>
     <p>
       Cabs across major cities • Multiple vehicle options • Book anytime, anywhere
     </p>
-  </div> */}
+  </div>
 
   <div className="feature">
     <h5>🧳 Comfortable & Spacious Rides</h5>

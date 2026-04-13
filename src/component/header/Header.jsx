@@ -48,7 +48,7 @@ const HeroWithPromo = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [loading, setLoading] = useState(false);
   /** local / airport tab: rental vs airport (airport UI only for now) */
-  const [localSubType, setLocalSubType] = useState("rental");
+  const [localSubType, setLocalSubType] = useState("airport");
   const [localCity, setLocalCity] = useState("");
   const [localPackage, setLocalPackage] = useState("");
   const [airportDirection, setAirportDirection] = useState("");
@@ -394,7 +394,7 @@ const HeroWithPromo = () => {
                   >
                     <span
                       onClick={() => setLocalSubType("rental")}
-                      className="flex items-center"
+                      className="flex items-center"  style={{marginLeft:"22px"}}
                       role="button"
                       tabIndex={0}
                       onKeyDown={(e) => {
@@ -405,14 +405,15 @@ const HeroWithPromo = () => {
                         className={
                           localSubType === "rental"
                             ? "h-[15px] w-[15px] bg-[#f5b400] rounded-full inline-block mr-1.5 ring-2 ring-black ring-inset"
-                            : "h-[15px] w-[15px] border-2 border-[#f5b400] bg-transparent rounded-full inline-block mr-1.5"
+                            : "h-[15px] w-[15px] border-2  bg-transparent rounded-full inline-block mr-1.5"
                         }
                       />
                       Local Rental
                     </span>
                     <span
                       onClick={() => setLocalSubType("airport")}
-                      className="flex items-center"
+                      
+                      className="flex items-center" style={{marginRight:"22px"}}
                       role="button"
                       tabIndex={0}
                       onKeyDown={(e) => {
@@ -432,8 +433,8 @@ const HeroWithPromo = () => {
                 )}
 
                 {tripType === "outstation" && (
-                  <div className="flex justify-between bg-[#e9e9e9]  px-[15px] rounded-[15px] mb-[1px] cursor-pointer" style={{padding:"9px"}}>
-                    <span onClick={() => setTripMode("round")} className="flex items-center" style={{marginLeft:"10px"}}>
+                  <div className="flex justify-between bg-[#e9e9e9]  px-[15px] rounded-[15px] mb-[1px] cursor-pointer" style={{padding:"9px", marginLeft:"22"}}>
+                    <span onClick={() => setTripMode("round")} className="flex items-center" style={{marginLeft:"18px"}}>
                       <span
                         className={
                           tripMode === "round"
@@ -444,7 +445,7 @@ const HeroWithPromo = () => {
                       Round Trip
                     </span>
 
-                    <span onClick={() => setTripMode("oneway")} className="flex items-center" style={{marginRight:"15px"}}>
+                    <span onClick={() => setTripMode("oneway")} className="flex items-center" style={{marginRight:"22px"}}>
                       <span
                         className={
                           tripMode === "oneway"
@@ -607,7 +608,7 @@ const HeroWithPromo = () => {
                           }}
                           className="!rounded-xl !py-3 !pr-10 !pl-[15px] !border-none !bg-[#e8e8e8c9]"
                         >
-                          <option value="">From Airport / To Airport</option>
+                          <option value="">From Airport / To A irport</option>
                           <option value="from">From Airport</option>
                           <option value="to">To Airport</option>
                         </Form.Select>
@@ -734,7 +735,7 @@ const HeroWithPromo = () => {
                   <Button
                     type="button"
                     onClick={handleCabData}
-                    className="w-full m-btn !bg-[#f5b400] !border-none p-2.5 !m-0 font-bold !rounded-[30px] flex justify-center items-center text-black"
+                    className="w-full m-btn !bg-[#f5b400] !border-none p-2.5 !m-0 font-bold !rounded-[30px] flex justify-center items-center text-black" style={{fontSize:"19px"}}
                   >
                     Check Price &amp; Book Cab
                   </Button>

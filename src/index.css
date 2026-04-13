@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 html, body {
@@ -12,4 +13,7 @@ html, body {
 
 #root {
   width: 100%;
+}
+.main-heading span{
+  font-weight: 600;
 }

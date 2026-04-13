@@ -59,8 +59,12 @@ const WhyTravel = () => {
     <p>Local rides • Outstation trips • Airport transfers • One-way & round trips</p>
   </div>
 
+ <p className="bottom-text">
+    Book your ride with ByCab today – Safe, affordable, and stress-free travel.
+  </p>
+
   <button
-    className="book-btn"
+    className="book-btn mt-3"
     onClick={() => {
       document.getElementById("bookingForm").scrollIntoView({
         behavior: "smooth",

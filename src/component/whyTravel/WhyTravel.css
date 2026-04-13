@@ -7,12 +7,21 @@
        padding-left: 1px !important;
     }
 }
-
+.feature-block h5{
+  font-size: 18px;
+  font-weight: 500;
+}
 /* @media(min-width:768px){
   .content-wrapper{
     margin-left: 40px !important;
   }
 } */
+ .bottom-text{
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  color: green;
+  margin-top: 15px;
+ }
 
 
   @media(min-width:768px){
@@ -22,6 +31,8 @@
   }
   .image-wrapper{
     margin: 15px;
+    height: 450px;
+    object-fit: contain;
   }
 }
 
