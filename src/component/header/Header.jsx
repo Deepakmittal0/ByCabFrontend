@@ -465,7 +465,7 @@ const HeroWithPromo = () => {
                           type="text"
                           placeholder={
                             index === 0
-                              ? "Enter Pickup City"
+                              ? "Enter Pickup Location"
                               : "Enter Drop Location"
                           }
                           value={city}

@@ -15,29 +15,59 @@ const Footer = () => {
       <div className="container">
 
         {/* Popular Cities */}
-        <div className="popular-cities">
-          <span className="title">POPULAR CITIES</span>
+<div className="popular-c">
+  <div className="popular-cities">
+    <h3 className="title">Popular Cities We Serve</h3>
+
+    <div className="row">
+      <div className="col">
+        <div className="city-group">
+          <h4>
+            {/* 🌆 */}
+             Major Cities We Cover</h4>
           <p>
-           AGRA | JAIPUR | DELHI | VARANASI | UDAIPUR | JODHPUR | RISHIKESH | HARIDWAR | 
-AMRITSAR | SHIMLA | MANALI | MUSSOORIE | NAINITAL | DARJEELING | GANGTOK | 
-GOA | MUMBAI | PUNE | HYDERABAD | BANGALORE | CHENNAI | MYSORE | OOTY | 
-KOLKATA | BHOPAL | INDORE | KHAJURAHO | SOMNATH | DWARKA | KUTCH
+            Delhi | Mumbai | Bangalore | Hyderabad | Chennai | Kolkata | Pune | Ahmedabad
           </p>
-          {/* <div className="explore">+ Explore more cities</div> */}
         </div>
+      </div>
+
+      <div className="col">
+        <div className="city-group">
+          <h4>
+            {/* 🚖  */}
+            High-Demand Cities</h4>
+          <p>
+            Jaipur | Chandigarh | Lucknow | Indore | Bhopal | Nagpur | Surat | Kanpur | Patna | Coimbatore
+          </p>
+        </div>
+      </div>
+
+      <div className="col">
+        <div className="city-group">
+          <h4>
+            {/* 🌍 */}
+             Trending Travel Destinations</h4>
+          <p>
+            Agra | Udaipur | Jodhpur | Amritsar | Dehradun | Haridwar | Rishikesh | Shimla | Manali | Goa | Varanasi | Mysore | Ooty
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
         <hr />
 
         {/* Services */}
         <div className="services">
-          ONE WAY CAB | CAR RENTAL | AIRPORT TAXI | LOCAL SIGHTSEEING |
-          INNOVA | TEMPO TRAVELLER | PET FRIENDLY CAB
+          ONE WAY CAB | ROUND TRIP | AIRPORT TRANSFERS | LOCAL RENTALS |
+          OUTSTATION TRAVEL | TEMPO TRAVELLER |LUXURY CARS | PET FRIENDLY RIDES
         </div>
 
         <hr />
 
         {/* Routes */}
-        <div className="routes">
+        <div className="routes d-none">
           <div className="route-col">
             <h4>CAB FROM DELHI</h4>
             <a href="#">Taxi from Delhi to Agra</a>
@@ -73,7 +103,7 @@ KOLKATA | BHOPAL | INDORE | KHAJURAHO | SOMNATH | DWARKA | KUTCH
 
         {/* <div className="explore-route">+ Explore more routes</div> */}
 
-        <hr />
+        {/* <hr /> */}
 
         {/* App + Social */}
         <div className="footer-bottom">

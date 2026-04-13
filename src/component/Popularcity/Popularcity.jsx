@@ -1,5 +1,5 @@
 import React from "react";
-import { FaTaxi, FaMapMarkerAlt, FaPlane, FaClock } from "react-icons/fa";
+import { FaTaxi, FaPhoneAlt, FaPlane, FaClock } from "react-icons/fa";
 import "./Popularcity.css";
 import carphone from "/image/carphone.jpg";
 
@@ -29,7 +29,7 @@ const Cab = () => {
                   <FaTaxi />
                 </div>
                 <div className="ms-4">
-                  <h5>Book Outstation Cabs</h5>
+                  <h5>Outstation & Intercity Rides</h5>
                 </div>
               </div>
             </div>
@@ -37,10 +37,10 @@ const Cab = () => {
             <div className="col-10">
               <div className="feature-item">
                 <div className="feature-icon">
-                  <FaMapMarkerAlt />
+                  <FaPhoneAlt />
                 </div>
                 <div className="ms-4">
-                  <h5>Online Cab Booking</h5>
+                  <h5>Easy & Instant Booking</h5>
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@ const Cab = () => {
             <div className="col-10 ms-auto">
               <div className="feature-item justify-content-end">
                 <div className="text-end me-4">
-                  <h5>Airport Taxi Service</h5>
+                  <h5>Airport Transfers</h5>
                 </div>
                 <div className="feature-icon">
                   <FaPlane />
@@ -75,7 +75,7 @@ const Cab = () => {
             <div className="col-10 ms-auto">
               <div className="feature-item justify-content-end">
                 <div className="text-end me-4">
-                <h5>Affordable Cab Service</h5>
+                <h5>24x7 Availability</h5>
                 </div>
                 <div className="feature-icon">
                   <FaClock />

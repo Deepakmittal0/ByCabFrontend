@@ -14,6 +14,10 @@
   /* padding-left: 50px !important */
   line-height: 1.3;
 }
+.ss{
+  font-size: 32px !important;
+  font-weight: 700;
+}
 
 .feature {
   margin-bottom: 22px;
@@ -67,6 +71,9 @@
   .main-title {
     font-size: 32px;
   }
+  .ss{
+    font-size: 23px !important;
+  }
 
   .content-box {
     padding-right: 0;
@@ -80,7 +87,7 @@
 
 
   .main-title {
-  font-size: 30px !important;
+  /* font-size: 30px !important; */
   }
 
   .feature p {

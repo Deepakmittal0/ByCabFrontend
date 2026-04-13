@@ -146,8 +146,91 @@ hr {
 .footer hr {
   border: none !important;
   height: 2px;
-  background-color: #ffffff !important;  /* Pure white */
+  background-color: #ffffff !important;  
   margin: 35px 0;
   width: 100%;
   opacity: 1 !important;   /* ensure no fade */
+}
+.popular-c {
+  /* padding: 40px 20px; */
+}
+
+/* Container */
+.popular-cities {
+  padding: 12px;
+  border-radius: 12px;
+}
+
+/* Title */
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* GRID */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+}
+
+.col {
+  width: 100%;
+  padding: 10px;
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 768px) {
+  .col {
+    width: 33.33%;
+  }
+}
+
+/* CARD DESIGN */
+.city-group {
+  /* background: rgba(255, 255, 255, 0.08); glass effect */
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  border-radius: 12px;
+  height: 100%;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Hover */
+.city-group:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Heading */
+.city-group h4 {
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Text */
+.city-group p {
+  color: #ddd;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* MOBILE IMPROVEMENT */
+@media (max-width: 767px) {
+  .title {
+    font-size: 22px;
+  }
+
+  .city-group {
+    padding: 16px;
+  }
+
+  .city-group p {
+    font-size: 14px;
+  }
 }
