@@ -369,7 +369,7 @@ const HeroWithPromo = () => {
         : "!bg-[#ddd] !rounded-[25px] !border-none text-black"
     }
     onClick={() => setTripType("outstation")}
-    style={{ padding: "9px",fontSize:"20px", }}
+    style={{ padding: "9px",fontSize:"20px",color:"black" }}
   >
     Outstation
   </Button>
@@ -381,7 +381,7 @@ const HeroWithPromo = () => {
         : "!bg-[#ddd] !rounded-[25px] !border-none text-black"
     }
     onClick={() => setTripType("local")}
-    style={{ padding: "9px" ,fontSize:"20px",}}
+    style={{ padding: "9px" ,fontSize:"20px",color:"black"}}
   >
     Local / Airport
   </Button>
@@ -706,7 +706,7 @@ const HeroWithPromo = () => {
                     </div>
                   </Form.Group>
 
-<div className="flex justify-between items-center mt-3 mb-3 text-[12px] text-gray-700">
+<div className="flex justify-between items-center mt-3 mb-3 text-[13px] text-gray-700">
   
   <div className="flex items-center gap-1">
    <span className="bg-green-600 rounded-full w-4 h-4 flex items-center justify-center">
