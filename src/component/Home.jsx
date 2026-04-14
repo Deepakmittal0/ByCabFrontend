@@ -34,9 +34,9 @@ function HeroSection() {
    <Popularcity/>
    <Map/>
   
-   
-   <Testimonials/>
    <Faq/>
+   <Testimonials/>
+   
    <ContactSection/>
    <Footer/>
   
