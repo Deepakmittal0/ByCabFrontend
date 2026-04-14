@@ -6,7 +6,7 @@
     font-weight: 500;
 }
 .prs{
-    color:  rgb(15, 172, 15);
+    color:  rgb(0, 119, 255);
     font-weight: 600;
 }
 
@@ -68,17 +68,17 @@ margin-left: -12px !important; }
 .fake-date{
     font-size: 19px;
 }
+.lowcab{
+    left: 40px !important;
+    top: 6px !important;
+}
 }
 
     .psec{
         height: 119px ;
     }
 
-    .lowcab{
-        left: 85px;
-    top: -15px !important;
-    }
-
+    
     .bold{
         font-weight: 500;
         /* color: black; */
@@ -90,6 +90,11 @@ margin-left: -12px !important; }
 .dates{
             margin-left: 20px;
 }
+.lowcab{
+        left: 30px;
+    top: -2px !important;
+    }
+
 .date-had{
     font-size: 18px;
     font-weight: 500;

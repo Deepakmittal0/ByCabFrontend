@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import lowcab from "/image/logo.png";
+import lowcab from "/image/cablow.png";
 import { useEffect } from "react";
 import "./Promo.css";
 import axios from "axios";
@@ -13,22 +13,88 @@ import {
 } from "../../airport/airport_city.js";
 
 const faqData = [
+
+  {
+    question: "How to change pickup, drop, date and time?",
+    answer: `Please click on edit to change date, time or location on top of this page.`,
+  },
+  {
+    question:
+      "Are Driver charges / Driver bata included in the price? Do i need to arrange for Driver food and accomodation during the trip?",
+    answer: `Yes, all driver charges are included in the price. Driver will take care of his food and accomodation. You need not to arrange that.`,
+  },
+  {
+    question: "What are extra charges if i need to travel in night hours?",
+    answer: `There is no extra charges for traveling in night hours. Night charges are included in the price.`,
+  },
   {
     question: "Is local sightseeing included in outstation trip?",
     answer: `For Round trip bookings, all the local sightseeing in mentioned cities is included.
 For One way Multi-stop trip, all the local sightseeing in mentioned cities is included.
 For One way trip, with only one pickup and one drop, sightseeing is not included.`,
   },
-  { question: "How to change pickup date, time and return date?", answer: "" },
+  {
+    question: "How much before departure, i have to book the cab?",
+    answer: `Although you can book the cab up to 2-3 hours prior to departure time but we suggest to book 1 day in advance to avoid last minute rush.`,
+  },
   {
     question:
-      "Are Driver charges / Driver bata included in the price? Do i need to arrange for Driver food and accomodation during the trip?",
-    answer: "",
+      "I want to book cab without paying any advance amount. I will pay on boarding the cab.",
+    answer: `Sorry, it is not possible. You need to pay a small 15-20% amount in advance to book the cab.`,
   },
-  { question: "What are extra charges if i need to travel in night hours?", answer: "" },
-  { question: "Please tell me any extra charge other than the price shown above.", answer: "" },
-  { question: "How much before departure, i have to book the cab?", answer: "" },
-  { question: "Can I book cab by calling customer support?", answer: "" },
+  {
+    question: "Can I book cab by calling customer support?",
+    answer: `We are happy to provide you any clarifications required through customer support team but cab booking has to be done through our website.`,
+  },
+  {
+    question: "Please tell me any extra charge other than the price shown above.",
+    answer: `5% GST is extra.
+Parking charges, if any, are extra and need to be paid by you as per actuals.
+Toll tax and State tax may or may not be extra depending on the trip. Please check 'Other Terms' mentioned below price.`,
+  },
+  {
+    question:
+      "I need a one way cab for travelling to more than one destination.",
+    answer: `One-way trips are available only for a single pickup and drop location. For multiple destinations or multi-city travel, please contact our support team—we’ll help you with a customized cab plan.`,
+  },
+  {
+    question:
+      "Can we pickup additional passengers on the way in one way trip?",
+    answer: `For One way trip with only one pickup and one drop, Additional pickup or drop will incur additional charges.`,
+  },
+  {
+    question: "Do I need to pay both side Toll tax for one way trip?",
+    answer: `For One way trip, you need to pay one side Toll tax only.`,
+  },
+  {
+    question: "Whether the cab will have FASTag?",
+    answer: `Yes, all our cabs have FASTag installed by default.`,
+  },
+  {
+    question: "Where to mention the complete pickup address?",
+    answer: `You will have the option to mention complete pickup address on next screen.`,
+  },
+  {
+    question: "When will I get car and driver details after booking?",
+    answer: `In most cases, car and driver details are shared within minutes after booking. In few rare cases, it may take more time and may be shared up to two hours before departure.`,
+  },
+  {
+    question: "Will advance amount be refunded if I cancel the booking?",
+    answer: `It may or may not be refunded. Please refer to our Cancellation and Refund policy for details.`,
+  },
+  {
+    question: "Can I travel with pets?",
+    answer: `Yes, you can. But you will be charged an additional amount of Rs. 840 for small cars (hatchback, Sedan) and Rs. 1050 for bigger cars (SUV, Innova). Please select 'Pet Allowed' add-on while booking.`,
+  },
+  {
+    question:
+      "How can i make the advance payment? Which payment gateway should i choose?",
+    answer: `You can pay with all online payment modes like Netbanking, Debit / Credit card, UPI, Payment Wallet Apps like PhonePe, GooglePay, PayTM etc.
+To pay with Netbanking, Debit / Credit card, UPI, you can choose any payment gateway (PayTM or RazorPay).
+To pay with PayTM wallet, choose 'PayTM' payment gateway.
+To pay with other payment wallet apps like PhonePe, GooglePay etc, choose 'RazorPay' payment gateway.`,
+  },
+
 ];
 
 function loadRazorpayScript() {
@@ -506,6 +572,7 @@ const getMinTime = () => {
         ? "Airport transfer"
         : `Trip Type : ${data.tripType}`}
   </div>
+  
 
   {/* Route UI */}
   {data.tripType === "local" && data.localSubType === "rental" ? (
@@ -513,6 +580,13 @@ const getMinTime = () => {
     <div className="bg-yellow-400 text-black px-4 py-2 rounded-full inline-block font-medium">
       {data.cities?.[0]}
     </div>
+
+
+
+
+
+
+
 
   ) : data.tripType === "local" && data.localSubType === "airport" ? (
 
@@ -547,13 +621,14 @@ const getMinTime = () => {
     </div>
 )}
 
-{distanceKm != null && (
+{/* {distanceKm != null && ( */}
 <div className="flex items-center flex-wrap gap-3 mt-2">
 
   {/* LEFT (same as before) */}
+{distanceKm != null && (
   <div
     className="text-gray-500 dis"
-    style={{ fontSize: "16px", fontWeight: "500" ,}}
+    style={{ fontSize: "16px", fontWeight: "500" }}
   >
     {tripLabel} ~ {distanceKm} km
 
@@ -561,15 +636,12 @@ const getMinTime = () => {
       <span> Total Distance - {billKm} km</span>
     )}
   </div>
+)}
 
   {/* RIGHT (Updated UI like image) */}
  <div className="flex items-center justify-between flex-wrap gap-3 mt-2">
 
-  {/* LEFT (same as before) */}
-
-
-  {/* RIGHT (Styled like image) */}
-
+  
 
 
 
@@ -657,7 +729,7 @@ const getMinTime = () => {
 </div>
  
  
-)}
+{/* // )} */}
 
 </div>
 
@@ -766,7 +838,7 @@ const getMinTime = () => {
                       <img
                         src={lowcab}
                         alt=""
-                        className="absolute top-0 left-0 lowcab w-[80px] md:w-[90px] h-auto z-[1] drop-shadow-md"
+                        className="absolute top-0 left-0 lowcab w-[75px] md:w-[80px] h-auto z-[1] drop-shadow-md"
                       />
                     </div>
 
