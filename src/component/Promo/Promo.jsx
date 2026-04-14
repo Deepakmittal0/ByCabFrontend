@@ -552,13 +552,13 @@ const getMinTime = () => {
 
   {/* LEFT (same as before) */}
   <div
-    className="text-gray-500"
-    style={{ fontSize: "16px", fontWeight: "500" }}
+    className="text-gray-500 dis"
+    style={{ fontSize: "16px", fontWeight: "500" ,}}
   >
     {tripLabel} ~ {distanceKm} km
 
     {data?.tripMode === "round" && billKm != null && (
-      <span> · Total Distance - {billKm} km</span>
+      <span> Total Distance - {billKm} km</span>
     )}
   </div>
 

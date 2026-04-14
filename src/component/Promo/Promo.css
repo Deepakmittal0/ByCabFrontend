@@ -45,6 +45,16 @@ margin-left: -12px !important; }
         height: 230px !important;
         /* margin-top: -18px; */
   }
+  .dis{
+    width: 55%;
+    /* font-weight: 500; */
+  }
+  .dates{
+    /* margin-left: 10px !important; */
+  }
+  .dates span{
+    font-size: 30px;
+  }
 .lsec{
     width: 110%;
      border-radius: 8px 8px 0px 0px !important;
@@ -78,7 +88,7 @@ margin-left: -12px !important; }
     }
     @media(min-width:768px){
 .dates{
-            margin-left: 180px;
+            margin-left: 20px;
 }
 .date-had{
     font-size: 18px;
