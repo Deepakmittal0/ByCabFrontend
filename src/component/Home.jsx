@@ -15,7 +15,7 @@ import Whybook from './Whybook/Whybook'
 import Popularcity from './Popularcity/Popularcity'
 import Feature from './Feature/Feature'
 // import Journey from './Journey/Journey'
-// import Faq from './Faq/Faq'
+import Faq from './Faq/Faq'
 import Map from './Map/Map'
 import Footer from './Footer/Footer'
 
@@ -36,6 +36,7 @@ function HeroSection() {
   
    
    <Testimonials/>
+   <Faq/>
    <ContactSection/>
    <Footer/>
   

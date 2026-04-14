@@ -4,22 +4,56 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import './Faq.css';
 
 const faqs = [
+ 
   {
-    question: "What do MyChoize Car rental service provides in Delhi?",
-    answer: "We provide a wide range of self-drive cars including hatchbacks, sedans, and SUVs with unlimited kilometers and zero hidden charges.",
+    question: "Q1. How can I book a cab?",
+    answer: "You can book easily through our website or by calling us.",
   },
   {
-    question: "Which mode of payment is available for renting a car in Delhi?",
-    answer: "You can pay via Credit Cards, Debit Cards, Net Banking, and popular UPI apps like GPay, PhonePe, and Paytm.",
+    question: "Q2. Are there any hidden charges?",
+    answer: "No, we provide transparent pricing.",
   },
   {
-    question: "How does MyChoize car rental service works in Delhi?",
-    answer: "Simply select your dates, choose a car, upload your documents for verification, make the payment, and pick up your car or get it delivered.",
+    question: "Q3. Is your cab service available 24/7?",
+    answer: "Yes, our services are available anytime, anywhere.",
   },
   {
-    question: "What documents do I need to rent a car in Delhi?",
-    answer: "You need a valid Original Driving License and a Government-approved ID proof (Aadhar Card or Passport).",
+    question: "Q4. Do I need to pay full amount in advance?",
+    answer: "No, only a small advance is required to confirm your booking.",
   },
+  {
+    question: "Q5. Will I get driver details before the trip?",
+    answer: "Yes, driver and cab details are shared before your journey starts.",
+  },
+  {
+    question: "Q6. Do you provide one-way cab services?",
+    answer: "Yes, we offer both one-way and round-trip options.",
+  },
+  {
+    question: "Q7. Which cities do you cover?",
+    answer: "We provide services across all India.",
+  },
+  {
+    question: "Q8. Are your drivers verified?",
+    answer: "Yes, all drivers are background-checked and trained for safe travel.",
+  },
+  {
+    question: "Q9. What if my cab is late or delayed?",
+    answer: "Our team ensures on-time service, but in case of delays, we provide immediate support and updates.",
+  },
+  {
+    question: "Q10. How can I contact customer support?",
+    answer: "You can reach us via call or WhatsApp for quick assistance.",
+  },
+  {
+    question: "Q11. Is luggage allowed during travel?",
+    answer: "Yes, you can carry luggage as per the cab capacity.",
+  },
+  {
+    question: "Q12. Are pets allowed in the cab?",
+    answer: "Yes, pet-friendly rides are available on request.",
+  }
+
 ];
 
 const FAQSection = () => {
