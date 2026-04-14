@@ -26,7 +26,7 @@ const Footer = () => {
             {/* 🌆 */}
              Major Cities We Cover</h4>
           <p>
-            Delhi | Mumbai | Bangalore | Hyderabad | Chennai | Kolkata | Pune | Ahmedabad
+            Delhi NCR | Mumbai | Bangalore | Hyderabad | Chennai | Kolkata | Pune | Ahmedabad
           </p>
         </div>
       </div>
@@ -48,7 +48,7 @@ const Footer = () => {
             {/* 🌍 */}
              Trending Travel Destinations</h4>
           <p>
-            Agra | Udaipur | Jodhpur | Amritsar | Dehradun | Haridwar | Rishikesh | Shimla | Manali | Goa | Varanasi | Mysore | Ooty
+            Agra | Udaipur | Jodhpur | VRINDAVAN | MATHURA | Amritsar | Dehradun | Haridwar | Rishikesh | Shimla | Manali | Goa | Varanasi | Mysore | Ooty | ETC
           </p>
         </div>
       </div>
@@ -128,11 +128,9 @@ const Footer = () => {
 
         {/* Footer Links */}
         <div className="footer-links">
-          Terms of Use | Privacy Policy  |
-         Career | 
-          Media Coverage | Affiliate | Blog | Sitemap
+        Privacy Policy | Terms & Conditions
           <br />
-          Contact Us : +91 9045454224
+          Support: Help Center | +91 9045454224
         </div>
 
         {/* <hr /> */}
