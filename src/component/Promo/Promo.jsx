@@ -561,10 +561,12 @@ const getMinTime = () => {
         <div></div>
       ) : (
         <div className="px-4 py-4 max-w-[1200px] mx-auto max-md:px-3" style={{ marginTop: "30px" }}>
-         <div className="bg-white p-3 rounded-[12px] shadow-sm">
+         <div className="bg-white p-3 rounded-[12px] shadow-sm ">
 
   {/* Trip Type */}
-  <div className="text-sm text-gray-600 mb-2" style={{fontSize:"18px",fontWeight:"500"}}>
+
+
+  <div className="text-sm text-gray-600 mb-2" style={{fontSize:"18px",fontWeight:"600"}}>
     
     {data.tripType === "local" && data.localSubType === "rental"
       ? "Local rental"
@@ -573,11 +575,12 @@ const getMinTime = () => {
         : `Trip Type : ${data.tripType}`}
   </div>
   
+  <div className="local">
 
   {/* Route UI */}
   {data.tripType === "local" && data.localSubType === "rental" ? (
 
-    <div className="bg-yellow-400 text-black px-4 py-2 rounded-full inline-block font-medium">
+    <div className="bg-yellow-400 local-head text-black px-4 py-2 rounded-full inline-block font-medium" style={{alignItems:"center",display:"flex"}}>
       {data.cities?.[0]}
     </div>
 
@@ -589,10 +592,11 @@ const getMinTime = () => {
 
 
   ) : data.tripType === "local" && data.localSubType === "airport" ? (
+<div className="d-fle">
+    <div className="flex items-center gap-2 ">
+      
 
-    <div className="flex items-center gap-2 flex-wrap">
-
-      <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium" >
+      <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium"  >
         {data.airportName}
       </div>
 
@@ -601,12 +605,13 @@ const getMinTime = () => {
       <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium">
         {data.destinationCity}
       </div>
+      </div>
 
     </div>
 
   ) : (
 
-    <div className="flex items-center gap-2 flex-wrap">
+    <div className="d-flex items-center gap-2">
 
       <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium">
         {data.cities?.[0]}
@@ -622,13 +627,13 @@ const getMinTime = () => {
 )}
 
 {/* {distanceKm != null && ( */}
-<div className="flex items-center flex-wrap gap-3 mt-2">
+<div className="d-flex items-center  gap-3 mt-2">
 
   {/* LEFT (same as before) */}
 {distanceKm != null && (
   <div
     className="text-gray-500 dis"
-    style={{ fontSize: "16px", fontWeight: "500" }}
+    style={{ fontSize: "15px", fontWeight: "600" }}
   >
     {tripLabel} ~ {distanceKm} km
 
@@ -713,7 +718,7 @@ const getMinTime = () => {
     className="text-red-500 text-xl cursor-pointer"
     onClick={() => dateRef.current?.showPicker()}
   >
-    ✏️
+   <span style={{fontSize:"20px"}}> ✏️</span>
   </span>
 </div>
 </div>
@@ -724,7 +729,7 @@ const getMinTime = () => {
   Return Book {tripLabel} for maximum savings
 </a>
 </div>
-
+</div>
 
 </div>
  

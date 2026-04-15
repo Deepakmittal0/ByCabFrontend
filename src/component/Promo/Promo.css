@@ -53,7 +53,8 @@ margin-left: -12px !important; }
     /* margin-left: 10px !important; */
   }
   .dates span{
-    font-size: 30px;
+    font-size: 34px;
+    font-weight: 600;
   }
 .lsec{
     width: 110%;
@@ -63,15 +64,27 @@ margin-left: -12px !important; }
     display: none;
 }
 .fake-month span{
-    font-size: 11px;
+    font-size: 13px;
 }
 .fake-date{
-    font-size: 19px;
+    font-size: 24px;
+}
+.fake-month{
+    width: 57px !important;
 }
 .lowcab{
     left: 40px !important;
     top: 6px !important;
+
 }
+.local{
+    justify-content: space-between !important;
+    display: block !important;
+}
+}
+
+.local-head {
+    width: 102px !important;
 }
 
     .psec{
@@ -89,6 +102,9 @@ margin-left: -12px !important; }
     @media(min-width:768px){
 .dates{
             margin-left: 20px;
+}
+.local{
+    justify-content: start;
 }
 .lowcab{
         left: 30px;
