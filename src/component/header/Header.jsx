@@ -713,21 +713,21 @@ const HeroWithPromo = () => {
    <span className="bg-green-600 rounded-full w-4 h-4 flex items-center justify-center">
   <FaCheck className="text-white text-[9px]" />
 </span>
-    <span>Instant Price</span>
+    <span className="data">Instant Price</span>
   </div>
 
   <div className="flex items-center gap-1">
    <span className="bg-green-600 rounded-full w-4 h-4 flex items-center justify-center">
   <FaCheck className="text-white text-[9px]" />
 </span>
-    <span>Verified Drivers</span>
+    <span className="data">Verified Drivers</span>
   </div>
 
   <div className="flex items-center gap-1">
     <span className="bg-green-600 rounded-full w-4 h-4 flex items-center justify-center">
   <FaCheck className="text-white text-[9px]" />
 </span>
-    <span>24x7 Support</span>
+    <span className="data">24x7 Support</span>
   </div>
 
 </div>
