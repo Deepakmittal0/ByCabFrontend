@@ -1000,7 +1000,7 @@ const getMinTime = () => {
       <li>- 5% GST Extra</li>
       <li>- Included Kilometers will start from pickup location</li>
       <li>- Driver allowance includes stay, food and night charges</li>
-      <li>- Toll and state tax extra </li>
+      {/* <li>- Toll and state tax extra </li> */}
       <li>- Parking charges extra if applicable</li>
      
 
