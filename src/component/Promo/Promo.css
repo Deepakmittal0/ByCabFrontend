@@ -8,6 +8,7 @@
 .prs{
     color:  rgb(0, 119, 255);
     font-weight: 600;
+    font-size: 25px !important;
 }
 
 .tracking-wide{
@@ -56,6 +57,9 @@ margin-left: -12px !important; }
     font-size: 34px;
     font-weight: 600;
   }
+  .track {
+    font-size: 15px !important;
+}
 .lsec{
     width: 110%;
      border-radius: 8px 8px 0px 0px !important;
@@ -73,8 +77,8 @@ margin-left: -12px !important; }
     width: 57px !important;
 }
 .lowcab{
-    left: 40px !important;
-    top: 6px !important;
+    left: 15px !important;
+    top: 7px !important;
 
 }
 .local{
@@ -83,6 +87,15 @@ margin-left: -12px !important; }
 }
 }
 
+.track  span{
+    font-size: 15px !important;
+    font-weight: 550 !important;
+}
+
+.track {
+    font-size: 17px !important;
+    font-weight: 550 !important;
+}
 .local-head {
     width: 102px !important;
 }
@@ -97,7 +110,8 @@ margin-left: -12px !important; }
         /* color: black; */
     }
     span{
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 15px !important;
     }
     @media(min-width:768px){
 .dates{
@@ -107,8 +121,8 @@ margin-left: -12px !important; }
     justify-content: start;
 }
 .lowcab{
-        left: 30px;
-    top: -2px !important;
+        left: 15px;
+    top: 5px !important;
     }
 
 .date-had{

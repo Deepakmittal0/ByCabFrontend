@@ -30,7 +30,6 @@ const faqData = [
   {
     question: "Is local sightseeing included in outstation trip?",
     answer: `For Round trip bookings, all the local sightseeing in mentioned cities is included.
-For One way Multi-stop trip, all the local sightseeing in mentioned cities is included.
 For One way trip, with only one pickup and one drop, sightseeing is not included.`,
   },
   {
@@ -838,7 +837,7 @@ const getMinTime = () => {
                       <img
                         src={car.img}
                         alt=""
-                        className="w-full max-w-[min(100%,320px)] h-auto object-contain max-h-[150px] md:max-h-[130px] md:max-mt-[15px]"
+                        className="w-full max-w-[min(100%,320px)] h-auto object-contain max-h-[190px] md:max-h-[190px] md:max-mt-[15px]"
                       />
                       <img
                         src={lowcab}
@@ -852,18 +851,18 @@ const getMinTime = () => {
                       <h2 className="text-[1.85rem] md:text-[2rem] font-extrabold text-green-600 leading-tight mt-1 tracking-tight">
                         <span className="prs">₹ {car.price}</span>
                       </h2>
-                      <p className="text-[0.8rem] md:text-sm text-[#0077cc] font-bold uppercase tracking-wide mt-3 leading-snug px-1 bold">
+                      <p className="text-[0.8rem] track md:text-sm text-[#0077cc] font-bold uppercase tracking-wide mt-3 leading-snug px-1 bold">
                         {car.type}
                       </p>
-                      <p className="text-[0.95rem] text-[#555] mt-2 leading-snug bold">{car.name}</p>
+                      <p className="text-[0.95rem] track text-[#555] mt-2 leading-snug bold">{car.name}</p>
                     </div>
 
                     <div className="mt-auto w-full flex flex-col gap-4">
-                      <div className="w-full rounded-xl bg-[#f8f9fa] border border-[#d8d8d8] px-4 py-3 md:px-5 md:py-3.5 text-[13px] md:text-sm text-[#333]">
+                      <div className="w-full rounded-xl bg-[#f8f9fa] border track border-[#d8d8d8] px-4 py-3 md:px-5 md:py-3.5 text-[13px] md:text-sm text-[#333]" style={{fontSize:"16px !important",fontWeight:"600"}}>
                         {isAirportTransfer ? (
                           <>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
-                              <span className="shrink-0 font-semibold text-[#1a1a1a] bold">Included Km:</span>
+                              <span className="shrink-0 font-semibold text-[#1a1a1a] bold ">Included Km:</span>
                               <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">
                                 {car._airportIncludedKm != null
                                   ? `${car._airportIncludedKm} km`
@@ -916,15 +915,18 @@ const getMinTime = () => {
 
   <Modal.Body>
     <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-      <li>- Vehicle and fuel charges included</li>
-      <li>- Driver Night Charges included</li>
-      <li>- 5% GST Extra</li>
-      <li>- Included Kilometers will start from pickup location</li>
-      <li>- Driver allowance includes stay, food and night charges</li>
-      <li>- Toll and state tax extra</li>
-      <li>- Parking charges extra if applicable</li>
-      <li>- AC will remain switch off in hill areas</li>
-
+     <ul>
+    <li>Vehicle and fuel charges included</li>
+    <li>Driver Night Charges included</li>
+    {/* <li>For Round trip bookings, all the local sightseeing in the mentioned cities is included except pickup city.</li> */}
+    <li>5% GST Extra</li>
+    <li>Included Kilometers will start from pickup location</li>
+    {/* <li>Driver allowance includes driver's stay, food and night charges</li> */}
+    <li>Toll and state tax extra </li>
+    <li>Parking charges extra if applicable</li>
+    <li>AC will remain switch off in hill areas</li>
+    {/* <li>For round trip booking, Kilometers will count from pickup location to pickup location</li> */}
+</ul>
      
 
 
@@ -963,7 +965,7 @@ const getMinTime = () => {
                                 {car.extraHour ?? "—"}
                               </span>
                             </div>
-                            <div className="my-2.5 border-t border-[#e5e5e5]" />
+                            {/* <div className="my-2.5 border-t border-[#e5e5e5]" /> */}
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Fuel Charges:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
@@ -998,7 +1000,7 @@ const getMinTime = () => {
       <li>- 5% GST Extra</li>
       <li>- Included Kilometers will start from pickup location</li>
       <li>- Driver allowance includes stay, food and night charges</li>
-      <li>- Toll and state tax extra</li>
+      <li>- Toll and state tax extra </li>
       <li>- Parking charges extra if applicable</li>
      
 
@@ -1007,6 +1009,8 @@ const getMinTime = () => {
         <>
           <li>- For Round trip bookings, all sightseeing included except pickup city.</li>
            <li>- AC will remain switch off in hill areas</li>
+           <li>- Toll and state tax extra</li>
+           <li>- Kilometers will count from pickup location to pickup location</li>
         </>
       )}
 
@@ -1031,8 +1035,8 @@ const getMinTime = () => {
                           </>
                         ) : (
                           <>
-                            <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
-                              <span className="shrink-0 font-semibold text-[#1a1a1a]">Included Km:</span>
+                            <div className="flex min-h-[2.25rem] items-center  justify-between gap-3" style={{fontSize:"16px !important",fontWeight:"600"}}>
+                              <span className="shrink-0 font-semibold text-[#1a1a1a] ">Included Km:</span>
                               <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">
                                 {distanceKm != null ? `${billKm} km` : "—"}
                               </span>
@@ -1051,15 +1055,15 @@ const getMinTime = () => {
                             )}
 
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
-                              <span className="shrink-0 font-medium text-[#333]">Fuel:</span>
+                              <span className="shrink-0 font-medium text-[#333]">Fuel Charges:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
-                              <span className="shrink-0 font-medium text-[#333]">Driver:</span>
+                              <span className="shrink-0 font-medium text-[#333]">Driver Charges:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
-                              <span className="shrink-0 font-medium text-[#333]">Night:</span>
+                              <span className="shrink-0 font-medium text-[#333]">Night Charges:</span>
                               <span className="text-right font-semibold text-green-600">Included</span>
                             </div>
 
@@ -1078,34 +1082,46 @@ const getMinTime = () => {
 
   <Modal.Body>
     <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-      <li>- Vehicle and fuel charges included</li>
-      <li>- Driver Night Charges included</li>
-      <li>- 5% GST Extra</li>
-      <li>- Included Kilometers will start from pickup location</li>
-      <li>- Driver allowance includes stay, food and night charges</li>
-      <li>- Toll and state tax extra</li>
-      <li>- Parking charges extra if applicable</li>
-      <li>- AC will remain switch off in hill areas</li>
+     <ul>
+
+      {/* round trip vala part */}
+    <li>- Vehicle and fuel charges included</li>
+    <li>- Driver Night Charges included</li>
+    <li>- For Round trip bookings, all the local sightseeing in the mentioned cities is included except pickup city.</li>
+    <li>- 5% GST Extra</li>
+    <li>- Included Kilometers will start from pickup location</li>
+    <li>- Driver allowance includes driver's stay, food and night charges</li>
+    {/* <li>- Toll and state tax extra</li> */}
+    <li>- Parking charges extra if applicable</li>
+    <li>- AC will remain switch off in hill areas</li>
+    <li>- For round trip booking, Kilometers will count from pickup location to pickup location</li>
+</ul>
 
       {/* ✅ ROUND TRIP TERMS */}
-      {data.tripMode === "round" && (
-        <>
-          <li>- For Round trip bookings, all sightseeing included except pickup city.</li>
-          <li>-  For round trip booking, Kilometers will count from pickup location to pickup location
-
-</li>
-          <li>- Round trip includes return journey (pickup to pickup)</li>
-        </>
+    {priceView === "best" && (
+  <ul>
+    
+    {/* <li>- Toll and state tax extra b</li> */}
+  </ul>
+      )}
+          {priceView === "inclusive" && (
+  <ul>
+    
+    <li>- Toll and state tax include</li>
+  </ul>
       )}
 
       {/* ✅ ONE WAY TERMS */}
-      {data.tripMode !== "round" && (
+
+      {/* oneWay part */}
+      {data.tripMode !== "oneWay" && (
         <>
-          <li>- One way trip includes only pickup & drop</li>
-          <li>- Sightseeing not included in one way trip</li>
-          <li>- Extra pickup ₹250</li>
-          <li>-One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li>
-        </>
+        <ul>
+          {/* <li>- One way trip includes only pickup & drop</li> */}
+          {/* <li>- Sightseeing not included in one way trip</li> */}
+          {/* <li>- Toll and state tax included</li> */}
+          <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li>
+      </ul>  </>
       )}
     </ul>
   </Modal.Body>
