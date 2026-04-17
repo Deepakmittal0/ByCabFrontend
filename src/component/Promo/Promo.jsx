@@ -1120,7 +1120,7 @@ const getMinTime = () => {
           {/* <li>- One way trip includes only pickup & drop</li> */}
           {/* <li>- Sightseeing not included in one way trip</li> */}
           {/* <li>- Toll and state tax included</li> */}
-          <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li>
+          {/* <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li> */}
       </ul>  </>
       )}
     </ul>
