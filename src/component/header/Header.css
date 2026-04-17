@@ -29,6 +29,9 @@ button{
 
 }
 }
+.data{
+  font-size: 13px !important;
+}
 .tick{
   border-radius: 50%;
   background-color: green;
