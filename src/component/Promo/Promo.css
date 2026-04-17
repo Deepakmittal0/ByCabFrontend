@@ -111,7 +111,7 @@ margin-left: -12px !important; }
     }
     span{
         font-weight: 600;
-        font-size: 15px !important;
+        /* font-size: 15px !important; */
     }
     @media(min-width:768px){
 .dates{
