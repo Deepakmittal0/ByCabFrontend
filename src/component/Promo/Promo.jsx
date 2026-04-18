@@ -199,6 +199,7 @@ function Promo() {
   const [showModal, setShowModal] = useState(false);
    const [show, setShow] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
+  const [selectedAddons, setSelectedAddons] = useState([]);
   const [bookingForm, setBookingForm] = useState({
     name: "",
     mobile: "",
@@ -323,6 +324,36 @@ function Promo() {
     setShowModal(true);
   };
 
+
+
+// check box
+
+const ADD_ONS = [
+  { id: "luggage", label: "Assured luggage space", price: 315 },
+  { id: "carModel", label: "Confirmed Car Model 2022+", price: 420 },
+  { id: "driverLang", label: "Preferred Driver language", price: 315 },
+  { id: "pet", label: "Pet Allowed for travel", price: 840 },
+  { id: "refundable", label: "Refundable booking canellation amount (before 6 hours of departure time)", price: 221 },
+];
+
+
+const handleAddonChange = (addon) => {
+  setSelectedAddons((prev) => {
+    const exists = prev.find((a) => a.id === addon.id);
+
+    if (exists) {
+      return prev.filter((a) => a.id !== addon.id);
+    } else {
+      return [...prev, addon];
+    }
+  });
+};
+// const addonTotal = selectedAddons.reduce((sum, item) => sum + item.price, 0);
+// const finalAmount = advanceAmount + addonTotal;
+
+
+
+
   const displayedCabs = cabdata;
 
   const createRazorpayOrder = async (pricevalue) => {
@@ -366,6 +397,7 @@ function Promo() {
         selectedCar: selectedCar,
         tripdata: data,
         orderId: orderId,
+        extraAmount: addonTotal
       });
       console.log(res);
       if (res.success) {
@@ -398,7 +430,9 @@ function Promo() {
         return;
       }
       // const orderData = await createRazorpayOrder(selectedCar.price);
-      const orderData = await createRazorpayOrder(advanceAmount);
+      const payableAmount = advanceAmount + addonTotal;
+
+const orderData = await createRazorpayOrder(payableAmount);
       if (!orderData) {
         paymentInFlight.current = false;
         return;
@@ -483,6 +517,13 @@ const tripLabel =
   const triparrow=data?.tripMode==="round"?"⇄":"➜";
   const totalAmount = selectedCar?.price || 0;
 const advanceAmount = Math.round(totalAmount * 0.25);
+
+
+const addonTotal = selectedAddons.reduce((sum, item) => sum + item.price, 0);
+const finalAmount = advanceAmount + addonTotal;
+
+
+
 
 const dateRef = useRef(null);
 const timeRef = useRef(null);
@@ -1155,7 +1196,9 @@ const getMinTime = () => {
           </div>
         </div>
       )}
-      
+
+
+
 
       {/* ✅ Booking Modal */}
       {showModal && (
@@ -1246,18 +1289,34 @@ const getMinTime = () => {
                   className="w-full p-[14px_18px] border-2 border-[#eee] rounded-xl text-[1rem] bg-[#fafafa] transition-all duration-200 focus:border-[#ffcc00] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#ffcc00]/15"
                 />
               </div>
-              {/* <button
-                type="submit"
-                className="w-full p-[18px] bg-[#ffcc00] hover:bg-[#ffaa00] border-none rounded-[14px] text-[1.1rem] font-extrabold text-black cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] mt-[15px] hover:-translate-y-[3px] hover:shadow-[0_10px_20px_rgba(255,170,0,0.4)] active:-translate-y-px"
-              >
-                Confirm Booking
-              </button> */}
+             <div className="mb-5">
+  <label className="block mb-3 font-semibold text-[0.85rem] text-[#444] uppercase">
+    Add On Service (Optional)
+  </label>
+
+  {ADD_ONS.map((addon) => (
+    <label key={addon.id} className="flex items-center gap-2 mb-2 text-sm cursor-pointer">
+      <input
+        type="checkbox"
+        onChange={() => handleAddonChange(addon)}
+        checked={selectedAddons.some((a) => a.id === addon.id)}
+      />
+      {addon.label} for ₹ {addon.price}
+    </label>
+  ))}
+</div>
+
+
+{/* <button type="submit">
+  Pay ₹{finalAmount} Advance & Book
+</button> */}
+
 
               <button 
   type="submit"
   className="w-full p-[18px] bg-[#ffcc00] hover:bg-[#ffaa00] border-none rounded-[14px] text-[1.1rem] font-extrabold text-black cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] mt-[15px] hover:-translate-y-[3px] hover:shadow-[0_10px_20px_rgba(255,170,0,0.4)] active:-translate-y-px"
 >
-  Pay ₹{advanceAmount} Advance & Book
+  Pay ₹{finalAmount} Advance & Book
 </button>
             </form>
           </div>
