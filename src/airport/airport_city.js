@@ -3,9 +3,15 @@
  * Keys must match `price` object keys on each slab.
  */
 const EXTRA_FARE_PER_KM = {
-  "HATCHBACK, WagonR or Similar": 16,
-  "Dzire, Etios or Similar": 16,
-  "Ertiga, Carens or Similar": 20,
+  // "Hatchback, WagonR or Similar": 16,
+ 
+  // "Dzire, Etios or Similar": 16,
+  // "Ertiga, Carens or Similar": 20,
+
+  hatchback: 16,
+  sedan: 16,
+  ertiga: 20,
+  
 };
 
 /** Toll, fuel, driver, night — same wording as product UI */
@@ -18,18 +24,35 @@ const INCLUDED_CHARGES = {
 
 /** CabBazar vehicle art — keys match `price` / `extraFarePerKm` labels */
 export const AIRPORT_VEHICLE_IMAGES = {
-  "HATCHBACK, WagonR or Similar": "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/d946023d-84b1-4320-b0da-8aa346cba46d.jpeg",
-  "Dzire, Etios or Similar": "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/6224254a-08ea-4b87-bd66-9d95cad10b97.jpeg ",
-  "Ertiga, Carens or Similar": "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/328632a8-987a-42c0-915f-fd81f9196810.jpeg ",
+  "Hatchback, WagonR or Similar": "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/d946023d-84b1-4320-b0da-8aa346cba46d.jpeg",
+  "Dzire, Etios or Similar": "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/6224254a-08ea-4b87-bd66-9d95cad10b97.jpeg",
+  "Ertiga, Carens or Similar": "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/328632a8-987a-42c0-915f-fd81f9196810.jpeg",
+
+// hatchback : "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/d946023d-84b1-4320-b0da-8aa346cba46d.jpeg",
+//   sedan : "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/6224254a-08ea-4b87-bd66-9d95cad10b97.jpeg",
+//   ertiga : "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/328632a8-987a-42c0-915f-fd81f9196810.jpeg",
+
 };
 
 
 
 /** Card order: hatchback → sedan → SUV */
 export const AIRPORT_VEHICLE_LABELS = [
-  "HATCHBACK, WagonR or Similar",
-  "Dzire, Etios or Similar",
-  "Ertiga, Carens or Similar",
+  {
+    type: "HATCHBACK (AC)(4+1 SEATER)",
+    key: "Hatchback, WagonR or Similar",
+    name: "Swift, WagonR or Similar"
+  },
+  {
+    type: "SEDAN (AC)(4+1 SEATER)",
+    key: "Dzire, Etios or Similar",
+    name: "Dzire, Etios or Similar"
+  },
+  {
+    type: "SUV (AC) (6+1 SEATER)",
+    key: "Ertiga, Carens or Similar",
+    name: "Ertiga, Carens or Similar"
+  }
 ];
 
 /**
@@ -47,18 +70,26 @@ export const AIRPORT_VEHICLE_LABELS = [
 export const AIRPORT_KM_SLABS = {
   "20km": {
     includedKm: 20,
-    price: {
-      "HATCHBACK, WagonR or Similar": 650,
-      "Dzire, Etios or Similar": 750,
-      "Ertiga, Carens or Similar": 1050,
-    },
+    // price: {
+    //   "Hatchback, WagonR or Similar": 650,
+    //   "Dzire, Etios or Similar": 750,
+    //   "Ertiga, Carens or Similar": 1050,
+    // },
+
+price: {
+  hatchback: 650,
+  sedan: 750,
+  ertiga: 1050,
+},
+
+
     extraFarePerKm: { ...EXTRA_FARE_PER_KM },
     ...INCLUDED_CHARGES,
   },
   "30km": {
     includedKm: 30,
     price: {
-      "HATCHBACK, WagonR or Similar": 850,
+      "Hatchback, WagonR or Similar": 850,
       "Dzire, Etios or Similar": 950,
       "Ertiga, Carens or Similar": 1250,
     },
@@ -68,7 +99,7 @@ export const AIRPORT_KM_SLABS = {
   "40km": {
     includedKm: 40,
     price: {
-      "HATCHBACK, WagonR or Similar": 1000,
+      "Hatchback, WagonR or Similar": 1000,
       "Dzire, Etios or Similar": 1100,
       "Ertiga, Carens or Similar": 1400,
     },

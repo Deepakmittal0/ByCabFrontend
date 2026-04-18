@@ -113,6 +113,15 @@ margin-left: -12px !important; }
         font-weight: 600;
         /* font-size: 15px !important; */
     }
+
+    .relatives{
+        border: 1.5px solid #3877f6;
+border-radius: 12px;
+box-shadow: 0 14px 12px rgba(0, 0, 0, 0.08);
+/* padding: 10px; */
+background: #fff;
+transition: all 0.3s ease;
+    }
     @media(min-width:768px){
 .dates{
             margin-left: 20px;

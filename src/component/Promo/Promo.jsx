@@ -160,18 +160,21 @@ function FAQ() {
 /** Build cab cards for /cablist from bundled airport slab (no API). */
 function buildAirportTransferCabCards(airportCityFare) {
   if (!airportCityFare?.price) return [];
+
   return AIRPORT_VEHICLE_LABELS.map((label) => {
-    const price = Number(airportCityFare.price[label]);
+    const price = Number(airportCityFare.price[label.key]);
+    const extraPer = airportCityFare.extraFarePerKm?.[label.key];
+
     const oldPrice = Math.round(Number.isFinite(price) ? price * 1.09 : 0);
-    const extraPer = airportCityFare.extraFarePerKm?.[label] ?? 16;
+
     return {
-      img: AIRPORT_VEHICLE_IMAGES[label],
-      img1: AIRPORT_VEHICLE_IMAGES[label],
+      img: AIRPORT_VEHICLE_IMAGES[label.key],
+      img1: "https://cabbazar.com/assets/img/icons/lowest-price.png",
       oldPrice,
       price: Number.isFinite(price) ? price : 0,
-      type: "Airport transfer (AC)",
-      name: label,
-      extra: `₹ ${extraPer}/Km`,
+      type: label.type,
+      name: label.name,
+      extra: `₹ ${extraPer || 0}/Km`,
       _airportIncludedKm: airportCityFare.includedKm,
       _airportToll: airportCityFare.tollStateTax,
       _airportFuel: airportCityFare.fuelCharges,
@@ -830,10 +833,10 @@ const getMinTime = () => {
                     data.tripType === "local" && data.localSubType === "airport";
                   return (
                   <div
-                    className="bg-white rounded-2xl p-6 md:p-7 lg:p-8 border border-[#eaeaea] shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex flex-col items-stretch transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)]"
+                    className="bg-white rounded-2xl relatives p-6 md:p-7 lg:p-8 border border-[#eaeaea] shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex flex-col items-stretch transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)]"
                     key={index}
                   >
-                    <div className="relative w-full flex justify-center items-center pt-2 pb-1 min-h-[140px] md:min-h-[160px] shrink-0">
+                    <div className="relative w-full  flex justify-center items-center pt-2 pb-1 min-h-[140px] md:min-h-[160px] shrink-0">
                       <img
                         src={car.img}
                         alt=""
@@ -922,7 +925,7 @@ const getMinTime = () => {
     <li>5% GST Extra</li>
     <li>Included Kilometers will start from pickup location</li>
     {/* <li>Driver allowance includes driver's stay, food and night charges</li> */}
-    <li>Toll and state tax extra </li>
+    {/* <li>Toll and state tax extr </li> */}
     <li>Parking charges extra if applicable</li>
     <li>AC will remain switch off in hill areas</li>
     {/* <li>For round trip booking, Kilometers will count from pickup location to pickup location</li> */}
