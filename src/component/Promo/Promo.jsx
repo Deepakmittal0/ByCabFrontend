@@ -1054,7 +1054,7 @@ const getMinTime = () => {
       <li>- 5% GST Extra</li>
       <li>- Included Kilometers will start from pickup location</li>
       <li>- Driver allowance includes stay, food and night charges</li>
-      {/* <li>- Toll and state tax extra </li> */}
+     
       <li>- Parking charges extra if applicable</li>
      
 
@@ -1146,19 +1146,13 @@ const getMinTime = () => {
     <li>- 5% GST Extra</li>
     <li>- Included Kilometers will start from pickup location</li>
     <li>- Driver allowance includes driver's stay, food and night charges</li>
-    {/* <li>- Toll and state tax extra</li> */}
+   
     <li>- Parking charges extra if applicable</li>
     <li>- AC will remain switch off in hill areas</li>
     <li>- For round trip booking, Kilometers will count from pickup location to pickup location</li>
 </ul>
 
-      {/* ✅ ROUND TRIP TERMS */}
-    {priceView === "best" && (
-  <ul>
     
-    {/* <li>- Toll and state tax extra b</li> */}
-  </ul>
-      )}
           {priceView === "inclusive" && (
   <ul>
     
@@ -1167,12 +1161,15 @@ const getMinTime = () => {
       )}
 
 
-{priceView === "best" && (
+{/* {priceView === "best" && (
   <ul>
     
-    <li>- Toll and state tax extra</li>
+    <li>- Toll and state tax extra
+      
+    </li>
+
   </ul>
-      )}
+      )} */}
 
 
       {/* ✅ ONE WAY TERMS */}
