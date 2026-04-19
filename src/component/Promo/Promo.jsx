@@ -981,10 +981,6 @@ const getMinTime = () => {
 
 
 
-<Modal show={show} onHide={() => setShow(false)} centered>
-  <Modal.Header closeButton>
-    <Modal.Title>Other Charges and Taxes</Modal.Title>
-  </Modal.Header>
 
  
 
@@ -1035,12 +1031,7 @@ const getMinTime = () => {
 
 
 
-  <Modal.Footer className="justify-content-center">
-    <Button variant="warning" onClick={() => setShow(false)}>
-      Okay
-    </Button>
-  </Modal.Footer>
-</Modal>
+ 
            
 
 
