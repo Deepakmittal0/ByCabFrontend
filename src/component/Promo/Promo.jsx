@@ -1169,7 +1169,7 @@ const getMinTime = () => {
       {/* ✅ ONE WAY TERMS */}
 
       {/* oneWay part */}
-      {data.tripMode == "oneWay" && (
+      {data.tripMode === "oneWay" && (
         <>
         <ul>
           {/* <li>- One way trip includes only pickup & drop</li> */}
