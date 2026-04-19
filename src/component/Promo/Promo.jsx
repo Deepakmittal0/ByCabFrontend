@@ -1139,7 +1139,7 @@ const getMinTime = () => {
     <li>- Driver allowance includes driver's stay, food and night charges</li>
     {/* <li>- Toll and state tax extra</li> */}
     <li>- Parking charges extra if applicable</li>
-    <li>- AC will remain switch off in hill areas</li>
+    <li>- AC will remain switch off in hill are</li>
     <li>- For round trip booking, Kilometers will count from pickup location to pickup location</li>
 </ul>
 
