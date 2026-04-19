@@ -525,6 +525,33 @@ const finalAmount = advanceAmount + addonTotal;
 
 
 
+const getTripKey = () => {
+  if (data?.localSubType === "airport") return "airport";
+  if (data?.localSubType === "rental") return "rental";
+  if (data?.tripType === "local") return "local";
+  if (data?.tripMode === "oneWay") return "oneWay";
+  if (data?.tripMode === "round") return "roundTrip";
+};
+const MODAL_TERMS = {
+  oneWay: [
+    "One pickup one drop only",
+    "₹250 extra per extra pickup/drop",
+  ],
+  roundTrip: [
+    "Return journey included",
+    "Sightseeing included",
+  ],
+  airport: [
+    "Airport pickup/drop only",
+  ],
+  rental: [
+    "Hourly/km based package",
+  ],
+  local: [
+    "Local travel package",
+  ],
+};
+
 const dateRef = useRef(null);
 const timeRef = useRef(null);
 
@@ -952,32 +979,61 @@ const getMinTime = () => {
   other term
 </div>
 
+
+
+<Modal show={show} onHide={() => setShow(false)} centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Other Charges and Taxes</Modal.Title>
+  </Modal.Header>
+
+ 
+
 <Modal show={show} onHide={() => setShow(false)} centered>
   <Modal.Header closeButton>
     <Modal.Title>Other Charges and Taxes</Modal.Title>
   </Modal.Header>
 
   <Modal.Body>
-    <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-     <ul>
-    <li>Vehicle and fuel charges included</li>
-    <li>Driver Night Charges included</li>
-    {/* <li>For Round trip bookings, all the local sightseeing in the mentioned cities is included except pickup city.</li> */}
-    <li>5% GST Extra</li>
-    <li>Included Kilometers will start from pickup location</li>
-    {/* <li>Driver allowance includes driver's stay, food and night charges</li> */}
-    {/* <li>Toll and state tax extr </li> */}
-    <li>Parking charges extra if applicable</li>
-    <li>AC will reklmain switch off in hill areas</li>
-    <li>Toll and state tax included </li>
-    {/* <li>For round trip booking, Kilometers will count from pickup location to pickup location</li> */}
-</ul>
-     
+    <ul>
+      <li>Vehicle and fuel charges included</li>
+      <li>Driver charges included</li>
+      <li>5% GST Extra</li>
 
+      {data?.tripMode === "oneWay" &&
+        MODAL_TERMS.oneWay.map((item, i) => (
+          <li key={i}>- {item}</li>
+        ))}
 
-     
+      {data?.tripMode === "round" &&
+        MODAL_TERMS.roundTrip.map((item, i) => (
+          <li key={i}>- {item}</li>
+        ))}
+
+      {data?.tripType === "local" &&
+        MODAL_TERMS.local.map((item, i) => (
+          <li key={i}>- {item}</li>
+        ))}
+
+      {data?.localSubType === "rental" &&
+        MODAL_TERMS.rental.map((item, i) => (
+          <li key={i}>- {item}</li>
+        ))}
+
+      {data?.localSubType === "airport" &&
+        MODAL_TERMS.airport.map((item, i) => (
+          <li key={i}>- {item}</li>
+        ))}
     </ul>
   </Modal.Body>
+
+  <Modal.Footer className="justify-content-center">
+    <Button variant="warning" onClick={() => setShow(false)}>
+      Okay
+    </Button>
+  </Modal.Footer>
+</Modal>
+
+
 
   <Modal.Footer className="justify-content-center">
     <Button variant="warning" onClick={() => setShow(false)}>
@@ -1033,49 +1089,7 @@ const getMinTime = () => {
 >
   other term
 </div>
-<Modal show={show} onHide={() => setShow(false)} centered>
-  <Modal.Header closeButton>
-    <Modal.Title>Other Charges and Taxes</Modal.Title>
-  </Modal.Header>
 
-  <Modal.Body>
-    <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-      <li>- Vehicle and fuel charges included</li>
-      <li>- Driver Night Charges included</li>
-      <li>- 5% GST Extra</li>
-      <li>- Included Kilometers will start from pickup location</li>
-      <li>- Driver allowance includes stay, food and night charges</li>
-      {/* <li>- Toll and state tax extra </li> */}
-      <li>- Parking charges extra if applicable</li>
-     
-
-      {/* ✅ ROUND TRIP TERMS */}
-      { data.localSubType === "rental" && (
-        <>
-          <li>- For Round trip bookings, all the local sightseeing in the</li> 
-          <li>  mentioned cities is included except pickup city.</li>
-           <li>- AC will remain switch off in hill areas</li>
-           <li>- Toll and state tax extra</li>
-           <li>- Kilometers will count from pickup location to pickup location</li>
-        </>
-      )}
-
-      {/* ✅ ONE WAY TERMS */}
-     {/* {data.localSubType === "airport" ? (
-  <li>- AC will remain switch off in hill areas (Airport case)</li>
-) : (
-  // <li>- AC will remain switch off in hill areas</li>
-)} */}
-     
-    </ul>
-  </Modal.Body>
-
-  <Modal.Footer className="justify-content-center">
-    <Button variant="warning" onClick={() => setShow(false)}>
-      Okay
-    </Button>
-  </Modal.Footer>
-</Modal>
 
 
                           </>
@@ -1121,79 +1135,7 @@ const getMinTime = () => {
   other term
 </div>
 
-<Modal show={show} onHide={() => setShow(false)} centered>
-  <Modal.Header closeButton>
-    <Modal.Title>Other Charges and Taxes</Modal.Title>
-  </Modal.Header>
 
-  <Modal.Body>
-    <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-     <ul>
-
-      {/* round trip vala part */}
-    <li>- Vehicle and fuel charges included</li>
-    <li>- Driver Night Charges included</li>
-    <li>- For Round trip bookings, all the local sightseeing in the mentioned cities is included except pickup city.</li>
-    <li>- 5% GST Extra</li>
-    <li>- Included Kilometers will start from pickup location</li>
-    <li>- Driver allowance includes driver's stay, food and night charges</li>
-    {/* <li>- Toll and state tax extra</li> */}
-    <li>- Parking charges extra if applicable</li>
-    <li>- AC will remain switch off in hill are</li>
-    <li>- For round trip booking, Kilometers will count from pickup location to pickup location</li>
-</ul>
-
-      {/* ✅ ROUND TRIP TERMS */}
-    {priceView === "best" && (
-  <ul>
-    
-    {/* <li>- Toll and state tax extra b</li> */}
-  </ul>
-      )}
-          {priceView === "inclusive" && (
-  <ul>
-    
-    <li>- Toll and state tax included</li>
-  </ul>
-      )}
-
-{/* 
-{priceView === "best" && (
-  <ul>
-    
-    <li>- Toll and state tax extra</li>
-  </ul>
-      )} */}
-
-
-      {/* ✅ ONE WAY TERMS */}
-
-      {/* oneWay part */}
-{data?.tripMode === "oneWay" && (
-  <ul>
-    <li>
-      One way trip includes only one pickup and one drop. 
-      Additional pickup or drop on the way will incur 
-      additional charges of Rs. 250 per pickup / drop.
-    </li>
-  </ul>
-)}
-
-{data?.tripMode === "round" && (
-  <ul>
-    <li>- Round trip includes pickup and drop for return journey.</li>
-    <li>- Driver allowance may be applicable.</li>
-    <li>- Toll and state tax may be extra.</li>
-  </ul>
-)}
-  </Modal.Body>
-
-  <Modal.Footer className="justify-content-center">
-    <Button variant="warning" onClick={() => setShow(false)}>
-      Okay
-    </Button>
-  </Modal.Footer>
-</Modal>
                           </>
                         )}
                       </div>
