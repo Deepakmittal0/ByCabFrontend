@@ -4,9 +4,10 @@ import Navbar from "../Navbar/Navbar";
 import lowcab from "/image/cablow.png";
 import { useEffect } from "react";
 import "./Promo.css";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import {
   AIRPORT_VEHICLE_IMAGES,
   AIRPORT_VEHICLE_LABELS,
@@ -77,10 +78,18 @@ Toll tax and State tax may or may not be extra depending on the trip. Please che
     question: "When will I get car and driver details after booking?",
     answer: `In most cases, car and driver details are shared within minutes after booking. In few rare cases, it may take more time and may be shared up to two hours before departure.`,
   },
-  {
-    question: "Will advance amount be refunded if I cancel the booking?",
-    answer: `It may or may not be refunded. Please refer to our Cancellation and Refund policy for details.`,
-  },
+ {
+  question: "Will advance amount be refunded if I cancel the booking?",
+  answer: (
+    <>
+      It may or may not be refunded. Please refer to{" "}
+      <Link to="/refund">
+  Cancellation and Refund Policy
+</Link>{" "}
+      for details.
+    </>
+  ),
+},
   {
     question: "Can I travel with pets?",
     answer: `Yes, you can. But you will be charged an additional amount of Rs. 840 for small cars (hatchback, Sedan) and Rs. 1050 for bigger cars (SUV, Innova). Please select 'Pet Allowed' add-on while booking.`,
@@ -824,7 +833,7 @@ const getMinTime = () => {
                 <button
                   type="button"
                   className={`flex-1 p-3 border-none cursor-pointer font-bold transition-colors duration-200 min-h-[48px] max-md:text-sm ${
-                    priceView === "best" ? "bg-[#ffcc00] text-black" : "bg-[#ddd] text-[#333]"
+                    priceView === "best" ? "bg-[#ffcc00] text-black" : "bg-[#b4b1b1] text-[#333]"
                   }`}
                   onClick={() => setPriceView("best")}
                   aria-pressed={priceView === "best"}
@@ -834,7 +843,7 @@ const getMinTime = () => {
                 <button
                   type="button"
                   className={`flex-1 p-3 border-none cursor-pointer font-bold transition-colors duration-200 min-h-[48px] max-md:text-sm leading-snug ${
-                    priceView === "inclusive" ? "bg-[#ffcc00] text-black" : "bg-[#ddd] text-[#333]"
+                    priceView === "inclusive" ? "bg-[#ffcc00] text-black" : "bg-[#b4b1b1] text-[#333]"
                   }`}
                   onClick={() => setPriceView("inclusive")}
                   aria-pressed={priceView === "inclusive"}
