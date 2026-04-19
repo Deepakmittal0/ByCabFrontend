@@ -1169,16 +1169,23 @@ const getMinTime = () => {
       {/* ✅ ONE WAY TERMS */}
 
       {/* oneWay part */}
-      {data.tripMode === "oneWay" && (
-        <>
-        <ul>
-          {/* <li>- One way trip includes only pickup & drop</li> */}
-          {/* <li>- Sightseeing not included in one way trip</li> */}
-          {/* <li>- Toll and state tax included</li>  */}
-        <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li>
-      </ul>  </>
-      )}
-    </ul>
+{data?.tripMode === "oneWay" && (
+  <ul>
+    <li>
+      One way trip includes only one pickup and one drop. 
+      Additional pickup or drop on the way will incur 
+      additional charges of Rs. 250 per pickup / drop.
+    </li>
+  </ul>
+)}
+
+{data?.tripMode === "round" && (
+  <ul>
+    <li>- Round trip includes pickup and drop for return journey.</li>
+    <li>- Driver allowance may be applicable.</li>
+    <li>- Toll and state tax may be extra.</li>
+  </ul>
+)}
   </Modal.Body>
 
   <Modal.Footer className="justify-content-center">
