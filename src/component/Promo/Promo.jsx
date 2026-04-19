@@ -779,9 +779,9 @@ const getMinTime = () => {
 <div >
 
   <a href="/" className="date-had">
-  Return
+  Return for maximum savings
    {/* Book  {tripLabel}  */}
-  for maximum savings
+ 
 </a>
 </div>
 </div>
