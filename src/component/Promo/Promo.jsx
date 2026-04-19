@@ -968,7 +968,8 @@ const getMinTime = () => {
     {/* <li>Driver allowance includes driver's stay, food and night charges</li> */}
     {/* <li>Toll and state tax extr </li> */}
     <li>Parking charges extra if applicable</li>
-    <li>AC will remain switch off in hill areas</li>
+    <li>AC will reklmain switch off in hill areas</li>
+    <li>Toll and state tax included </li>
     {/* <li>For round trip booking, Kilometers will count from pickup location to pickup location</li> */}
 </ul>
      
@@ -1051,7 +1052,8 @@ const getMinTime = () => {
       {/* ✅ ROUND TRIP TERMS */}
       { data.localSubType === "rental" && (
         <>
-          <li>- For Round trip bookings, all sightseeing included except pickup city.</li>
+          <li>- For Round trip bookings, all the local sightseeing in the</li> 
+          <li>  mentioned cities is included except pickup city.</li>
            <li>- AC will remain switch off in hill areas</li>
            <li>- Toll and state tax extra</li>
            <li>- Kilometers will count from pickup location to pickup location</li>
@@ -1059,12 +1061,12 @@ const getMinTime = () => {
       )}
 
       {/* ✅ ONE WAY TERMS */}
-      { data.localSubType !== "rental" && (
-        <>
-          <li>- AC will remain switch off in hill areas</li>
-
-        </>
-      )}
+     {/* {data.localSubType === "airport" ? (
+  <li>- AC will remain switch off in hill areas (Airport case)</li>
+) : (
+  // <li>- AC will remain switch off in hill areas</li>
+)} */}
+     
     </ul>
   </Modal.Body>
 
@@ -1151,20 +1153,29 @@ const getMinTime = () => {
           {priceView === "inclusive" && (
   <ul>
     
-    <li>- Toll and state tax include</li>
+    <li>- Toll and state tax included</li>
   </ul>
       )}
+
+
+{priceView === "best" && (
+  <ul>
+    
+    <li>- Toll and state tax extra</li>
+  </ul>
+      )}
+
 
       {/* ✅ ONE WAY TERMS */}
 
       {/* oneWay part */}
-      {data.tripMode !== "oneWay" && (
+      {data.tripMode == "oneWay" && (
         <>
         <ul>
           {/* <li>- One way trip includes only pickup & drop</li> */}
           {/* <li>- Sightseeing not included in one way trip</li> */}
-          {/* <li>- Toll and state tax included</li> */}
-          {/* <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li> */}
+          {/* <li>- Toll and state tax included</li>  */}
+        <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li>
       </ul>  </>
       )}
     </ul>
