@@ -980,9 +980,9 @@ const getMinTime = () => {
   </Modal.Body>
 
   <Modal.Footer className="justify-content-center">
-    <Button variant="warning" onClick={() => setShow(false)}>
-      Okay
-    </Button>
+    <Button variant="warning" onClick={() => setShowTerms(false)}>
+  Okay
+</Button>
   </Modal.Footer>
 </Modal>
            
@@ -1029,7 +1029,7 @@ const getMinTime = () => {
 <div
   className="text-center mt-5"
   style={{ cursor: "pointer", color: "#f59e0b", fontWeight: "600" }}
-  onClick={() => setShow(true)}
+  onClick={() => setShowTerms(true)}
 >
   other term
 </div>
@@ -1071,9 +1071,9 @@ const getMinTime = () => {
   </Modal.Body>
 
   <Modal.Footer className="justify-content-center">
-    <Button variant="warning" onClick={() => setShow(false)}>
-      Okay
-    </Button>
+   <Button variant="warning" onClick={() => setShowTerms(false)}>
+  Okay
+</Button>
   </Modal.Footer>
 </Modal>
 
@@ -1116,7 +1116,7 @@ const getMinTime = () => {
 <div
   className="text-center mt-5"
   style={{ cursor: "pointer", color: "#f59e0b", fontWeight: "600" }}
-  onClick={() => setShow(true)}
+ onClick={() => setShowTerms(true)}
 >
   other term
 </div>
@@ -1182,9 +1182,9 @@ const getMinTime = () => {
   </Modal.Body>
 
   <Modal.Footer className="justify-content-center">
-    <Button variant="warning" onClick={() => setShow(false)}>
-      Okay
-    </Button>
+    <Button variant="warning" onClick={() => setShowTerms(false)}>
+  Okay
+</Button>
   </Modal.Footer>
 </Modal>
                           </>
