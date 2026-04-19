@@ -1157,13 +1157,13 @@ const getMinTime = () => {
   </ul>
       )}
 
-
+{/* 
 {priceView === "best" && (
   <ul>
     
     <li>- Toll and state tax extra</li>
   </ul>
-      )}
+      )} */}
 
 
       {/* ✅ ONE WAY TERMS */}
