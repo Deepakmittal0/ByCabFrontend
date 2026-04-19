@@ -779,7 +779,9 @@ const getMinTime = () => {
 <div >
 
   <a href="/" className="date-had">
-  Return Book {tripLabel} for maximum savings
+  Return
+   {/* Book  {tripLabel}  */}
+  for maximum savings
 </a>
 </div>
 </div>
@@ -1153,12 +1155,15 @@ const getMinTime = () => {
 </ul>
 
     
-          {priceView === "inclusive" && (
+{priceView === "inclusive" ? (
   <ul>
-    
     <li>- Toll and state tax included</li>
   </ul>
-      )}
+) : (
+  <ul>
+    <li>- Toll and state tax extra</li>
+  </ul>
+)}
 
 
 {/* {priceView === "best" && (
