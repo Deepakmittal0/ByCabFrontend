@@ -19,9 +19,9 @@ function RefundPolicy() {
             Cancellation and Refund Policy
           </h2>
 
-          <p className="text-center text-muted">
+          {/* <p className="text-center text-muted">
             Last updated: March 5, 2021
-          </p>
+          </p> */}
 
           <hr />
 
@@ -36,8 +36,7 @@ function RefundPolicy() {
           </p>
 
           <p>
-            <strong>1.2</strong> No cancellation fee shall be payable unless Cab
-            Bazar confirms cancellation as per terms.
+            <strong>1.2</strong> No cancellation fee shall be payable unless ByCab confirms cancellation as per terms.
           </p>
 
           <p>
@@ -67,7 +66,7 @@ function RefundPolicy() {
 
           <p>
             <strong>2.1</strong> Refunds will be processed within 7–10 business
-            days. Cab Bazar is not responsible for incorrect bank details.
+            days. ByCab is not responsible for incorrect bank details.
           </p>
 
           <p>
@@ -81,17 +80,17 @@ function RefundPolicy() {
             <li>Car breakdown not resolved → full voucher provided.</li>
             <li>Force majeure events → voucher instead of refund.</li>
             <li>
-              Trip modification approved by Cab Bazar → voucher issued.
+              Trip modification approved by ByCab → voucher issued.
             </li>
           </ul>
 
           <p>
-            <strong>2.3</strong> Cab Bazar is not responsible for any payments
+            <strong>2.3</strong> ByCab is not responsible for any payments
             made directly to driver outside invoice.
           </p>
 
           <p>
-            <strong>2.4</strong> Cab Bazar is not liable for loss/damage during
+            <strong>2.4</strong> ByCab is not liable for loss/damage during
             ride caused by third-party drivers but will assist reasonably.
           </p>
 
