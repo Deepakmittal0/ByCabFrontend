@@ -166,6 +166,9 @@ function FAQ() {
   );
 }
 
+
+
+
 /** Build cab cards for /cablist from bundled airport slab (no API). */
 function buildAirportTransferCabCards(airportCityFare) {
   if (!airportCityFare?.price) return [];
@@ -201,6 +204,7 @@ function Promo() {
   const [cabdata, setCabdata] = useState([]);
   const [distanceKm, setDistanceKm] = useState(null);
   const [billKm, setBillKm] = useState(null);
+  const [extraDays, setExtraDays] = useState(0);
   const [cabFetchError, setCabFetchError] = useState(null);
   const [cabsLoading, setCabsLoading] = useState(false);
   /** 'best' | 'inclusive' — round trip only */
@@ -211,13 +215,23 @@ function Promo() {
   const [selectedCar, setSelectedCar] = useState(null);
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [bookingForm, setBookingForm] = useState({
-    name: "",
-    mobile: "",
-    email: "",
-    date: "",
-    time: "",
-    pickupAddress: "",
-  });
+  name: "",
+  mobile: "",
+  email: "",
+  pickupDate: "",
+  pickupTime: "",
+  returnDate: "",
+  returnTime: "",
+  pickupAddress: "",
+  days:1
+});
+
+const depDateRef = useRef(null);
+const depTimeRef = useRef(null);
+const retDateRef = useRef(null);
+const retTimeRef = useRef(null);
+
+
   const paymentInFlight = useRef(false);
 
   useEffect(() => {
@@ -276,30 +290,42 @@ function Promo() {
           setBillKm(null);
         } else {
           const pv = data.tripMode === "round" ? priceView : "best";
+          const cabPayload = {
+            cities: data.cities,
+            tripType: data.tripType,
+            tripMode: data.tripMode,
+            mobile: data.mobile,
+            placeIds: data.placeIds ?? [],
+            priceView: pv,
+          };
+          if (data.tripMode === "round") {
+            if (bookingForm.pickupDate) {
+              cabPayload.pickupDate = bookingForm.pickupDate;
+            }
+            if (bookingForm.returnDate) {
+              cabPayload.returnDate = bookingForm.returnDate;
+            }
+          }
           const { data: res } = await axios.post(
             `${import.meta.env.VITE_API}/api/v1/getcabdetails`,
-            {
-              cities: data.cities,
-              tripType: data.tripType,
-              tripMode: data.tripMode,
-              mobile: data.mobile,
-              placeIds: data.placeIds ?? [],
-              priceView: pv,
-            },
+            cabPayload,
           );
           if (cancelled) return;
           if (res?.cabs) {
             setCabdata(res.cabs);
             setDistanceKm(res.distanceKm ?? null);
             setBillKm(res.billKm ?? null);
+            setExtraDays(res.extraDays ?? 0);
           } else if (Array.isArray(res)) {
             setCabdata(res);
             setDistanceKm(null);
             setBillKm(null);
+            setExtraDays(0);
           } else {
             setCabdata([]);
             setDistanceKm(null);
             setBillKm(null);
+            setExtraDays(0);
           }
         }
       } catch (error) {
@@ -322,7 +348,7 @@ function Promo() {
     return () => {
       cancelled = true;
     };
-  }, [data, priceView]);
+  }, [data, priceView, bookingForm.pickupDate, bookingForm.returnDate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -405,21 +431,29 @@ const handleAddonChange = (addon) => {
       const { data: res } = await axios.post(`${import.meta.env.VITE_API}/api/v1/booking`, {
         bookingForm: bookingForm,
         selectedCar: selectedCar,
-        tripdata: data,
+        tripdata: {
+          ...data,
+          priceView: data?.tripMode === "round" ? priceView : "best",
+        },
         orderId: orderId,
-        extraAmount: addonTotal
+        extraAmount: addonTotal,
+        days: bookingForm.days
       });
       console.log(res);
-      if (res.success) {
+      if (res?.success) {
         alert("Booking Successful !!!");
         localStorage.clear();
         navigate("/");
       } else {
-        alert("Booking Failed !!!");
+        alert(res?.message || "Booking Failed !!!");
       }
     } catch (error) {
       console.log(error);
-      alert("Something went Wrong !!!");
+      const msg =
+        error.response?.data?.message ||
+        error.message ||
+        "Something went Wrong !!!";
+      alert(msg);
     }
   };
 
@@ -556,9 +590,8 @@ const timeRef = useRef(null);
 //     }));
 //   }
 // }, [bookingForm.date]);
-
 useEffect(() => {
-  if (!bookingForm.date) {
+  if (!bookingForm.pickupDate) {
     const today = new Date();
     const todayStr = today.toISOString().split("T")[0];
 
@@ -570,13 +603,58 @@ useEffect(() => {
 
     setBookingForm((prev) => ({
       ...prev,
-      date: todayStr,
-      time: `${hours}:${minutes}`,
+      pickupDate: todayStr,
+      pickupTime: `${hours}:${minutes}`,
+      returnDate: prev.returnDate || todayStr,
     }));
   }
 }, []);
 
+useEffect(() => {
+  if (data?.tripMode !== "round") return;
+  if (!bookingForm.pickupDate || bookingForm.returnDate) return;
+  setBookingForm((prev) => ({
+    ...prev,
+    returnDate: bookingForm.pickupDate,
+  }));
+}, [data?.tripMode, bookingForm.pickupDate, bookingForm.returnDate]);
 
+// useEffect(() => {
+//   if (!bookingForm.pickupDate) {
+//     const today = new Date();
+//     const todayStr = today.toISOString().split("T")[0];
+
+//     const future = new Date();
+//     future.setHours(future.getHours() + 2);
+
+//     const hours = String(future.getHours()).padStart(2, "0");
+//     const minutes = String(future.getMinutes()).padStart(2, "0");
+
+//     setBookingForm((prev) => ({
+//       ...prev,
+//       pickupDate: todayStr,
+//       pickupTime: `${hours}:${minutes}`,
+//     }));
+//   }
+// }, []);
+
+// 👇👇👇 YAHI PE ADD KARO (ROUND TRIP DAYS LOGIC)
+useEffect(() => {
+  if (data?.tripMode !== "round") return;
+
+  if (!bookingForm.pickupDate || !bookingForm.returnDate) return;
+
+  const start = new Date(bookingForm.pickupDate);
+  const end = new Date(bookingForm.returnDate);
+
+  const diffTime = end - start;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  setBookingForm((prev) => ({
+    ...prev,
+    days: diffDays > 0 ? diffDays : 1,
+  }));
+}, [bookingForm.pickupDate, bookingForm.returnDate]);
 
 const getMinTime = () => {
   const today = new Date().toISOString().split("T")[0];
@@ -619,179 +697,297 @@ const getMinTime = () => {
   {/* Trip Type */}
 
 
-  <div className="text-sm text-gray-600 mb-2" style={{fontSize:"18px",fontWeight:"600"}}>
-    
+
+  {/* TITLE */}
+
+ 
+
+  {/* ROUTE CARD */}
+
+  
+
+      {/* LEFT */}
+
+      {/* DATES */}
+
+<div className="local">
+
+  {/* =========================
+      TITLE
+  ========================= */}
+
+  <div className="trip-type-title">
+
     {data.tripType === "local" && data.localSubType === "rental"
-      ? "Local rental"
+      ? "Local Rental"
       : data.tripType === "local" && data.localSubType === "airport"
-        ? "Airport transfer"
-        : `Trip Type : ${data.tripType}`}
+      ? "Airport Transfer"
+      : data?.tripMode === "round"
+      ? "Outstation Round Trip"
+      : "Outstation One-way Trip"}
+
   </div>
-  
-  <div className="local">
 
-  {/* Route UI */}
-  {data.tripType === "local" && data.localSubType === "rental" ? (
+  {/* =========================
+      ROUTE CARD
+  ========================= */}
 
-    <div className="bg-yellow-400 local-head text-black px-4 py-2 rounded-full inline-block font-medium" style={{alignItems:"center",display:"flex"}}>
-      {data.cities?.[0]}
+  <div className="route-card">
+
+    {/* TOP */}
+
+    <div className="route-flex">
+
+      {/* LEFT */}
+
+      <div className="route-left">
+
+        {/* FROM */}
+
+        <div className="location-box">
+
+          <div className="location-icon from">
+            ●
+          </div>
+
+          <div>
+
+            <div className="location-label">
+              FROM
+            </div>
+
+            <div className="location-name">
+              {data.cities?.[0]}
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* TO */}
+
+        <div className="location-box">
+
+          <div className="location-icon to">
+            📍
+          </div>
+
+          <div>
+
+            <div className="location-label">
+              TO
+            </div>
+
+            <div className="location-name">
+              {data.cities?.[1]}
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* TARGET BTN */}
+
+      <div className="target-btn">
+        ⌖
+      </div>
+
     </div>
 
+    {/* =========================
+        DISTANCE + DATE
+    ========================= */}
 
+    <div className="distance-row">
 
+      {/* DISTANCE */}
 
+      {distanceKm != null && (
 
+        <div className="distance-box">
 
+          <div className="distance-icon">
+            🛣
+          </div>
 
+          <div>
 
-  ) : data.tripType === "local" && data.localSubType === "airport" ? (
-<div className="d-fle">
-    <div className="flex items-center gap-2 ">
-      
+            <div className="distance-label">
+              {data?.tripMode === "round"
+                ? "Round Trip Distance"
+                : "One-way Distance"}
+            </div>
 
-      <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium"  >
-        {data.airportName}
+            <div className="distance-value">
+
+              {data?.tripMode === "round"
+                ? billKm || distanceKm
+                : distanceKm} km
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
+      {/* DATE WRAPPER */}
+
+    <div className="date-wrapper">
+
+  {/* =========================
+      PICKUP ALWAYS SHOW
+  ========================= */}
+
+  <div className="date-card">
+
+    {/* DATE */}
+
+    <div
+      className="date-left"
+      onClick={() => depDateRef.current?.showPicker()}
+    >
+
+      <div className="date-icon">
+        📅
       </div>
 
-      <span className="text-xl font-bold">➜</span>
+      <div>
 
-      <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium">
-        {data.destinationCity}
-      </div>
+        <div className="date-title">
+          Pickup Date
+        </div>
+
+        <div className="date-value">
+          {bookingForm.pickupDate || "Select Date"}
+        </div>
+
       </div>
 
     </div>
 
-  ) : (
+    {/* TIME */}
 
-    <div className="d-flex items-center gap-2">
+    <div
+      className="time-box"
+      onClick={() => depTimeRef.current?.showPicker()}
+    >
 
-      <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium">
-        {data.cities?.[0]}
-      </div>
-
-      <span className="text-xl font-bold">{triparrow}</span>
-
-      <div className="bg-yellow-400 px-4 py-2 rounded-full font-medium">
-        {data.cities?.[1]}
-      </div>
+      ⏰ {bookingForm.pickupTime || "Select Time"}
 
     </div>
-)}
 
-{/* {distanceKm != null && ( */}
-<div className="d-flex items-center  gap-3 mt-2">
-
-  {/* LEFT (same as before) */}
-{distanceKm != null && (
-  <div
-    className="text-gray-500 dis"
-    style={{ fontSize: "15px", fontWeight: "600" }}
-  >
-    {tripLabel} ~ {distanceKm} km
-
-    {data?.tripMode === "round" && billKm != null && (
-      <span> Total Distance - {billKm} km</span>
-    )}
   </div>
-)}
 
-  {/* RIGHT (Updated UI like image) */}
- <div className="flex items-center justify-between flex-wrap gap-3 mt-2">
+  {/* =========================
+      RETURN ONLY ROUND TRIP
+  ========================= */}
 
-  
+  {data?.tripMode === "round" && (
 
+    <div className="date-card">
 
+      {/* RETURN DATE */}
 
-<div className="flex items-center gap-2  dates">
-  {/* CLICKABLE UI */}
-  <div
-    className="flex items-end gap-2 text-blue-600 cursor-pointer"
-    onClick={() => dateRef.current?.showPicker()} // ✅ open date 
-  style={{
-  fontSize:"10px"
-  }} >
-
-    {/* BIG DATE */}
-    <span className="text-4xl font-extrabold leading-none fake-date">
-      {new Date(bookingForm.date).getDate()}
-    </span>
-
-    {/* MONTH + TIME */}
-    <div className="flex flex-col leading-tight fake-month">
-      <span className="text-sm font-semibold">
-        {new Date(bookingForm.date).toLocaleString("en-IN", {
-          month: "short",
-          year: "numeric",
-        })}
-      </span>
-
-      <span
-        className="text-lg font-bold"
-        onClick={(e) => {
-          e.stopPropagation(); 
-          timeRef.current?.showPicker(); // ✅ open time
-        }}
+      <div
+        className="date-left"
+        onClick={() => retDateRef.current?.showPicker()}
       >
-        {new Date(`1970-01-01T${bookingForm.time}`).toLocaleString(
-          "en-IN",
-          {
-            hour: "numeric",
-            minute: "2-digit",
-            hour12: true,
-          }
-        )}
-      </span>
+
+        <div className="date-icon">
+          📅
+        </div>
+
+        <div>
+
+          <div className="date-title">
+            Return Date
+          </div>
+
+          <div className="date-value">
+            {bookingForm.returnDate || "Select Date"}
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* RETURN TIME */}
+
+      <div
+        className="time-box"
+        onClick={() => retTimeRef.current?.showPicker()}
+      >
+
+        ⏰ {bookingForm.returnTime || "Select Time"}
+
+      </div>
+
     </div>
+
+  )}
+
+  {/* =========================
+      HIDDEN INPUTS
+  ========================= */}
+
+  <input
+    ref={depDateRef}
+    type="date"
+    name="pickupDate"
+    value={bookingForm.pickupDate}
+    onChange={handleInputChange}
+  />
+
+  <input
+    ref={depTimeRef}
+    type="time"
+    name="pickupTime"
+    value={bookingForm.pickupTime}
+    onChange={handleInputChange}
+  />
+
+  {data?.tripMode === "round" && (
+    <>
+      <input
+        ref={retDateRef}
+        type="date"
+        name="returnDate"
+        value={bookingForm.returnDate}
+        onChange={handleInputChange}
+      />
+
+      <input
+        ref={retTimeRef}
+        type="time"
+        name="returnTime"
+        value={bookingForm.returnTime}
+        onChange={handleInputChange}
+      />
+    </>
+  )}
+
+</div>
+    </div>
+
   </div>
 
-  {/* REAL INPUTS (hidden but working) */}
-  <input
-    ref={dateRef}
-    type="date"
-    name="date"
-    value={bookingForm.date}
-    onChange={handleInputChange}
-    min={new Date().toISOString().split("T")[0]}
-    className="absolute opacity-0 pointer-events-none"
-  />
+  {/* SAVING TEXT */}
 
-  <input
-    ref={timeRef}
-    type="time"
-    name="time"
-    value={bookingForm.time}
-    onChange={handleInputChange}
-    min={getMinTime()}
-    className="absolute opacity-0 pointer-events-none"
-  />
+  {/* <a href="/" className="date-had">
+    Return for maximum savings
+  </a> */}
 
-  {/* EDIT ICON */}
-  <span
-    className="text-red-500 text-xl cursor-pointer"
-    onClick={() => dateRef.current?.showPicker()}
-  >
-   <span style={{fontSize:"20px"}}> ✏️</span>
-  </span>
 </div>
 </div>
 
-<div >
-
-  <a href="/" className="date-had">
-  Return for maximum savings
-   {/* Book  {tripLabel}  */}
- 
-</a>
-</div>
-</div>
-
-</div>
- 
  
 {/* // )} */}
 
-</div>
+
 
           <div className="container my-4">
   <div className="row align-items-center shadow rounded overflow-hidden psec">
@@ -1278,8 +1474,8 @@ const getMinTime = () => {
                 <label className="block mb-2 font-semibold text-[0.85rem] text-[#444] uppercase tracking-[0.5px]">Pickup Date</label>
                 <input
                   type="date"
-                  name="date"
-                  value={bookingForm.date}
+                  name="pickupDate"
+                  value={bookingForm.pickupDate}
                   onChange={handleInputChange}
                   min={new Date().toISOString().split("T")[0]}
                   required
@@ -1290,13 +1486,49 @@ const getMinTime = () => {
                 <label className="block mb-2 font-semibold text-[0.85rem] text-[#444] uppercase tracking-[0.5px]">Pickup Time</label>
                 <input
                   type="time"
-                  name="time"
-                  value={bookingForm.time}
+                  name="pickupTime"
+value={bookingForm.pickupTime}
                   onChange={handleInputChange}
                   required
                   className="w-full p-[14px_18px] border-2 border-[#eee] rounded-xl text-[1rem] bg-[#fafafa] transition-all duration-200 focus:border-[#ffcc00] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#ffcc00]/15"
                 />
               </div>
+
+{data?.tripMode === "round" && (
+  <>
+    {/* Return Date */}
+    <div className="mb-5">
+      <label className="block mb-2 font-semibold text-[0.85rem] text-[#444] uppercase tracking-[0.5px]">
+        Return Date
+      </label>
+      <input
+        type="date"
+        name="returnDate"
+        value={bookingForm.returnDate}
+        onChange={handleInputChange}
+        min={bookingForm.pickupDate || new Date().toISOString().split("T")[0]}
+        required
+        className="w-full p-[14px_18px] border-2 border-[#eee] rounded-xl"
+      />
+    </div>
+
+    {/* Return Time */}
+    <div className="mb-5">
+      <label className="block mb-2 font-semibold text-[0.85rem] text-[#444] uppercase tracking-[0.5px]">
+        Return Time
+      </label>
+      <input
+        type="time"
+        name="returnTime"
+        value={bookingForm.returnTime}
+        onChange={handleInputChange}
+        required
+        className="w-full p-[14px_18px] border-2 border-[#eee] rounded-xl"
+      />
+    </div>
+  </>
+)}
+              
               <div className="mb-5">
                 <label className="block mb-2 font-semibold text-[0.85rem] text-[#444] uppercase tracking-[0.5px]">
                   Pickup Address
