@@ -834,13 +834,9 @@ const getMinTime = () => {
 
       )}
 
-      {/* DATE WRAPPER */}
-
 <div className="date-wrapper">
 
-  {/* =========================
-      PICKUP ALWAYS SHOW
-  ========================= */}
+  {/* PICKUP */}
 
   <div className="date-card">
 
@@ -849,12 +845,16 @@ const getMinTime = () => {
     <div
       className="date-left"
       onClick={() => {
-        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isIOS) {
           depDateRef.current?.focus();
           depDateRef.current?.click();
         } else {
           depDateRef.current?.showPicker?.();
         }
+
       }}
     >
 
@@ -881,12 +881,16 @@ const getMinTime = () => {
     <div
       className="time-box"
       onClick={() => {
-        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isIOS) {
           depTimeRef.current?.focus();
           depTimeRef.current?.click();
         } else {
           depTimeRef.current?.showPicker?.();
         }
+
       }}
     >
 
@@ -896,9 +900,7 @@ const getMinTime = () => {
 
   </div>
 
-  {/* =========================
-      RETURN ONLY ROUND TRIP
-  ========================= */}
+  {/* RETURN ONLY ROUND TRIP */}
 
   {data?.tripMode === "round" && (
 
@@ -909,12 +911,16 @@ const getMinTime = () => {
       <div
         className="date-left"
         onClick={() => {
-          if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+
+          const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+          if (isIOS) {
             retDateRef.current?.focus();
             retDateRef.current?.click();
           } else {
             retDateRef.current?.showPicker?.();
           }
+
         }}
       >
 
@@ -941,12 +947,16 @@ const getMinTime = () => {
       <div
         className="time-box"
         onClick={() => {
-          if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+
+          const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+          if (isIOS) {
             retTimeRef.current?.focus();
             retTimeRef.current?.click();
           } else {
             retTimeRef.current?.showPicker?.();
           }
+
         }}
       >
 
@@ -958,9 +968,7 @@ const getMinTime = () => {
 
   )}
 
-  {/* =========================
-      HIDDEN INPUTS
-  ========================= */}
+  {/* HIDDEN INPUTS */}
 
   <input
     ref={depDateRef}
