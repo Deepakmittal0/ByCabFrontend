@@ -479,12 +479,13 @@
 
 /* HIDE INPUT */
 
-.date-wrapper input{
+.hidden-picker{
   position:absolute;
   opacity:0;
-  pointer-events:none;
+  width:1px;
+  height:1px;
+  z-index:-1;
 }
-
 /* =========================
    SAVING TEXT
 ========================= */
@@ -714,11 +715,11 @@
 
 /* HIDE INPUTS */
 
-.date-wrapper input{
+/* .date-wrapper input{
   position:absolute;
   opacity:0;
   pointer-events:none;
-}
+} */
 
 /* MOBILE */
 

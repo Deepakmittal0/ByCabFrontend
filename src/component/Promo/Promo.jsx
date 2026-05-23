@@ -848,7 +848,7 @@ const getMinTime = () => {
 
     <div
       className="date-left"
-      onClick={() => depDateRef.current?.showPicker()}
+     onClick={() => depDateRef.current?.focus()}
     >
 
       <div className="date-icon">
@@ -873,7 +873,7 @@ const getMinTime = () => {
 
     <div
       className="time-box"
-      onClick={() => depTimeRef.current?.showPicker()}
+     onClick={() => depTimeRef.current?.focus()}
     >
 
       ⏰ {bookingForm.pickupTime || "Select Time"}
@@ -894,7 +894,7 @@ const getMinTime = () => {
 
       <div
         className="date-left"
-        onClick={() => retDateRef.current?.showPicker()}
+        onClick={() => retDateRef.current?.focus()}
       >
 
         <div className="date-icon">
@@ -919,7 +919,7 @@ const getMinTime = () => {
 
       <div
         className="time-box"
-        onClick={() => retTimeRef.current?.showPicker()}
+       onClick={() => retTimeRef.current?.focus()}
       >
 
         ⏰ {bookingForm.returnTime || "Select Time"}
@@ -938,6 +938,7 @@ const getMinTime = () => {
     ref={depDateRef}
     type="date"
     name="pickupDate"
+    className="hidden-picker"
     value={bookingForm.pickupDate}
     onChange={handleInputChange}
   />
@@ -946,6 +947,7 @@ const getMinTime = () => {
     ref={depTimeRef}
     type="time"
     name="pickupTime"
+    className="hidden-picker"
     value={bookingForm.pickupTime}
     onChange={handleInputChange}
   />
@@ -956,6 +958,7 @@ const getMinTime = () => {
         ref={retDateRef}
         type="date"
         name="returnDate"
+        className="hidden-picker"
         value={bookingForm.returnDate}
         onChange={handleInputChange}
       />
@@ -964,6 +967,7 @@ const getMinTime = () => {
         ref={retTimeRef}
         type="time"
         name="returnTime"
+        className="hidden-picker"
         value={bookingForm.returnTime}
         onChange={handleInputChange}
       />
