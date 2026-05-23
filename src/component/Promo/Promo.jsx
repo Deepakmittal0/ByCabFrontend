@@ -867,10 +867,14 @@ const getMinTime = () => {
         <div className="date-title">
           Pickup Date
         </div>
-
-        <div className="date-value">
-          {bookingForm.pickupDate || "Select Date"}
-        </div>
+<div className="date-value">
+  {
+    bookingForm.pickupDate
+      ? new Date(bookingForm.pickupDate)
+          .toLocaleDateString("en-GB")
+      : "Select Date"
+  }
+</div>
 
       </div>
 
@@ -894,7 +898,17 @@ const getMinTime = () => {
       }}
     >
 
-      ⏰ {bookingForm.pickupTime || "Select Time"}
+⏰ {
+  bookingForm.pickupTime
+    ? new Date(
+        `2000-01-01T${bookingForm.pickupTime}`
+      ).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+    : "Select Time"
+}
 
     </div>
 
@@ -934,10 +948,14 @@ const getMinTime = () => {
             Return Date
           </div>
 
-          <div className="date-value">
-            {bookingForm.returnDate || "Select Date"}
-          </div>
-
+<div className="date-value">
+  {
+    bookingForm.returnDate
+      ? new Date(bookingForm.returnDate)
+          .toLocaleDateString("en-GB")
+      : "Select Date"
+  }
+</div>
         </div>
 
       </div>
@@ -960,7 +978,17 @@ const getMinTime = () => {
         }}
       >
 
-        ⏰ {bookingForm.returnTime || "Select Time"}
+⏰ {
+  bookingForm.returnTime
+    ? new Date(
+        `2000-01-01T${bookingForm.returnTime}`
+      ).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+    : "Select Time"
+}
 
       </div>
 
@@ -976,6 +1004,7 @@ const getMinTime = () => {
     name="pickupDate"
     value={bookingForm.pickupDate}
     onChange={handleInputChange}
+    placeholder="DD-MM-YYYY"
   />
 
   <input
@@ -994,6 +1023,7 @@ const getMinTime = () => {
         name="returnDate"
         value={bookingForm.returnDate}
         onChange={handleInputChange}
+        placeholder="DD-MM-YYYY"
       />
 
       <input
@@ -1535,7 +1565,7 @@ value={bookingForm.pickupTime}
     {/* Return Date */}
     <div className="mb-5">
       <label className="block mb-2 font-semibold text-[0.85rem] text-[#444] uppercase tracking-[0.5px]">
-        Return Date
+        Return Dat
       </label>
       <input
         type="date"
