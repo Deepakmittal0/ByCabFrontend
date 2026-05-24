@@ -608,7 +608,7 @@ const HeroWithPromo = () => {
                           }}
                           className="!rounded-xl !py-3 !pr-10 !pl-[15px] !border-none !bg-[#e8e8e8c9]"
                         >
-                          <option value="">From Airport / To A irport</option>
+                          <option value="">From Airport / To Airport</option>
                           <option value="from">From Airport</option>
                           <option value="to">To Airport</option>
                         </Form.Select>

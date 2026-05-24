@@ -1638,6 +1638,13 @@ value={bookingForm.pickupTime}
 >
   Pay ₹{finalAmount} Advance & Book
 </button>
+<p class="info-text">
+  We will send booking details via SMS and Email
+</p>
+
+<p class="info-text1">
+  Please pay balance payment directly to driver during the trip
+</p>
             </form>
           </div>
         </div>

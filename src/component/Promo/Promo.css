@@ -485,6 +485,22 @@
   pointer-events:none;
 }
 
+.info-text {
+  text-align: c;
+  color: #60a5fa;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: px;
+  margin-top: 20px;
+}
+.info-text1 {
+  text-align: c;
+  color: #60a5fa;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+
+}
 /* =========================
    SAVING TEXT
 ========================= */
