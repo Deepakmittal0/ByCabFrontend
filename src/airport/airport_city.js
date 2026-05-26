@@ -3,15 +3,9 @@
  * Keys must match `price` object keys on each slab.
  */
 const EXTRA_FARE_PER_KM = {
-  // "Hatchback, WagonR or Similar": 16,
- 
-  // "Dzire, Etios or Similar": 16,
-  // "Ertiga, Carens or Similar": 20,
-
-  hatchback: 16,
-  sedan: 16,
-  ertiga: 20,
-  
+  "Hatchback, WagonR or Similar": 16,
+  "Dzire, Etios or Similar": 16,
+  "Ertiga, Carens or Similar": 20,
 };
 
 /** Toll, fuel, driver, night — same wording as product UI */
@@ -70,19 +64,11 @@ export const AIRPORT_VEHICLE_LABELS = [
 export const AIRPORT_KM_SLABS = {
   "20km": {
     includedKm: 20,
-    // price: {
-    //   "Hatchback, WagonR or Similar": 650,
-    //   "Dzire, Etios or Similar": 750,
-    //   "Ertiga, Carens or Similar": 1050,
-    // },
-
-price: {
-  hatchback: 650,
-  sedan: 750,
-  ertiga: 1050,
-},
-
-
+    price: {
+      "Hatchback, WagonR or Similar": 650,
+      "Dzire, Etios or Similar": 750,
+      "Ertiga, Carens or Similar": 1050,
+    },
     extraFarePerKm: { ...EXTRA_FARE_PER_KM },
     ...INCLUDED_CHARGES,
   },
