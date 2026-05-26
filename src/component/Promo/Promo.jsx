@@ -392,10 +392,12 @@ const handleAddonChange = (addon) => {
 
   const displayedCabs = cabdata;
 
-  const createRazorpayOrder = async (pricevalue) => {
+  const createRazorpayOrder = async ({ advance, addons, totalFare }) => {
     try {
       const { data: res } = await axios.post(`${import.meta.env.VITE_API}/api/v1/createpayment-session`, {
-        amount: pricevalue,
+        amount: advance,
+        extraAmount: addons,
+        totalFare,
         user_data: bookingForm,
       });
       if (res.data?.success && res.data?.data?.order_id) {
@@ -436,8 +438,8 @@ const handleAddonChange = (addon) => {
           priceView: data?.tripMode === "round" ? priceView : "best",
         },
         orderId: orderId,
-        extraAmount: addonTotal,
-        days: bookingForm.days
+        selectedAddons,
+        days: bookingForm.days,
       });
       console.log(res);
       if (res?.success) {
@@ -473,10 +475,11 @@ const handleAddonChange = (addon) => {
         paymentInFlight.current = false;
         return;
       }
-      // const orderData = await createRazorpayOrder(selectedCar.price);
-      const payableAmount = advanceAmount + addonTotal;
-
-const orderData = await createRazorpayOrder(payableAmount);
+      const orderData = await createRazorpayOrder({
+        advance: advanceAmount,
+        addons: addonTotal,
+        totalFare: totalAmount,
+      });
       if (!orderData) {
         paymentInFlight.current = false;
         return;
@@ -1609,6 +1612,40 @@ value={bookingForm.pickupTime}
                   className="w-full p-[14px_18px] border-2 border-[#eee] rounded-xl text-[1rem] bg-[#fafafa] transition-all duration-200 focus:border-[#ffcc00] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#ffcc00]/15"
                 />
               </div>
+             {selectedCar && (
+              <div className="mb-5 rounded-xl border-2 border-[#ffec99] bg-[#fffef5] p-4 text-sm">
+                <p className="mb-2 font-bold text-[#1a1a1a] uppercase tracking-wide text-[0.8rem]">
+                  Fare summary
+                </p>
+                <div className="flex justify-between gap-3 py-1">
+                  <span className="text-[#555]">Total trip fare</span>
+                  <span className="font-semibold tabular-nums">₹ {totalAmount}</span>
+                </div>
+                <div className="flex justify-between gap-3 py-1">
+                  <span className="text-[#555]">Advance (25%)</span>
+                  <span className="font-semibold tabular-nums">₹ {advanceAmount}</span>
+                </div>
+                {addonTotal > 0 && (
+                  <div className="flex justify-between gap-3 py-1">
+                    <span className="text-[#555]">Add-ons</span>
+                    <span className="font-semibold tabular-nums">₹ {addonTotal}</span>
+                  </div>
+                )}
+                <div className="mt-2 flex justify-between gap-3 border-t border-dashed border-[#e5e5e5] pt-2">
+                  <span className="font-bold text-[#1a1a1a]">You pay now</span>
+                  <span className="text-lg font-extrabold tabular-nums text-[#1a1a1a]">
+                    ₹ {finalAmount}
+                  </span>
+                </div>
+                <div className="mt-1 flex justify-between gap-3 text-[#e67700]">
+                  <span>Pay driver later</span>
+                  <span className="font-semibold tabular-nums">
+                    ₹ {Math.max(0, totalAmount - advanceAmount)}
+                  </span>
+                </div>
+              </div>
+            )}
+
              <div className="mb-5">
   <label className="block mb-3 font-semibold text-[0.85rem] text-[#444] uppercase">
     Add On Service (Optional)
