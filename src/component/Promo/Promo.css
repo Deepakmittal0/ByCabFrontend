@@ -574,7 +574,11 @@
   .location-box{
     margin-bottom:22px;
   }
-
+.agree {
+  font-size: 13px;
+  outline: none;
+  box-shadow: none;
+}
   .location-box:last-child{
     margin-bottom:0;
   }

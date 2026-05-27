@@ -60,7 +60,7 @@ Toll tax and State tax may or may not be extra depending on the trip. Please che
   {
     question:
       "Can we pickup additional passengers on the way in one way trip?",
-    answer: `For One way trip with only one pickup and one drop, Additional pickup or drop will incur additional charges.`,
+    answer: `For One way trip with only one pickup and one drop, Additional pickup or drop will included additional charges.`,
   },
   {
     question: "Do I need to pay both side Toll tax for one way trip?",
@@ -200,6 +200,7 @@ function buildAirportTransferCabCards(airportCityFare) {
 function Promo() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [agreeTerms, setAgreeTerms] = useState(false);
   const [data, setData] = useState(null);
   const [cabdata, setCabdata] = useState([]);
   const [distanceKm, setDistanceKm] = useState(null);
@@ -1120,15 +1121,21 @@ const getMinTime = () => {
                   Best Price
                 </button>
                 <button
-                  type="button"
-                  className={`flex-1 p-3 border-none cursor-pointer font-bold transition-colors duration-200 min-h-[48px] max-md:text-sm leading-snug ${
-                    priceView === "inclusive" ? "bg-[#ffcc00] text-black" : "bg-[#b4b1b1] text-[#333]"
-                  }`}
-                  onClick={() => setPriceView("inclusive")}
-                  aria-pressed={priceView === "inclusive"}
-                >
-                  Toll, State tax Inclusive Price
-                </button>
+  type="button"
+  className={`flex-1 p-3 border-none cursor-pointer font-bold transition-colors duration-200 min-h-[48px] max-md:text-sm leading-snug ${
+    priceView === "inclusive"
+      ? "bg-[#ffcc00] text-black"
+      : "bg-[#b4b1b1] text-[#333]"
+  }`}
+  onClick={() => setPriceView("inclusive")}
+  aria-pressed={priceView === "inclusive"}
+>
+  <div>Toll, State tax Inclusive Price</div>
+
+  <span className="block text-xs font-normal mt-1">
+    - Toll and state tax included
+  </span>
+</button>
               </div>
             </>
           )}
@@ -1431,27 +1438,17 @@ const getMinTime = () => {
     <li>- For round trip booking, Kilometers will count from pickup location to pickup location</li>
 </ul>
 
-    
-{priceView === "inclusive" ? (
-  <ul>
-    <li>- Toll and state tax included</li>
-  </ul>
-) : (
-  <ul>
-    <li>- Toll and state tax extra</li>
-  </ul>
+{data.tripMode!== "oneway" && (
+  priceView === "inclusive" ? (
+    <ul>
+      <li>- Toll and state tax included</li>
+    </ul>
+  ) : (
+    <ul>
+      <li>- Toll and state tax extra</li>
+    </ul>
+  )
 )}
-
-
-{/* {priceView === "best" && (
-  <ul>
-    
-    <li>- Toll and state tax extra
-      
-    </li>
-
-  </ul>
-      )} */}
 
 
       {/* ✅ ONE WAY TERMS */}
@@ -1463,8 +1460,11 @@ const getMinTime = () => {
           {/* <li>- One way trip includes only pickup & drop</li> */}
           {/* <li>- Sightseeing not included in one way trip</li> */}
           {/* <li>- Toll and state tax included</li>  */}
-        <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li>
-      </ul>  </>
+        <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will included additional charges of Rs. 250 per pickup / drop.</li>
+      </ul>
+      
+      {/* <li>    - Toll and state tax included</li> */}
+        </>
       )}
     </ul>
   </Modal.Body>
@@ -1675,12 +1675,30 @@ value={bookingForm.pickupTime}
       {addon.label} for ₹ {addon.price}
     </label>
   ))}
+
+<label className="flex items-center  gap-2 mt-4 text-sm cursor-pointer">
+  <input
+    type="checkbox"
+    checked={agreeTerms}
+    onChange={() => setAgreeTerms(!agreeTerms)}
+    className="checkbox"
+  />
+  <span className="agree">
+    I agree with{" "}
+    <span className="text-blue-600  cursor-pointer">
+      Terms of Use
+    </span>{" "}
+    &{" "}
+    <span className="text-blue-600  cursor-pointer">
+      Cancellation Policy
+    </span>{" "}
+    of the service
+  </span>
+</label>
+
+
+
 </div>
-
-
-{/* <button type="submit">
-  Pay ₹{finalAmount} Advance & Book
-</button> */}
 
 
               <button 
@@ -1697,7 +1715,20 @@ value={bookingForm.pickupTime}
   Please pay balance payment directly to driver during the trip
 </p>
             </form>
+
+            
           </div>
+          <div className="flex justify-center mt-3">
+  {selectedAddons.some((a) => a.id === "refundable") ? (
+    <div className="text-green-800 text-sm font-medium text-center">
+      UPGRADED TO REFUNDABLE BOOKING!!
+    </div>
+  ) : (
+    <div className="text-red-800 text-sm font-medium text-center">
+      BACK TO NON-REFUNDABLE BOOKING!!
+    </div>
+  )}
+</div>
           </div>
         </div>
       )}
