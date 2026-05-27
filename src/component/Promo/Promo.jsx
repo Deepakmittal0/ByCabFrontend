@@ -369,7 +369,7 @@ const ADD_ONS = [
   { id: "carModel", label: "Confirmed Car Model 2022+", price: 420 },
   { id: "driverLang", label: "Preferred Driver language", price: 315 },
   { id: "pet", label: "Pet Allowed for travel", price: 840 },
-  { id: "refundable", label: "Refundable booking canellation amount (before 6 hours of departure time)", price: 221 },
+  { id: "refundable", label: "Refundable booking cancellation amount (before 6 hours of departure time)", price: 221 },
 ];
 
 
