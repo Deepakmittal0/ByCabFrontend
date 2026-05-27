@@ -1654,7 +1654,7 @@ value={bookingForm.pickupTime}
   {ADD_ONS.map((addon) => (
     <label key={addon.id} className="flex items-center gap-2 mb-2 text-sm cursor-pointer">
       <input
-        type="checkbox"
+        type="checkbox" className="checkbox"
         onChange={() => handleAddonChange(addon)}
         checked={selectedAddons.some((a) => a.id === addon.id)}
       />

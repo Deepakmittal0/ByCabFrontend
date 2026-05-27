@@ -488,18 +488,24 @@
 .info-text {
   text-align: c;
   color: #60a5fa;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   margin-bottom: px;
+  font-weight: 600;
   margin-top: 20px;
 }
 .info-text1 {
   text-align: c;
   color: #60a5fa;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
+    font-weight: 600;
   margin-bottom: 8px;
 
+}
+
+.checkbox{
+  margin: 8px;
 }
 /* =========================
    SAVING TEXT
