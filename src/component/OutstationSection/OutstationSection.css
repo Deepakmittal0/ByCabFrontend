@@ -120,7 +120,7 @@
     display: none;
   }
   .video-frame {
-  position: absolute;
+  /* position: absolute; */
   top: 0px !important;
   object-fit: cover;
   left: 0;

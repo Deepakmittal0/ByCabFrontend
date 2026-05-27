@@ -504,6 +504,14 @@
 
 }
 
+.formin{
+  padding: 30px;
+  border: 4px solid wheat;
+  /* box-shadow: #d18b00; */
+  /* border-radius: 10px 10px 10px 10px ; */
+  /* background-color: rgb(219, 215, 208); */
+}
+
 .checkbox{
   margin: 8px;
 }

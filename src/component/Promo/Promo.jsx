@@ -352,6 +352,25 @@ const retTimeRef = useRef(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // =========================
+// PICKUP TIME VALIDATION
+// =========================
+
+if (name === "pickupTime") {
+
+  const minTime = getMinPickupTime();
+
+  if (
+    bookingForm.pickupDate === today &&
+    value < minTime
+  ) {
+
+    alert("Ride Booking allow after 2 hour so Please select time after 2 hours");
+
+    return;
+  }
+
+}
     setBookingForm((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -365,11 +384,11 @@ const retTimeRef = useRef(null);
 // check box
 
 const ADD_ONS = [
-  { id: "luggage", label: "Assured luggage space", price: 315 },
-  { id: "carModel", label: "Confirmed Car Model 2022+", price: 420 },
+  { id: "luggage", label: "Assured luggage space (carrier required)", price: 315 },
+  { id: "carModel", label: "Confirmed Car Model 2022+ or above", price: 420 },
   { id: "driverLang", label: "Preferred Driver language", price: 315 },
-  { id: "pet", label: "Pet Allowed for travel", price: 840 },
-  { id: "refundable", label: "Refundable booking cancellation amount (before 6 hours of departure time)", price: 221 },
+  { id: "pet", label: "Pet Allowed ", price: 840 },
+  { id: "refundable", label: "Upgrade to Refundable booking (100% refund for cancellation before 8 hours of departure time)", price: 165 },
 ];
 
 
@@ -575,24 +594,7 @@ const finalAmount = advanceAmount + addonTotal;
 const dateRef = useRef(null);
 const timeRef = useRef(null);
 
-// useEffect(() => {
-//   if (!bookingForm.date) return;
 
-//   const today = new Date().toISOString().split("T")[0];
-
-//   if (bookingForm.date === today) {
-//     const now = new Date();
-//     now.setHours(now.getHours() + 2);
-
-//     const hours = String(now.getHours()).padStart(2, "0");
-//     const minutes = String(now.getMinutes()).padStart(2, "0");
-
-//     setBookingForm((prev) => ({
-//       ...prev,
-//       time: `${hours}:${minutes}`, // ✅ auto set time
-//     }));
-//   }
-// }, [bookingForm.date]);
 useEffect(() => {
   if (!bookingForm.pickupDate) {
     const today = new Date();
@@ -622,24 +624,33 @@ useEffect(() => {
   }));
 }, [data?.tripMode, bookingForm.pickupDate, bookingForm.returnDate]);
 
-// useEffect(() => {
-//   if (!bookingForm.pickupDate) {
-//     const today = new Date();
-//     const todayStr = today.toISOString().split("T")[0];
 
-//     const future = new Date();
-//     future.setHours(future.getHours() + 2);
+// =========================
+// 2 HOUR MIN TIME LOGIC
+// =========================
 
-//     const hours = String(future.getHours()).padStart(2, "0");
-//     const minutes = String(future.getMinutes()).padStart(2, "0");
+const today = new Date().toISOString().split("T")[0];
 
-//     setBookingForm((prev) => ({
-//       ...prev,
-//       pickupDate: todayStr,
-//       pickupTime: `${hours}:${minutes}`,
-//     }));
-//   }
-// }, []);
+const getMinPickupTime = () => {
+
+  // agar selected date aaj nhi hai
+  if (bookingForm.pickupDate !== today) {
+    return "";
+  }
+
+  const now = new Date();
+
+  // current time + 2 hour
+  now.setHours(now.getHours() + 2);
+
+  // HH:MM format
+  return now.toTimeString().slice(0, 5);
+
+};
+
+
+
+
 
 // 👇👇👇 YAHI PE ADD KARO (ROUND TRIP DAYS LOGIC)
 useEffect(() => {
@@ -1016,6 +1027,7 @@ const getMinTime = () => {
     name="pickupTime"
     value={bookingForm.pickupTime}
     onChange={handleInputChange}
+     min={getMinPickupTime()}
   />
 
   {data?.tripMode === "round" && (
@@ -1236,16 +1248,16 @@ const getMinTime = () => {
   <Modal.Body>
     <ul style={{ listStyle: "none", paddingLeft: 0 }}>
      <ul>
-    <li>Vehicle and fuel charges included</li>
-    <li>Driver Night Charges included</li>
+    <li>- Vehicle and fuel charges included</li>
+    <li>- Driver Night Charges included</li>
     {/* <li>For Round trip bookings, all the local sightseeing in the mentioned cities is included except pickup city.</li> */}
-    <li>5% GST Extra</li>
-    <li>Included Kilometers will start from pickup location</li>
+    <li>- 5% GST Extra</li>
+    <li>- Included Kilometers will start from pickup location</li>
     {/* <li>Driver allowance includes driver's stay, food and night charges</li> */}
     {/* <li>Toll and state tax extr </li> */}
-    <li>Parking charges extra if applicable</li>
-    <li>AC will reklmain switch off in hill areas</li>
-    <li>Toll and state tax included </li>
+    <li>- Parking charges extra if applicable</li>
+    <li>- AC will remain switch off in hill areas</li>
+    <li>- Toll and state tax included </li>
     {/* <li>For round trip booking, Kilometers will count from pickup location to pickup location</li> */}
 </ul>
      
@@ -1491,6 +1503,8 @@ const getMinTime = () => {
       {showModal && (
         <div className="fixed top-0 left-0 w-full h-full bg-black/60 backdrop-blur-[5px] flex justify-center items-center z-1000 animate-[fadeIn_0.3s_ease-out]">
           <div className="bg-white/95 p-[30px] max-h-[85vh] max-md:p-[24px_20px] max-md:max-h-[90vh] overflow-y-auto rounded-3xl w-[90%] z-100 max-w-[480px] relative shadow-[0_20px_40px_rgba(0,0,0,0.2),inset_0_0_0_1px_rgba(255,255,255,0.5)] animate-[slideUp_0.4s_cubic-bezier(0.16,1,0.3,1)]">
+           
+           <div className="formin">
             <button
               className="absolute top-5 right-5 bg-[#f0f0f0] border-none text-[1.5rem] w-9 h-9 rounded-full flex justify-center items-center cursor-pointer text-[#666] transition-all duration-200 hover:bg-[#e0e0e0] hover:text-black hover:rotate-90"
               onClick={() => setShowModal(false)}
@@ -1683,6 +1697,7 @@ value={bookingForm.pickupTime}
   Please pay balance payment directly to driver during the trip
 </p>
             </form>
+          </div>
           </div>
         </div>
       )}
