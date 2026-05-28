@@ -366,7 +366,7 @@ if (name === "pickupTime") {
     value < minTime
   ) {
 
-    alert("Ride Booking allow after 2 hour so Please select time after 2 hours");
+    alert("Bookings are allowed only 2 hours in advance. Please select a pickup time after 2 hours from now.");
 
     return;
   }
@@ -386,7 +386,7 @@ if (name === "pickupTime") {
 
 const ADD_ONS = [
   { id: "luggage", label: "Assured luggage space (carrier required)", price: 315 },
-  { id: "carModel", label: "Confirmed Car Model 2022+ or above", price: 420 },
+  { id: "carModel", label: "Confirmed Car Model 2022 or above", price: 420 },
   { id: "driverLang", label: "Preferred Driver language", price: 315 },
   { id: "pet", label: "Pet Allowed ", price: 840 },
   { id: "refundable", label: "Upgrade to Refundable booking (100% refund for cancellation before 8 hours of departure time)", price: 165 },
@@ -1460,7 +1460,7 @@ const getMinTime = () => {
           {/* <li>- One way trip includes only pickup & drop</li> */}
           {/* <li>- Sightseeing not included in one way trip</li> */}
           {/* <li>- Toll and state tax included</li>  */}
-        <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will included additional charges of Rs. 250 per pickup / drop.</li>
+        <li>- One way trip includes only one pickup and one drop. Additional pickup or drop on the way will incur additional charges of Rs. 250 per pickup / drop.</li>
       </ul>
       
       {/* <li>    - Toll and state tax included</li> */}
@@ -1582,7 +1582,7 @@ value={bookingForm.pickupTime}
     {/* Return Date */}
     <div className="mb-5">
       <label className="block mb-2 font-semibold text-[0.85rem] text-[#444] uppercase tracking-[0.5px]">
-        Return Dat
+        Return Date
       </label>
       <input
         type="date"
