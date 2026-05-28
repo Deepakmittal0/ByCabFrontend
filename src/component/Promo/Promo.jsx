@@ -356,6 +356,9 @@ const retTimeRef = useRef(null);
     // =========================
 // PICKUP TIME VALIDATION
 // =========================
+// =========================
+// PICKUP TIME VALIDATION
+// =========================
 
 if (name === "pickupTime") {
 
@@ -366,7 +369,13 @@ if (name === "pickupTime") {
     value < minTime
   ) {
 
-    alert("Bookings are allowed only 2 hours in advance. Please select a pickup time after 2 hours from now.");
+    Swal.fire({
+      icon: "warning",
+      title: "Invalid Pickup Time",
+      text: "Bookings are allowed only 2 hours in advance. Please select a pickup time after 2 hours from now.",
+      confirmButtonColor: "#111",
+      confirmButtonText: "OK",
+    });
 
     return;
   }
