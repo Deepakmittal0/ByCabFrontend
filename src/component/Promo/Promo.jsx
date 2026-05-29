@@ -1693,16 +1693,26 @@ value={bookingForm.pickupTime}
     className="checkbox"
   />
   <span className="agree">
-    I agree with{" "}
-    <span className="text-blue-600  cursor-pointer">
-      Terms of Use
-    </span>{" "}
-    &{" "}
-    <span className="text-blue-600  cursor-pointer">
-      Cancellation Policy
-    </span>{" "}
-    of the service
-  </span>
+  I agree with{" "}
+
+  <a
+    href="/refund"
+    className="text-blue-600 cursor-pointer text-decoration-none"
+  >
+    Terms of Use
+  </a>{" "}
+
+  &{" "}
+
+  <a
+    href="/refund"
+    className="text-blue-600 cursor-pointer text-decoration-none"
+  >
+    Cancellation Policy
+  </a>{" "}
+
+  of the service
+</span>
 </label>
 
 
