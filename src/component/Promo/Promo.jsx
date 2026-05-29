@@ -1298,7 +1298,7 @@ const getMinTime = () => {
                           <>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
                               <span className="shrink-0 font-semibold text-[#1a1a1a]">Included:</span>
-                              <span className="min-w-0 text-right font-semibold text-green-600">
+                              <span className="min-w-0 text-right font-semibold text-blue-600">
                                 {car.includedLabel ?? "—"}
                               </span>
                             </div>
@@ -1317,16 +1317,16 @@ const getMinTime = () => {
                             {/* <div className="my-2.5 border-t border-[#e5e5e5]" /> */}
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Fuel Charges:</span>
-                              <span className="text-right font-semibold text-green-600">Included</span>
+                              <span className="text-right font-semibold text-blue-600">Included</span>
                             </div>
                             
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Driver Charges:</span>
-                              <span className="text-right font-semibold text-green-600">Included</span>
+                              <span className="text-right font-semibold text-blue-600">Included</span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Night Charges:</span>
-                              <span className="text-right font-semibold text-green-600">Included</span>
+                              <span className="text-right font-semibold text-blue-600">Included</span>
                             </div>
 
 
@@ -1400,21 +1400,21 @@ const getMinTime = () => {
                               data.tripMode === "oneway") && (
                               <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                                 <span className="shrink-0 font-medium text-[#333]">Toll, State Tax :</span>
-                                <span className="text-right font-semibold text-green-600">Included</span>
+                                <span className="text-right font-semibold text-blue-600">Included</span>
                               </div>
                             )}
 
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Fuel Charges:</span>
-                              <span className="text-right font-semibold text-green-600">Included</span>
+                              <span className="text-right font-semibold text-blue-600">Included</span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Driver Charges:</span>
-                              <span className="text-right font-semibold text-green-600">Included</span>
+                              <span className="text-right font-semibold text-blue-600">Included</span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333]">Night Charges:</span>
-                              <span className="text-right font-semibold text-green-600">Included</span>
+                              <span className="text-right font-semibold text-blue-600">Included</span>
                             </div>
 
 <div
