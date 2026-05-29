@@ -1196,7 +1196,7 @@ const getMinTime = () => {
                     </div>
 
                     <div className="text-center mb-3 shrink-0">
-                      <div className="text-red-500 text-sm line-through decoration-2 opacity-90">₹ {car.oldPrice}</div>
+                      <div className="text-red-500 text-base line-through decoration-2 opacity-90">₹ {car.oldPrice}</div>
                       <h2 className="text-[1.85rem] md:text-[2rem] font-extrabold text-green-600 leading-tight mt-1 tracking-tight">
                         <span className="prs">₹ {car.price}</span>
                       </h2>
@@ -1212,7 +1212,7 @@ const getMinTime = () => {
                           <>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
                               <span className="shrink-0 font-semibold text-[#1a1a1a] bold ">Included Km:</span>
-                              <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">
+                              <span className="min-w-0 text-right font-semibold tabular-nums text-blue-600">
                                 {car._airportIncludedKm != null
                                   ? `${car._airportIncludedKm} km`
                                   : "—"}
@@ -1220,32 +1220,32 @@ const getMinTime = () => {
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
                               <span className="shrink-0 font-semibold text-[#1a1a1a]">Extra fare/Km:</span>
-                              <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">
+                              <span className="min-w-0 text-right font-semibold tabular-nums text-blue-600">
                                 {car.extra}
                               </span>
                             </div>
                             {/* <div className="my-2.5 border-t border-[#e5e5e5]" /> */}
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333] bold">Toll, State Tax:</span>
-                              <span className="text-right font-semibold text-green-600 capitalize">
+                              <span className="text-right font-semibold text-blue-600 capitalize">
                                 {car._airportToll ?? "included"}
                               </span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333] bold">Fuel Charges:</span>
-                              <span className="text-right font-semibold text-green-600 capitalize">
+                              <span className="text-right font-semibold text-blue-600 capitalize">
                                 {car._airportFuel ?? "included"}
                               </span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333] bold">Driver Charges:</span>
-                              <span className="text-right font-semibold text-green-600 capitalize">
+                              <span className="text-right font-semibold text-blue-600 capitalize">
                                 {car._airportDriver ?? "included"}
                               </span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3 text-[#555]">
                               <span className="shrink-0 font-medium text-[#333] bold">Night Charges:</span>
-                              <span className="text-right font-semibold text-green-600 capitalize">
+                              <span className="text-right font-semibold text-blue-600 capitalize">
                                 {car._airportNight ?? "included"}
                               </span>
                             </div>
@@ -1304,13 +1304,13 @@ const getMinTime = () => {
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
                               <span className="shrink-0 font-semibold text-[#1a1a1a]">Extra fare/Km:</span>
-                              <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">
+                              <span className="min-w-0 text-right font-semibold tabular-nums text-blue-600">
                                 {car.extra}
                               </span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
                               <span className="shrink-0 font-semibold text-[#1a1a1a]">Extra fare/Hour:</span>
-                              <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">
+                              <span className="min-w-0 text-right font-semibold tabular-nums text-blue-600">
                                 {car.extraHour ?? "—"}
                               </span>
                             </div>
@@ -1387,13 +1387,13 @@ const getMinTime = () => {
                           <>
                             <div className="flex min-h-[2.25rem] items-center  justify-between gap-3" style={{fontSize:"16px !important",fontWeight:"600"}}>
                               <span className="shrink-0 font-semibold text-[#1a1a1a] ">Included Km:</span>
-                              <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">
+                              <span className="min-w-0 text-right font-semibold tabular-nums text-blue-600">
                                 {distanceKm != null ? `${billKm} km` : "—"}
                               </span>
                             </div>
                             <div className="flex min-h-[2.25rem] items-center justify-between gap-3">
                               <span className="shrink-0 font-semibold text-[#1a1a1a]">Extra fare/Km:</span>
-                              <span className="min-w-0 text-right font-semibold tabular-nums text-green-600">{car.extra}</span>
+                              <span className="min-w-0 text-right font-semibold tabular-nums text-blue-600">{car.extra}</span>
                             </div>
 
                             {((data.tripMode === "round" && priceView === "inclusive") ||

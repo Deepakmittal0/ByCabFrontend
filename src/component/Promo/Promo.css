@@ -858,7 +858,8 @@
 }
 
 .tracking-wide{
-    color: rgb(33, 227, 227);
+    /* color: rgb(33, 227, 227); */
+    color: green;
 }
 
 .circle-icon {
