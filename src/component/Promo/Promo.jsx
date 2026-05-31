@@ -1080,35 +1080,18 @@ const getMinTime = () => {
 
 
 
-          <div className="container my-4">
-  <div className="row align-items-center shadow rounded overflow-hidden psec">
+      <div className="container my-4">
+  <div className="row align-items-center justify-content-center shadow rounded overflow-hidden psec">
 
-    {/* Left Section */}
-    <div className="col-md-4">
-  <div className="bg-warning rounded-4 overflow-hidden lsec">
-
-    {/* Content */}
-    <div className="p-3 text-center" style={{marginTop:"-20px"}}>
-      <small className="d-block text-dark fw-medium">
-        Frequent Rider Plan
-      </small>
-
-      <h6 className="fw-bold mb-0">
-        Flat ₹200 off on every ride
-      </h6>
-    </div>
-
-    {/* Button */}
-    <button className="bt btn1 btn-warning w-100 fw-semibold rounded-0 border-top">
-      Buy Now
-    </button>
-
-  </div>
-</div>
-
-    {/* Right Section */}
-    <div className="col-md-8 bg-white " style={{ marginTop: "-35px" }}>
-<img src="https://cabbazar.com/assets/img/background/banner_web_2.png" alt="" />
+    <div
+      className="col-md-12 bg-white text-center"
+      style={{ marginTop: "-35px" }}
+    >
+      <img
+        src="https://cabbazar.com/assets/img/background/banner_web_2.png"
+        alt=""
+        className="img-fluid"
+      />
     </div>
 
   </div>

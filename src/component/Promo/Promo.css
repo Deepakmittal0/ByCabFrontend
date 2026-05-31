@@ -861,6 +861,14 @@
     /* color: rgb(33, 227, 227); */
     color: green;
 }
+.img-fluid{
+  margin-left: 72px;
+    margin-top: 30px;
+    width: 1000px;
+    height: 107px;
+}
+
+
 
 .circle-icon {
   width: 60px;
@@ -890,8 +898,17 @@ margin-left: -12px !important; }
 
 @media (max-width: 768px) {
    .psec{
-        height: 230px !important;
+        height: 107px !important;
         /* margin-top: -18px; */
+  }
+
+
+  .img-fluid {
+    margin-left: 1px;
+    margin-top: 30px;
+    width: 965px;
+    height: 61px;
+
   }
   .dis{
     width: 55%;
