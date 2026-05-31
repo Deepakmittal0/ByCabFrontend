@@ -1674,7 +1674,7 @@ value={bookingForm.pickupTime}
     checked={agreeTerms}
     onChange={() => setAgreeTerms(!agreeTerms)}
     className="checkbox"
-  />
+   required/>
   <span className="agree">
   I agree with{" "}
 
