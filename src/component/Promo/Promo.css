@@ -898,7 +898,7 @@ margin-left: -12px !important; }
 
 @media (max-width: 768px) {
    .psec{
-        height: 107px !important;
+        height: 98px !important;
         /* margin-top: -18px; */
   }
 
@@ -907,7 +907,7 @@ margin-left: -12px !important; }
     margin-left: 1px;
     margin-top: 30px;
     width: 965px;
-    height: 61px;
+    height: 65px;
 
   }
   .dis{
