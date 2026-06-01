@@ -16,7 +16,7 @@ const WhyTravel = () => {
           {/* Left Image */}
           <div className="col-lg-6 mb-4 mb-lg-0">
             <div className="image-wrapper">
-              <img src="./image/whychoose.jpeg" alt="Cab Travel" className="img-fluid rounded-img" />
+              <img src="./image/whychoose.jpeg" alt="Cab Travel" className="img-fluid1 rounded-img" />
             </div>
           </div>
 

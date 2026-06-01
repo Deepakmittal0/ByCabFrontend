@@ -52,7 +52,7 @@ const Cab = () => {
         <div className="col-lg-12 col-xl-4 text-center">
           <img
             src={carphone}
-            className="img-fluid center-img"
+            className="img-fluid1 center-img"
             alt="cab"
           />
         </div>

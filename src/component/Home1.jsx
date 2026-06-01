@@ -7,7 +7,7 @@ function Home1() {
   <img
     src="https://paykassma.com/uploads/pending_payment_2_ce86e613ed.png"
     alt=""
-    className="img-fluid"
+    className="img-fluid1"
     style={{ maxWidth: "900px" }}
   />
 
