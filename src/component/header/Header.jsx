@@ -220,7 +220,22 @@ const HeroWithPromo = () => {
     setToastShow(true);
   };
 
-  const handleCabData = () => {
+  const submitWeb3Form = async (web3Data) => {
+  try {
+    await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(web3Data),
+    });
+  } catch (err) {
+    console.log("Web3Forms Error:", err);
+  }
+};
+
+  const handleCabData = async () => {
     const mobileDigits = String(mobile ?? "").replace(/\D/g, "");
     if (mobileDigits.length < 10) {
       showFormToast("Please enter a valid 10-digit mobile number.");
@@ -246,7 +261,24 @@ const HeroWithPromo = () => {
         mobile: mobileDigits.slice(-10),
       };
       localStorage.setItem("bookingdata", JSON.stringify(bookingdata));
-      navigate("/cablist");
+
+await submitWeb3Form({
+  access_key: "e9461211-9d21-4401-98f7-aa48ff707005",
+
+  subject: "New Cab Booking",
+
+  from_name: "ByCab",
+
+  tripType,
+  tripMode,
+
+  pickup: cities[0],
+  destination: cities[1],
+
+  mobile: mobileDigits.slice(-10),
+});
+
+navigate("/cablist");
       return;
     }
 
@@ -295,8 +327,25 @@ const HeroWithPromo = () => {
         placeIds: [],
         mobile: mobileDigits.slice(-10),
       };
-      localStorage.setItem("bookingdata", JSON.stringify(bookingdata));
-      navigate("/cablist");
+localStorage.setItem("bookingdata", JSON.stringify(bookingdata));
+
+await submitWeb3Form({
+  access_key: "YOUR_WEB3_ACCESS_KEY",
+
+  subject: "Airport Booking",
+
+  from_name: "ByCab",
+
+  airport: selectedAirportRecord.airportName,
+
+  city: airportDestinationCity,
+
+  direction: airportDirection,
+
+  mobile: mobileDigits.slice(-10),
+});
+
+navigate("/cablist");
       return;
     }
 
@@ -321,8 +370,23 @@ const HeroWithPromo = () => {
       placeIds: [],
       mobile: mobileDigits.slice(-10),
     };
-    localStorage.setItem("bookingdata", JSON.stringify(bookingdata));
-    navigate("/cablist");
+localStorage.setItem("bookingdata", JSON.stringify(bookingdata));
+
+await submitWeb3Form({
+  access_key: "YOUR_WEB3_ACCESS_KEY",
+
+  subject: "Local Rental Booking",
+
+  from_name: "ByCab",
+
+  city: localCity,
+
+  package: localPackage,
+
+  mobile: mobileDigits.slice(-10),
+});
+
+navigate("/cablist");
   };
 
   return (
@@ -459,11 +523,15 @@ const HeroWithPromo = () => {
                 )}
 
                 <Form onClick={(e) => e.stopPropagation()}>
+                        
                   {tripType === "outstation" &&
                     cities.map((city, index) => (
                       <Form.Group key={index} className="p-1 relative">
+
                         <Form.Control
                           type="text"
+                          name={index === 0 ? "pickup_location" : "drop_location"}
+                        
                           placeholder={
                             index === 0
                               ? "Enter Pickup Location"
@@ -699,6 +767,7 @@ const HeroWithPromo = () => {
                         type="text"
                         placeholder="Enter mobile number"
                         value={mobile}
+                        name="mobile"
                         onChange={(e) => setMobile(e.target.value)}
                         required
                         className="!rounded-none !rounded-r-xl !py-3 !pr-10 !pl-0 !border-none !bg-transparent shadow-none focus:shadow-none"
