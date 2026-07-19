@@ -265,7 +265,7 @@ const HeroWithPromo = () => {
 await submitWeb3Form({
   access_key: "e9461211-9d21-4401-98f7-aa48ff707005",
 
-  subject: "New Cab Booking",
+  subject: "New Cab Booking Query",
 
   from_name: "ByCab",
 
