@@ -48,7 +48,7 @@ const Footer = () => {
             {/* 🌍 */}
              Trending Travel Destinations</h4>
           <p>
-            Agra | Udaipur | Jodhpur | Vrindanvan | Mathura | Amritsar | Dehradun | Haridwar | Rishikesh | Shimla | Manali | Goa | Varanasi | Mysore | Ooty | Etc
+            Agra | Udaipur | Jodhpur | Vrindavan | Mathura | Amritsar | Dehradun | Haridwar | Rishikesh | Shimla | Manali | Goa | Varanasi | Mysore | Ooty | Etc
           </p>
         </div>
       </div>
