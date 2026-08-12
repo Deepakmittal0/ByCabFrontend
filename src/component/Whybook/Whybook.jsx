@@ -45,7 +45,7 @@ const WhyChooseUs = () => {
               </div>
               <div className="feature-content">
                 <h6 className="feature-title fw-bold">{item.title}</h6>
-                <p className="feature-desc mb-0">{item.desc}</p>
+                {/* <p className="feature-desc mb-0">{item.desc}</p> */}
               </div>
             </div>
           ))}
