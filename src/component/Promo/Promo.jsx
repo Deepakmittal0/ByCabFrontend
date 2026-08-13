@@ -472,12 +472,102 @@ const handleAddonChange = (addon) => {
       });
       console.log(res);
       if (res?.success) {
-        alert("Booking Successful !!!");
-        localStorage.clear();
-        navigate("/");
-      } else {
-        alert(res?.message || "Booking Failed !!!");
-      }
+
+    // Web3Forms email
+    try {
+        const formData = new FormData();
+
+        formData.append(
+            "access_key",
+            import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+        );
+
+        formData.append(
+            "subject",
+            `New Cab Booking - ${bookingForm.name}`
+        );
+
+        formData.append(
+            "from_name",
+            "ByCab Booking"
+        );
+
+        formData.append(
+            "name",
+            bookingForm.name || ""
+        );
+
+        formData.append(
+            "email",
+            bookingForm.email || ""
+        );
+
+        formData.append(
+            "phone",
+            bookingForm.mobile || ""
+        );
+
+        formData.append(
+            "message",
+            `
+NEW CAB BOOKING
+
+Customer Name: ${bookingForm.name || ""}
+Customer Email: ${bookingForm.email || ""}
+Customer Mobile: ${bookingForm.mobile || ""}
+
+Order ID: ${orderId || ""}
+
+Pickup Date: ${bookingForm.pickupDate || ""}
+Pickup Time: ${bookingForm.pickupTime || ""}
+
+Pickup Location: ${bookingForm.pickupLocation || ""}
+Drop Location: ${bookingForm.dropLocation || ""}
+
+Cab: ${selectedCar?.cabCategory || ""}
+Cab Price: ₹${selectedCar?.price || 0}
+
+Advance Paid: ₹${Math.round((Number(selectedCar?.price) || 0) * 0.25)}
+
+Trip Type: ${data?.tripMode || ""}
+
+This booking was successfully completed through Razorpay.
+            `.trim()
+        );
+
+        const web3Response = await fetch(
+            "https://api.web3forms.com/submit",
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
+
+        const web3Result = await web3Response.json();
+
+        console.log("Web3Forms Response:", web3Result);
+
+        if (!web3Result.success) {
+            console.error(
+                "Web3Forms failed:",
+                web3Result.message
+            );
+        } else {
+            console.log("Web3Forms email sent successfully");
+        }
+
+    } catch (web3Error) {
+        console.error(
+            "Web3Forms Error:",
+            web3Error
+        );
+    }
+
+    alert("Booking Successful !!!");
+
+    localStorage.clear();
+    navigate("/");
+}
     } catch (error) {
       console.log(error);
       const msg =
