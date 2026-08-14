@@ -223,7 +223,9 @@ function Promo() {
   pickupTime: "",
   returnDate: "",
   returnTime: "",
-  pickupAddress: "",
+  pickup_location: "",
+  drop_location: "",
+
   days:1
 });
 
@@ -521,8 +523,8 @@ Order ID: ${orderId || ""}
 Pickup Date: ${bookingForm.pickupDate || ""}
 Pickup Time: ${bookingForm.pickupTime || ""}
 
-Pickup Location: ${bookingForm.pickupLocation || ""}
-Drop Location: ${bookingForm.dropLocation || ""}
+Pickup Location: ${bookingForm.pickup_location || ""}
+Drop Location: ${bookingForm.drop_location || ""}
 
 Cab: ${selectedCar?.cabCategory || ""}
 Cab Price: ₹${selectedCar?.price || 0}
@@ -1700,14 +1702,31 @@ value={bookingForm.pickupTime}
                 </label>
                 <input
                   type="text"
-                  name="pickupAddress"
-                  value={bookingForm.pickupAddress}
+                  name="pickup_location"
+                  value={bookingForm.pickup_location}
                   onChange={handleInputChange}
                   placeholder="Enter specific pickup location"
                   required
                   className="w-full p-[14px_18px] border-2 border-[#eee] rounded-xl text-[1rem] bg-[#fafafa] transition-all duration-200 focus:border-[#ffcc00] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#ffcc00]/15"
                 />
               </div>
+
+
+              <div className="mb-5">
+  <label className="block mb-2 font-semibold text-[0.85rem] text-[#444] uppercase tracking-[0.5px]">
+    Drop Address
+  </label>
+
+  <input
+    type="text"
+    name="drop_location"
+    value={bookingForm.drop_location}
+    onChange={handleInputChange}
+    placeholder="Enter specific drop location"
+    required
+    className="w-full p-[14px_18px] border-2 border-[#eee] rounded-xl text-[1rem] bg-[#fafafa] transition-all duration-200 focus:border-[#ffcc00] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#ffcc00]/15"
+  />
+</div>
              {selectedCar && (
               <div className="mb-5 rounded-xl border-2 border-[#ffec99] bg-[#fffef5] p-4 text-sm">
                 <p className="mb-2 font-bold text-[#1a1a1a] uppercase tracking-wide text-[0.8rem]">
