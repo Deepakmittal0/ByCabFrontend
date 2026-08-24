@@ -1197,7 +1197,7 @@ const getMinTime = () => {
                 <button
                   type="button"
                   className={`flex-1 p-3 border-none cursor-pointer font-bold transition-colors duration-200 min-h-[48px] max-md:text-sm ${
-                    priceView === "best" ? "bg-[#ffcc00] text-black" : "bg-[#b4b1b1] text-[#333]"
+                    priceView === "best" ? "bg-[#ffcc00] text-black" : "bg-white text-[#333]"
                   }`}
                   onClick={() => setPriceView("best")}
                   aria-pressed={priceView === "best"}
