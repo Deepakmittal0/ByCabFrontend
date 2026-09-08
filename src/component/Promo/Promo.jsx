@@ -199,8 +199,8 @@ function buildAirportTransferCabCards(airportCityFare) {
 // ✅ MAIN COMPONENT (Promo Page)
 function Promo() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [loading, setLoading] = useState(true); 
+ const [agreeTerms, setAgreeTerms] = useState(true);
   const [data, setData] = useState(null);
   const [cabdata, setCabdata] = useState([]);
   const [distanceKm, setDistanceKm] = useState(null);
@@ -1711,11 +1711,12 @@ value={bookingForm.pickupTime}
 
 <label className="flex items-center  gap-2 mt-4 text-sm cursor-pointer">
   <input
-    type="checkbox"
-    checked={agreeTerms}
-    onChange={() => setAgreeTerms(!agreeTerms)}
-    className="checkbox"
-   required/>
+  type="checkbox"
+  checked={agreeTerms}
+  onChange={() => setAgreeTerms(!agreeTerms)}
+  className="checkbox"
+  required
+/>
   <span className="agree">
   I agree with{" "}
 
