@@ -469,9 +469,9 @@ const verifyPayment = async (payload) => {
     alert("Something went Wrong !!!");
   }
 };
-
- const sendBookingData = async (orderId) => {
+const sendBookingData = async (orderId) => {
   try {
+    // 1. Save booking in backend
     const { data: res } = await axios.post(
       `${import.meta.env.VITE_API}/api/v1/booking`,
       {
@@ -487,17 +487,80 @@ const verifyPayment = async (payload) => {
       }
     );
 
-    console.log(res);
+    console.log("Booking API Response:", res);
 
-    if (res?.success) {
-      // Tumhara existing Web3Forms wala pura code yahin rahega
-
-      alert("Booking Successful !!!");
-
-      return true;
+    if (!res?.success) {
+      return false;
     }
 
-    return false;
+    // 2. Send email through Web3Forms
+    const formData = new FormData();
+
+    formData.append(
+      "access_key",
+      import.meta.env.VITE_WEB3FORMS_ACCESS_KEYS
+    );
+
+    formData.append(
+      "subject",
+      `New ByCab Booking - ${orderId}`
+    );
+
+    formData.append(
+      "from_name",
+      "ByCab Booking"
+    );
+
+    formData.append("name", bookingForm.name);
+    formData.append("email", bookingForm.email);
+    formData.append("mobile", bookingForm.mobile);
+    formData.append("pickupDate", bookingForm.pickupDate);
+    formData.append("orderId", orderId);
+
+    formData.append(
+      "message",
+      `
+New ByCab Booking
+
+Order ID: ${orderId}
+
+Name: ${bookingForm.name}
+Mobile: ${bookingForm.mobile}
+Email: ${bookingForm.email}
+Pickup Date: ${bookingForm.pickupDate}
+
+Selected Car:
+${JSON.stringify(selectedCar, null, 2)}
+
+Trip Details:
+${JSON.stringify(data, null, 2)}
+
+Add-ons:
+${JSON.stringify(selectedAddons, null, 2)}
+      `
+    );
+
+    // 3. Web3Forms API
+    const emailResponse = await fetch(
+      "https://api.web3forms.com/submit",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const emailResult = await emailResponse.json();
+
+    console.log("Web3Forms Response:", emailResult);
+
+    if (!emailResult.success) {
+      console.error("Email sending failed:", emailResult);
+    }
+
+    alert("Booking Successful !!!");
+
+    return true;
+
   } catch (error) {
     console.log(error);
 
