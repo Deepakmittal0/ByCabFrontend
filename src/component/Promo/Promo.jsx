@@ -441,27 +441,40 @@ const handleAddonChange = (addon) => {
     }
     return null;
   };
+const verifyPayment = async (payload) => {
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_API}/api/v1/verify-payment`,
+      payload
+    );
 
-  const verifyPayment = async (payload) => {
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_API}/api/v1/verify-payment`, payload);
-      console.log(res.data);
-      if (res.data.success) {
-        const orderId = res.data.data?.order_id ?? payload.razorpay_order_id;
-        alert("Payment Successful !!!");
-        sendBookingData(orderId);
-      } else {
-        alert("Payment Failed !!!");
+    console.log("Payment verification:", res.data);
+
+    if (res.data.success) {
+      const orderId =
+        res.data.data?.order_id ?? payload.razorpay_order_id;
+
+      // Payment verified successfully
+      const bookingSuccess = await sendBookingData(orderId);
+
+      if (bookingSuccess) {
+        localStorage.clear();
+        navigate("/thank-you");
       }
-    } catch (error) {
-      console.log(error);
-      alert("Something went Wrong !!!");
+    } else {
+      alert("Payment Failed !!!");
     }
-  };
+  } catch (error) {
+    console.log(error);
+    alert("Something went Wrong !!!");
+  }
+};
 
-  const sendBookingData = async (orderId) => {
-    try {
-      const { data: res } = await axios.post(`${import.meta.env.VITE_API}/api/v1/booking`, {
+ const sendBookingData = async (orderId) => {
+  try {
+    const { data: res } = await axios.post(
+      `${import.meta.env.VITE_API}/api/v1/booking`,
+      {
         bookingForm: bookingForm,
         selectedCar: selectedCar,
         tripdata: {
@@ -471,114 +484,33 @@ const handleAddonChange = (addon) => {
         orderId: orderId,
         selectedAddons,
         days: bookingForm.days,
-      });
-      console.log(res);
-      if (res?.success) {
+      }
+    );
 
-    // Web3Forms email
-    try {
-        const formData = new FormData();
+    console.log(res);
 
-        formData.append(
-            "access_key",
-            import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
-        );
+    if (res?.success) {
+      // Tumhara existing Web3Forms wala pura code yahin rahega
 
-        formData.append(
-            "subject",
-            `New Cab Booking - ${bookingForm.name}`
-        );
+      alert("Booking Successful !!!");
 
-        formData.append(
-            "from_name",
-            "ByCab Booking"
-        );
-
-        formData.append(
-            "name",
-            bookingForm.name || ""
-        );
-
-        formData.append(
-            "email",
-            bookingForm.email || ""
-        );
-
-        formData.append(
-            "phone",
-            bookingForm.mobile || ""
-        );
-
-        formData.append(
-            "message",
-            `
-NEW CAB BOOKING
-
-Customer Name: ${bookingForm.name || ""}
-Customer Email: ${bookingForm.email || ""}
-Customer Mobile: ${bookingForm.mobile || ""}
-
-Order ID: ${orderId || ""}
-
-Pickup Date: ${bookingForm.pickupDate || ""}
-Pickup Time: ${bookingForm.pickupTime || ""}
-
-Pickup Location: ${bookingForm.pickup_location || ""}
-Drop Location: ${bookingForm.drop_location || ""}
-
-Cab: ${selectedCar?.cabCategory || ""}
-Cab Price: ₹${selectedCar?.price || 0}
-
-Advance Paid: ₹${Math.round((Number(selectedCar?.price) || 0) * 0.25)}
-
-Trip Type: ${data?.tripMode || ""}
-
-This booking was successfully completed through Razorpay.
-            `.trim()
-        );
-
-        const web3Response = await fetch(
-            "https://api.web3forms.com/submit",
-            {
-                method: "POST",
-                body: formData,
-            }
-        );
-
-        const web3Result = await web3Response.json();
-
-        console.log("Web3Forms Response:", web3Result);
-
-        if (!web3Result.success) {
-            console.error(
-                "Web3Forms failed:",
-                web3Result.message
-            );
-        } else {
-            console.log("Web3Forms email sent successfully");
-        }
-
-    } catch (web3Error) {
-        console.error(
-            "Web3Forms Error:",
-            web3Error
-        );
+      return true;
     }
 
-    alert("Booking Successful !!!");
+    return false;
+  } catch (error) {
+    console.log(error);
 
-    localStorage.clear();
-    navigate("/");
-}
-    } catch (error) {
-      console.log(error);
-      const msg =
-        error.response?.data?.message ||
-        error.message ||
-        "Something went Wrong !!!";
-      alert(msg);
-    }
-  };
+    const msg =
+      error.response?.data?.message ||
+      error.message ||
+      "Something went Wrong !!!";
+
+    alert(msg);
+
+    return false;
+  }
+};
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();

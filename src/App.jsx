@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "./component/Home";
 import Promo from "./component/Promo/Promo";
+import Thank from "./component/thank/Thank";
 import ContactThankYou from "./component/ContactSection/ContactThankYou";
 import Refund from "./component/Promo/Refund";
 
@@ -18,6 +19,8 @@ function App() {
           element={<ContactThankYou />}
         />
         <Route path="/refund" element={<Refund />} />
+        <Route path="/thank-you" element={<Thank />} />
+        
       </Routes>
 
       <FloatingButtons />
