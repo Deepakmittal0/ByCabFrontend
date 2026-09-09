@@ -517,28 +517,36 @@ const sendBookingData = async (orderId) => {
     formData.append("pickupDate", bookingForm.pickupDate);
     formData.append("orderId", orderId);
 
-    formData.append(
-      "message",
-      `
+
+formData.append(
+  "message",
+  `
 New ByCab Booking
 
 Order ID: ${orderId}
 
+Customer Details:
 Name: ${bookingForm.name}
 Mobile: ${bookingForm.mobile}
 Email: ${bookingForm.email}
 Pickup Date: ${bookingForm.pickupDate}
 
 Selected Car:
-${JSON.stringify(selectedCar, null, 2)}
+Car Name: ${selectedCar?.name || "N/A"}
+Car Price: ${selectedCar?.price || "N/A"}
 
 Trip Details:
-${JSON.stringify(data, null, 2)}
+Pickup Location: ${data?.pickupLocation || "N/A"}
+Drop Location: ${data?.dropLocation || "N/A"}
+Trip Type: ${data?.tripType || "N/A"}
 
 Add-ons:
-${JSON.stringify(selectedAddons, null, 2)}
-      `
-    );
+${selectedAddons?.length
+  ? selectedAddons.map((addon) => `- ${addon.name}`).join("\n")
+  : "No add-ons selected"}
+  `
+);
+
 
     // 3. Web3Forms API
     const emailResponse = await fetch(
